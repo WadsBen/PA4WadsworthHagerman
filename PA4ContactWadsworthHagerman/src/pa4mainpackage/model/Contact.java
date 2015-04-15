@@ -25,7 +25,7 @@ public class Contact implements Comparable<Contact>
     }
 
     /**
-     * Returns a description of this contact as a string.
+     * Returns a description of this contact as a string..
      *
      * @return a string representation of this contact
      */
