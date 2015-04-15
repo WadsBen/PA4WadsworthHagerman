@@ -8,7 +8,8 @@ package pa4mainpackage.model;
  */
 public class Contact implements Comparable<Contact>
 {
-    private String firstName, lastName, phone;
+    private String firstName, lastName;
+    private final ContactPhoneNumber phoneQueue = new ContactPhoneNumber();
 
     /**
      * Sets up this contact with the specified information.
@@ -21,7 +22,7 @@ public class Contact implements Comparable<Contact>
     {
         firstName = first;
         lastName = last;
-        phone = telephone;
+        phoneQueue.addPhoneNumber(telephone);
     }
 
     /**
@@ -31,7 +32,13 @@ public class Contact implements Comparable<Contact>
      */
     public String toString()
     {
-        return lastName + ", " + firstName + "\t" + phone;
+        return null;
+        //return lastName + ", " + firstName + "\t" + phone;
+    }
+    
+    public boolean containsPhoneNumber(String phoneNumber)
+    {
+        return phoneQueue.contains(phoneNumber);
     }
 
     /**

@@ -1,5 +1,5 @@
 
-package pa4mainpackage;
+package pa4mainpackage.delegate;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
