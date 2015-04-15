@@ -194,6 +194,7 @@ public class Controller
             else if (actionCommand.equals( "Find Max"))
             {
                 //
+                
             }
             else if (actionCommand.equals( "About"))
             {
