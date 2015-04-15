@@ -13,8 +13,8 @@ public class PA4WadsworthHagermanMain
      */
     public static void main(String[] args) 
     {
-        System.out.println("You Are a Pirate");
-        System.out.println("Boobs");
+        
+        Controller start = new Controller();
         
     }
     
