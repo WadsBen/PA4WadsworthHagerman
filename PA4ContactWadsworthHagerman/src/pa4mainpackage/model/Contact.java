@@ -9,7 +9,8 @@ package pa4mainpackage.model;
 public class Contact implements Comparable<Contact>
 {
     private String firstName, lastName;
-    private final ContactPhoneNumber phoneQueue = new ContactPhoneNumber();
+    private ContactPhoneNumber phoneNumbers;
+    private ContactEmailAddress emailAddresses;
 
     /**
      * Sets up this contact with the specified information.
@@ -18,11 +19,15 @@ public class Contact implements Comparable<Contact>
      * @param last      a string representation of a last name
      * @param telephone a string representation of a phone number
      */
-    public Contact(String first, String last, String telephone)
+    public Contact(String first, String last, String phoneNumbers,
+            String emailAddresses)
     {
         firstName = first;
         lastName = last;
-        phoneQueue.addPhoneNumber(telephone);
+        this.phoneNumbers = new ContactPhoneNumber();
+        this.phoneNumbers.add(phoneNumbers);
+        this.emailAddresses = new ContactEmailAddress();
+        this.emailAddresses.add(emailAddresses);
     }
 
     /**
@@ -32,13 +37,9 @@ public class Contact implements Comparable<Contact>
      */
     public String toString()
     {
-        return null;
+        return(lastName + ", " + firstName + ". PHONE NUMBERS: " + phoneNumbers.toString() +
+                "." + " EMAIL: " + emailAddresses.toString());
         //return lastName + ", " + firstName + "\t" + phone;
-    }
-    
-    public boolean containsPhoneNumber(String phoneNumber)
-    {
-        return phoneQueue.contains(phoneNumber);
     }
 
     /**

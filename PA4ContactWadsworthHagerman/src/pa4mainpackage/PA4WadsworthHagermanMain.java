@@ -1,9 +1,7 @@
 
 package pa4mainpackage;
 
-import pa4mainpackage.delegate.Controller;
-import pa4mainpackage.model.Contact;
-import pa4mainpackage.model.PA4TreeMapStore;
+import pa4mainpackage.model.ModelHandler;
 
 /**
  *
@@ -18,12 +16,13 @@ public class PA4WadsworthHagermanMain
     public static void main(String[] args) 
     {
         
-        Controller start = new Controller();
+        //Controller start = new Controller();
+
+        ModelHandler mh = new ModelHandler();
         
-        PA4TreeMapStore test = new PA4TreeMapStore();
+        mh.addContact("BEN", "WADSWORTH", "555-222-5623", "BWADSWOR@YOLO.COM");
+        System.out.println(mh.toString());
         
-        test.put(new Integer(1001), new Contact("Ben", "Wadsworth", "419-765-0435"));
         
     }
-    
 }
