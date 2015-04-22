@@ -1,9 +1,11 @@
 
 package pa4mainpackage.delegate;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,22 +19,22 @@ import javax.swing.JTextField;
  */
 public class AddView
 {
-    private JFrame addFrame;
+    private JFrame addFrame, errorFrame;
     private JTextField lastNameField, nameField, orgField,email1,email2,email3,
             email4,email5, email6, phone1, phone2, phone3, phone4, phone5, phone6;
     private JPanel topPanel, bottomPanel, finalPane, bottomLeftPanel, 
             bigPanel, bottomRightPanel, veryBottom;
-    private JLabel fNLabel, lNLabel, orgLabel, emailLabel, phoneLabel,l1,l2,l3,l4,l5,l6;
-    private JButton submitBTN, cancelBTN;
+    private JLabel fNLabel, lNLabel, orgLabel, emailLabel, phoneLabel,error1, error2;
+    private JButton submitBTN, cancelBTN, closeErrorButton;
+    private ActionListener cancelAL, submitAL, closeAL;
     
     
     public AddView()
     {
-        createAddEntry();
+       
     }
-    private void createAddEntry()
+    public void displayAddEntry()
     {
-        
         addFrame = new JFrame();
         addFrame.setTitle("Add Entry");
         addFrame.setLocationRelativeTo(null);
@@ -40,8 +42,7 @@ public class AddView
         addFrame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
         addFrame.setResizable(false);
         
-        
-        //JPanel finalPanej = new JPanel(new GridLayout(2,1,5,5));
+
         bigPanel = new JPanel();
         bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
         topPanel = new JPanel(new GridLayout(2,3,5,5));
@@ -56,7 +57,6 @@ public class AddView
         topPanel.setPreferredSize(new Dimension(500,80));
         bottomPanel.setMaximumSize(new Dimension(500,280));
         bottomPanel.setPreferredSize(new Dimension(500,280));
-      //bottomPanel.setPreferredSize(new Dimension(400,600));
         
         fNLabel  = new JLabel("First Name");
         fNLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -113,24 +113,99 @@ public class AddView
         bottomPanel.add(bottomLeftPanel);
         bottomPanel.add(bottomRightPanel);
         
-        
         veryBottom = new JPanel( new FlowLayout());
         cancelBTN = new JButton("Cancel");
+        cancelBTN.setActionCommand("CLOSEADDWINDOW");
+        cancelBTN.addActionListener(cancelAL);
+       
         submitBTN = new JButton("Submit");
-        //closeAboutButton.addActionListener(new AllWidgetListener() );
+        submitBTN.setActionCommand("SUBMITADD");
+        submitBTN.addActionListener(submitAL);
         
         veryBottom.add(submitBTN);
         veryBottom.add(cancelBTN);
-
-        //finalPanej.add(toptopPanel);
-        bigPanel.add(bottomPanel);
-       // finalPanej.add(bottomPanel);
-         bigPanel.add(veryBottom);
-        //addFrame.add(finalPanej);
-         addFrame.add(bigPanel);
-      
         
+        bigPanel.add(bottomPanel);
+        bigPanel.add(veryBottom);
+        addFrame.add(bigPanel);
+      
         addFrame.setVisible(true);
     }
     
+    public String getFirstName()
+    {
+        return nameField.getText();
+    }
+    
+    public String getLastName()
+    {
+        return lastNameField.getText();
+    }
+    
+    public String getOrgName()
+    {
+        return orgField.getText();
+    }
+    
+    public void closeAdd()
+    {
+        addFrame.dispose();
+    }
+    
+    public void displayErrorFrame()
+    {
+        errorFrame = new JFrame();
+        errorFrame.setTitle("Error!");
+        errorFrame.setLocationRelativeTo(null);
+        errorFrame.setSize(260,80);
+        errorFrame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
+        errorFrame.setResizable(false);
+        errorFrame.setLayout( new FlowLayout() );
+        
+        error1  = new JLabel("Error: Incorrect Input, please try again");
+        error1.setHorizontalAlignment(JLabel.CENTER);
+        //error2  = new JLabel("Incorrect Input");
+      //  error2.setHorizontalAlignment(JLabel.CENTER);
+        
+        errorFrame.add(error1);
+       // errorFrame.add(error2);
+
+        closeErrorButton = new JButton("Close");
+        closeErrorButton.setActionCommand("CLOSEERRORTWINDOW");
+        closeErrorButton.addActionListener(closeAL);
+        errorFrame.add(closeErrorButton);
+        
+        
+        errorFrame.setVisible(true);     
+    
+    }
+    
+    public void closeErrorFrame()
+    {
+        errorFrame.dispose();
+    }
+    
+    public boolean correctInput()
+    {
+        if(getLastName().equals("") || getFirstName().equals("") || getOrgName().equals(""))
+        {
+            return false;    
+        }
+
+        else
+        {
+            return true;
+        }
+            
+    }
+    
+  
+    public void setActionListeners(ActionListener al)
+    {
+         closeAL = al;
+         cancelAL = al;
+         submitAL = al;
+
+        
+    }//End setJButtonListen
 }

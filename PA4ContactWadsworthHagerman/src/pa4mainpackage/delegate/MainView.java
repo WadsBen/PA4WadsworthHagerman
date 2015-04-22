@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.ButtonGroup;
@@ -21,7 +20,6 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import pa4mainpackage.model.ModelHandler;
 
 
 public class MainView 
@@ -41,7 +39,7 @@ public class MainView
     private JTextArea textAreaText;
     private JTextField nameField, lastNameField, organizationField;
     private static final int LINES = 21;
-    private static final int CHAR_PER_LINE = 61;
+    private static final int CHAR_PER_LINE = 65;
 
 
     public MainView()
@@ -53,8 +51,9 @@ public class MainView
     {
         mainWindow = new JFrame();
         mainWindow.setTitle("Assignment IV: Directory");
-        mainWindow.setSize( 750, 400);
+        mainWindow.setSize( 800, 400);
         mainWindow.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
+        mainWindow.setResizable(false);
         mainWindow.setLayout( new BorderLayout());
         
 
@@ -86,14 +85,16 @@ public class MainView
     
         menuEdit.add(menuEditAdd);
         menuEditDelete = new JMenuItem("Delete");
+        menuEditDelete.setActionCommand("DELETE");
       
         menuEdit.add(menuEditDelete);
         menuEdit.addSeparator();
         menuEditDeleteMax = new JMenuItem("Delete Max");
-       
+        menuEditDeleteMax.setActionCommand("DELETEMAX");
+                
         menuEdit.add( menuEditDeleteMax);
         menuEditDeleteMin = new JMenuItem("Delete Min");
-       
+        menuEditDeleteMin.setActionCommand("DELETEMIN");
         menuEdit.add(menuEditDeleteMin);
         
 
@@ -102,19 +103,23 @@ public class MainView
         menuSort = new JMenu("Sort Directory");
         ButtonGroup group = new ButtonGroup();
         sortAscending = new JRadioButtonMenuItem("Ascending");
+        sortAscending.setActionCommand("ASCENDING");
         sortAscending.setSelected(true);
         
         group.add(sortAscending);
         menuSort.add(sortAscending);
         sortDescending = new JRadioButtonMenuItem("Descending");
+        sortDescending.setActionCommand("DESCENDING");
         
         group.add(sortDescending);
         menuSort.add(sortDescending);
         menuSort.addSeparator();
         menuSortFindMax = new JMenuItem("Find Max");
+        menuSortFindMax.setActionCommand("FINDMAX");
        
         menuSort.add(menuSortFindMax);
         menuSortFindMin = new JMenuItem("Find Min");
+        menuSortFindMin.setActionCommand("FINDMIN");
         
         menuSort.add(menuSortFindMin);
         
@@ -122,6 +127,7 @@ public class MainView
         //About Tab
         menuAbout = new JMenu("About");
         menuAboutAbout = new JMenuItem("About");
+        menuAboutAbout.setActionCommand("ABOUT");
         
         menuAbout.add(menuAboutAbout);
         
@@ -138,8 +144,6 @@ public class MainView
         textPanel.setBackground(Color.DARK_GRAY);
         textAreaText = new JTextArea( LINES, CHAR_PER_LINE);
         textAreaText.setBackground(Color.WHITE);
-        //Font font = new Font("Courier New", Font.PLAIN, 12);
-        //textAreaText.setFont(font );
         scrolledText = new JScrollPane(textAreaText);
         textPanel.add(scrolledText);
         mainWindow.add(textPanel,BorderLayout.CENTER);
@@ -148,27 +152,7 @@ public class MainView
         mainWindow.setVisible(true);  
     }
     
-//JOHN! LEGACY CODE BELOW??
-    
-//    private void addEntry()
-//    {
-//        addFrame = new JFrame();
-//        addFrame.setTitle("Add Entry");
-//        addFrame.setLocationRelativeTo(null);
-//        addFrame.setSize(500,410);
-//        addFrame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
-//        addFrame.setResizable(false);
-//      //  addFrame.setLayout( new BorderLayout() ); 
-//        
-//        nameField = new JTextField();
-//        lastNameField = new JTextField();
-//        addFrame.add(nameField);
-//        addFrame.add(lastNameField);
-//        
-//        addFrame.setVisible(true);
-//    }
-    
-    
+
     public void showAbout()
     {
         aboutFrame = new JFrame();
@@ -203,6 +187,7 @@ public class MainView
     public void closeAbout()
     {
         aboutFrame.dispose();
+        
     }//End of closeAbout() method
     
   
@@ -216,6 +201,11 @@ public class MainView
             File selectedFile = fileChooser.getSelectedFile();
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
         }
+    }
+    
+    public void updateTextArea(String x)
+    {
+        textAreaText.setText(x);
     }
     
     public void setActionListeners(ActionListener al)
@@ -232,6 +222,9 @@ public class MainView
         menuSortFindMax.addActionListener(al);
         menuSortFindMin.addActionListener(al);    
         menuEditEditEntry.addActionListener(al);
+        sortDescending.addActionListener(al);
+        sortAscending.addActionListener(al);
+        
     }//End setJButtonListeners method
  
 }

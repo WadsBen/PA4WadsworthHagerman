@@ -6,8 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *   Sets up the GUI
- * 
+ *  
  * @author John Thomas Hagerman
  * @author Benjamin Awesomesauce Wadsworth
  */
@@ -16,16 +15,22 @@ public class Controller
     
     private final MainView mainView;
     private final ModelHandler modelHandler;
+    private final AddView addView;
     
     
-    public Controller(MainView mainView, ModelHandler modelHandler)
+    public Controller(MainView mainView, ModelHandler modelHandler, AddView addView)
     {
         this.mainView = mainView;
         this.modelHandler = modelHandler;
+        this.addView = addView;
         
         mainView.setActionListeners(new AllWidgetListener());
+        addView.setActionListeners(new AllWidgetListener());
+        
     }
     
+    
+
     
     private class AllWidgetListener implements ActionListener
     {
@@ -42,37 +47,43 @@ public class Controller
             {
                 mainView.openFile();
             }
-            else if (actionCommand.equals( "Save"))
-            {
-                //Save action
-            }
-            else if (actionCommand.equals( "Ascending"))
+            else if (actionCommand.equals( "SAVE"))
             {
                 
             }
-            else if (actionCommand.equals( "Descending"))
+            else if (actionCommand.equals( "ASCENDING"))
             {
-                //Sort Action
+                
+            }
+            else if (actionCommand.equals( "DESCENDING"))
+            {
+                
             }
             else if (actionCommand.equals( "ADD"))
             {
-               AddView x = new AddView();
+                addView.displayAddEntry();
+            }
+            else if (actionCommand.equals( "DELETE"))
+            {
+                //
+            }
+            else if (actionCommand.equals( "DELETEMIN"))
+            {
+                //
+            }
+            else if (actionCommand.equals( "DELETEMAX"))
+            {
                 
             }
-            else if (actionCommand.equals( "Delete"))
+            else if (actionCommand.equals( "FINDMAX"))
             {
-                //
-            }
-            else if (actionCommand.equals( "Find Min"))
-            {
-                //
-            }
-            else if (actionCommand.equals( "Find Max"))
-            {
-                //
                 
             }
-            else if (actionCommand.equals( "About"))
+            else if (actionCommand.equals( "FINDMIN"))
+            {
+                
+            }
+            else if (actionCommand.equals( "ABOUT"))
             {
                 mainView.showAbout();
             }
@@ -80,6 +91,39 @@ public class Controller
             {
                 mainView.closeAbout();
             }
+            else if (actionCommand.equals( "CLOSEADDWINDOW"))
+            {
+                addView.closeAdd();
+            }
+            else if (actionCommand.equals( "CLOSEERRORTWINDOW"))
+            {
+            
+                addView.closeErrorFrame();
+            }
+            else if(actionCommand.equals( "SUBMITADD"))
+            {
+                if (addView.correctInput() == true)
+                {
+                    modelHandler.addContact(addView.getFirstName(), addView.getLastName()
+                        , addView.getOrgName(), new String[]{"419-765-5555", "320-235-5668"}, 
+                        new String[]{"bwadswor@heidelberg.edu", "wadsworth.benjamin.m@gmail.com"});
+
+                
+                    System.out.println(addView.getFirstName());
+                    System.out.println(modelHandler.toString());
+                    addView.closeAdd();
+                    mainView.updateTextArea(modelHandler.toString());
+                    
+                    //UPDATE JTEXT AREA
+                } 
+                else
+                {
+                    addView.displayErrorFrame();
+                }
+                
+            }
+            
+          
         
         }
  
