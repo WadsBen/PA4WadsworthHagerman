@@ -80,7 +80,7 @@ public class MainView
         menuEditEditEntry.setActionCommand("EDITENTRY");
      
         menuEdit.add(menuEditEditEntry);
-        menuEditAdd = new JMenuItem("Add");
+        menuEditAdd = new JMenuItem("Add Entry");
         menuEditAdd.setActionCommand("ADD");
     
         menuEdit.add(menuEditAdd);

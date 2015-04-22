@@ -108,7 +108,7 @@ public class Controller
                         , addView.getOrgName(), new String[]{"419-765-5555", "320-235-5668"}, 
                         new String[]{"bwadswor@heidelberg.edu", "wadsworth.benjamin.m@gmail.com"});
 
-                
+               
                     System.out.println(addView.getFirstName());
                     System.out.println(modelHandler.toString());
                     addView.closeAdd();

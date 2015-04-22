@@ -11,7 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -46,7 +48,6 @@ public class AddView
         bigPanel = new JPanel();
         bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
         topPanel = new JPanel(new GridLayout(2,3,5,5));
-        bigPanel.add(topPanel);
         bottomPanel = new JPanel(new GridLayout(1,2,10,10));
         
         bottomLeftPanel = new JPanel(new GridLayout(7,1,0,0));
@@ -93,6 +94,8 @@ public class AddView
         topPanel.add(nameField);
         topPanel.add(lastNameField);
         topPanel.add(orgField);
+      
+        //topPanel.addSeparator();
         
         bottomLeftPanel.add(phoneLabel);
         bottomLeftPanel.add(phone1);
@@ -111,6 +114,7 @@ public class AddView
         bottomRightPanel.add(email6);
         
         bottomPanel.add(bottomLeftPanel);
+       
         bottomPanel.add(bottomRightPanel);
         
         veryBottom = new JPanel( new FlowLayout());
@@ -125,10 +129,12 @@ public class AddView
         veryBottom.add(submitBTN);
         veryBottom.add(cancelBTN);
         
+        bigPanel.add(topPanel);
+        bigPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
         bigPanel.add(bottomPanel);
         bigPanel.add(veryBottom);
+        
         addFrame.add(bigPanel);
-      
         addFrame.setVisible(true);
     }
     
