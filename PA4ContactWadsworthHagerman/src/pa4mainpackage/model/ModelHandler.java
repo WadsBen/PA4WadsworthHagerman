@@ -20,8 +20,8 @@ public class ModelHandler
         keys = new PrimaryKeyHandler();
     }
     
-    public void addContact(String firstName, String lastName, String phoneNumbers,
-            String emailAddresses)
+    public void addContact(String firstName, String lastName, String[] phoneNumbers,
+            String[] emailAddresses)
     {
         Contact tempContact;
         tempContact = new Contact(firstName, lastName, phoneNumbers, emailAddresses);

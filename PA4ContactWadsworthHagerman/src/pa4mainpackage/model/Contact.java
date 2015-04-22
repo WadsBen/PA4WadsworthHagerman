@@ -15,19 +15,18 @@ public class Contact implements Comparable<Contact>
     /**
      * Sets up this contact with the specified information.
      *
-     * @param first     a string representation of a first name
-     * @param last      a string representation of a last name
-     * @param telephone a string representation of a phone number
+     * @param first             a string representation of a first name
+     * @param last              a string representation of a last name
+     * @param phoneNumbers      an object containing an ArrayList of phoneNumbers
+     * @param emailAddresses    an object containing an ArrayList of emailAddresses
      */
-    public Contact(String first, String last, String phoneNumbers,
-            String emailAddresses)
+    public Contact(String first, String last, String[] phoneNumbers,
+            String[] emailAddresses)
     {
         firstName = first;
         lastName = last;
-        this.phoneNumbers = new ContactPhoneNumber();
-        this.phoneNumbers.add(phoneNumbers);
-        this.emailAddresses = new ContactEmailAddress();
-        this.emailAddresses.add(emailAddresses);
+        this.phoneNumbers = new ContactPhoneNumber(phoneNumbers);
+        this.emailAddresses = new ContactEmailAddress(emailAddresses);
     }
 
     /**

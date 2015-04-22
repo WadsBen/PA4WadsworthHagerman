@@ -20,7 +20,8 @@ public class PA4WadsworthHagermanMain
 
         ModelHandler mh = new ModelHandler();
         
-        mh.addContact("BEN", "WADSWORTH", "555-222-5623", "BWADSWOR@YOLO.COM");
+        mh.addContact("BEN", "WADSWORTH", new String[]{"419-765-5555", "320-235-5668"}, new String[]{"bwadswor@heidelberg.edu", "wadsworth.benjamin.m@gmail.com"});
+        mh.addContact("BEN", "WADSWORTH", new String[]{"419-765-5555", "320-235-5668"}, new String[]{"bwadswor@heidelberg.edu", "wadsworth.benjamin.m@gmail.com"});
         System.out.println(mh.toString());
         
         
