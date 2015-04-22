@@ -2,15 +2,12 @@
 package pa4mainpackage.delegate;
 
 import java.awt.BorderLayout;
-import pa4mainpackage.model.ModelHandler;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import static javafx.scene.input.ScrollEvent.VerticalTextScrollUnits.LINES;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -24,17 +21,12 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import pa4mainpackage.model.ModelHandler;
 
-/**
- *   Sets up the GUI
- * 
- * @author John Thomas Hagerman
- * @author Benjamin Awesomesauce Wadsworth
- */
-public class Controller 
+
+public class MainView 
 {
-    private ModelHandler mh;
-    
+   // private ModelHandler mh;
     private JMenuBar menuBar;
     private JRadioButtonMenuItem sortAscending, sortDescending;
     private JMenuItem menuFileExit, menuFileSave, menuAboutAbout, menuEditDeleteMax, menuEditDeleteMin,
@@ -47,14 +39,13 @@ public class Controller
     private JScrollPane scrolledText;
     private JTextArea textAreaText;
     private JTextField nameField, lastNameField, organizationField;
-    public static final int LINES = 21;
-    public static final int CHAR_PER_LINE = 61;
+    private static final int LINES = 21;
+    private static final int CHAR_PER_LINE = 61;
 
-    
-    
-    public Controller()
+
+    public MainView()
     {
-        mh = new ModelHandler();
+        //mh = new ModelHandler();
         mainMenu();            
     }
     
@@ -71,16 +62,16 @@ public class Controller
         menuFile = new JMenu("File");
         menuFileOpen = new JMenuItem("Open");
         menuFileOpen.setActionCommand("OPEN");
-        menuFileOpen.addActionListener(new Controller.AllWidgetListener());
+      //  menuFileOpen.addActionListener(new Controller.AllWidgetListener());
         menuFile.add(menuFileOpen);
         menuFileSave = new JMenuItem("Save");
         menuFileSave.setActionCommand("SAVE");
-        menuFileSave.addActionListener(new Controller.AllWidgetListener());
+     //   menuFileSave.addActionListener(new Controller.AllWidgetListener());
         menuFile.add(menuFileSave);
         menuFile.addSeparator();
         menuFileExit = new JMenuItem("Quit");
         menuFileExit.setActionCommand("QUIT");
-        menuFileExit.addActionListener(new Controller.AllWidgetListener());
+     //   menuFileExit.addActionListener(new Controller.AllWidgetListener());
         menuFile.add(menuFileExit);
         
         
@@ -88,21 +79,21 @@ public class Controller
         menuEdit = new JMenu("Edit");
         menuEditEditEntry = new JMenuItem("Edit Entry");
         menuEditEditEntry.setActionCommand("EDITENTRY");
-        menuEditEditEntry.addActionListener(new Controller.AllWidgetListener());
+     //   menuEditEditEntry.addActionListener(new Controller.AllWidgetListener());
         menuEdit.add(menuEditEditEntry);
         menuEditAdd = new JMenuItem("Add");
         menuEditAdd.setActionCommand("ADD");
-        menuEditAdd.addActionListener(new Controller.AllWidgetListener());
+    //    menuEditAdd.addActionListener(new Controller.AllWidgetListener());
         menuEdit.add(menuEditAdd);
         menuEditDelete = new JMenuItem("Delete");
-        menuEditDelete.addActionListener(new Controller.AllWidgetListener());
+      //  menuEditDelete.addActionListener(new Controller.AllWidgetListener());
         menuEdit.add(menuEditDelete);
         menuEdit.addSeparator();
         menuEditDeleteMax = new JMenuItem("Delete Max");
-        menuEditDeleteMax.addActionListener(new Controller.AllWidgetListener());
+       // menuEditDeleteMax.addActionListener(new Controller.AllWidgetListener());
         menuEdit.add( menuEditDeleteMax);
         menuEditDeleteMin = new JMenuItem("Delete Min");
-        menuEditDeleteMin.addActionListener(new Controller.AllWidgetListener());
+       // menuEditDeleteMin.addActionListener(new Controller.AllWidgetListener());
         menuEdit.add(menuEditDeleteMin);
         
 
@@ -112,26 +103,26 @@ public class Controller
         ButtonGroup group = new ButtonGroup();
         sortAscending = new JRadioButtonMenuItem("Ascending");
         sortAscending.setSelected(true);
-        sortAscending.addActionListener(new Controller.AllWidgetListener());
+        //sortAscending.addActionListener(new Controller.AllWidgetListener());
         group.add(sortAscending);
         menuSort.add(sortAscending);
         sortDescending = new JRadioButtonMenuItem("Descending");
-        sortDescending.addActionListener(new Controller.AllWidgetListener());
+        //sortDescending.addActionListener(new Controller.AllWidgetListener());
         group.add(sortDescending);
         menuSort.add(sortDescending);
         menuSort.addSeparator();
         menuSortFindMax = new JMenuItem("Find Max");
-        menuSortFindMax.addActionListener(new Controller.AllWidgetListener());
+       // menuSortFindMax.addActionListener(new Controller.AllWidgetListener());
         menuSort.add(menuSortFindMax);
         menuSortFindMin = new JMenuItem("Find Min");
-        menuSortFindMin.addActionListener(new Controller.AllWidgetListener());
+        //menuSortFindMin.addActionListener(new Controller.AllWidgetListener());
         menuSort.add(menuSortFindMin);
         
         
         //About Tab
         menuAbout = new JMenu("About");
         menuAboutAbout = new JMenuItem("About");
-        menuAboutAbout.addActionListener(new Controller.AllWidgetListener());
+        //menuAboutAbout.addActionListener(new Controller.AllWidgetListener());
         menuAbout.add(menuAboutAbout);
         
         //adding menu bar
@@ -192,7 +183,7 @@ public class Controller
         
         south = new JPanel( new FlowLayout());
         closeAboutButton = new JButton("Close");
-        closeAboutButton.addActionListener(new AllWidgetListener() );
+        //closeAboutButton.addActionListener(new AllWidgetListener() );
         south.add(closeAboutButton);
         
         aboutFrame.add(north, BorderLayout.NORTH);
@@ -224,62 +215,5 @@ public class Controller
         }
     }
     
-    
-    private class AllWidgetListener implements ActionListener
-    {
-         @Override
-        public void actionPerformed( ActionEvent e)
-        {
-            String actionCommand = e.getActionCommand();
-            
-            if (actionCommand.equals( "QUIT" ))
-            {
-                System.exit( 0 );
-            }
-            else if (actionCommand.equals("OPEN"))
-            {
-                openFile();
-            }
-            else if (actionCommand.equals( "Save"))
-            {
-                //Save action
-            }
-            else if (actionCommand.equals( "Ascending"))
-            {
-                System.exit( 0 );
-            }
-            else if (actionCommand.equals( "Descending"))
-            {
-                //Sort Action
-            }
-            else if (actionCommand.equals( "ADD"))
-            {
-               // addEntry();
-                
-            }
-            else if (actionCommand.equals( "Delete"))
-            {
-                //
-            }
-            else if (actionCommand.equals( "Find Min"))
-            {
-                //
-            }
-            else if (actionCommand.equals( "Find Max"))
-            {
-                //
-                
-            }
-            else if (actionCommand.equals( "About"))
-            {
-                showAbout();
-            }
-            if(e.getSource() == closeAboutButton)
-            {
-                closeAbout();  
-            }
-        
-        }
  
-    }
 }
