@@ -31,47 +31,10 @@ public class Contact implements Comparable<Contact>
         this.emailAddresses = new ContactEmailAddress(emailAddresses);
         this.keyID = keyID;
     }
-
-    /**
-     * Returns a description of this contact as a string..
-     *
-     * @return a string representation of this contact
-     */
-    public String toString()
-    {
-        return(lastName + ", " + firstName + ". PHONE NUMBERS: " + phoneNumbers.toString() +
-                "." + " EMAIL: " + emailAddresses.toString());
-        //return lastName + ", " + firstName + "\t" + phone;
-    }
     
     public String getFirstName()
     {
         return(firstName);
-    }
-    
-    public String getLastName()
-    {
-        return(lastName);
-    }
-    
-    public String getOrganization()
-    {
-        return(organization);
-    }
-    
-    public ContactEmailAddress getContactEmailAddress()
-    {
-        return(emailAddresses);
-    }
-    
-    public ContactPhoneNumber getContactPhoneNumber()
-    {
-        return(phoneNumbers);
-    }
-    
-    public Integer getKeyID()
-    {
-        return(keyID);
     }
     
     public void setFirstName(String firstName)
@@ -79,14 +42,61 @@ public class Contact implements Comparable<Contact>
         this.firstName = firstName;
     }
     
+    public String getLastName()
+    {
+        return(lastName);
+    }
+    
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
     }
     
+    public String getOrganization()
+    {
+        return(organization);
+    }
+    
     public void setOrganization(String organization)
     {
         this.organization = organization;
+    }    
+    
+    public ContactEmailAddress getContactEmailAddress()
+    {
+        return(emailAddresses);
+    }
+    
+    public void addEmailAddress(String emailAddress)
+    {
+        if(emailAddresses.size() < 6)
+            emailAddresses.addEmailAddress(emailAddress);
+    }
+    
+    public void deleteEmailAddress(int index)
+    {
+        emailAddresses.deleteEmailAddress(index);
+    }
+    
+    public ContactPhoneNumber getContactPhoneNumber()
+    {
+        return(phoneNumbers);
+    }
+    
+    public void addPhoneNumber(String phoneNumber)
+    {
+        if(phoneNumbers.size() < 6)
+            phoneNumbers.addPhoneNumber(phoneNumber);
+    } 
+    
+    public void deletePhoneNumber(int index)
+    {
+        phoneNumbers.deletePhoneNumber(index);
+    }
+
+    public Integer getKeyID()
+    {
+        return(keyID);
     }
 
     /**
@@ -105,5 +115,17 @@ public class Contact implements Comparable<Contact>
             result = lastName.compareTo(other.lastName);
 
         return result;
+    }
+    
+    /**
+     * Returns a description of this contact as a string..
+     *
+     * @return a string representation of this contact
+     */
+    public String toString()
+    {
+        return(lastName + ", " + firstName + ". PHONE NUMBERS: " + phoneNumbers.toString() +
+                "." + " EMAIL: " + emailAddresses.toString());
+        //return lastName + ", " + firstName + "\t" + phone;
     }
 }

@@ -5,18 +5,20 @@
  */
 package pa4mainpackage.model;
 
+import java.util.TreeMap;
+
 /**
  * MAIN CLASS TO INTERACT WITH SUB-MODEL CLASSES!
  * @author Ben Wadsworth
  */
 public class ModelHandler 
 {
-    PA4TreeMapStore storage;
+    TreeMap storage;
     PrimaryKeyHandler keys;
     
     public ModelHandler()
     {
-        storage = new PA4TreeMapStore();
+        storage = new TreeMap();
         keys = new PrimaryKeyHandler();
     }
     
@@ -37,61 +39,31 @@ public class ModelHandler
         }
     }
     
-    public String formattedContact(Integer treeLocation)
+    public Contact getContact(Integer treeLocation)
+    {
+        return((Contact) storage.get(treeLocation));
+    }
+    
+    public String formattedGUIContact(Integer treeLocation)
     {
         String returnString = "";
+        Contact tempContact = (Contact) storage.get(treeLocation);
         
-        returnString = "ID   -   Last Name   -   First Name   -   Organization   -   " +
+        returnString = "ID    -     Last Name     -     First Name     -     Organization     -     " +
                 "Phone Numbers   -   Email Addresses\n" + 
                 "====================================================================" +
                 "============================\n" +
-                treeLocation + "     " + getLastName(treeLocation) + String.format("%" + (16 - getLastName(treeLocation).length()) + "s", " ") + 
-                getFirstName(treeLocation) + String.format("%" + (17 - getFirstName(treeLocation).length()) + "s", " ") + 
-                getOrganization(treeLocation) + String.format("%" + (19 - getOrganization(treeLocation).length()) + "s", " ");
+                treeLocation + "     " + tempContact.getLastName() + String.format("%" + (29 - (tempContact.getLastName().length() * 2)) + "s", " ") + 
+                tempContact.getFirstName() + String.format("%" + (30 - tempContact.getFirstName().length() * 2) + "s", " ") + 
+                tempContact.getOrganization() + String.format("%" + (19 - tempContact.getOrganization().length()) + "s", " ") +
+                tempContact.getContactPhoneNumber().getAllPhoneNumbers();
         
         return(returnString);
     }
     
-    public String getFirstName(Integer treeLocation)
+    public TreeMap getTreeMapStorage()
     {
-        Contact temp = (Contact) storage.get(treeLocation);
-        return(temp.getFirstName());
-    }
-    
-    public String getLastName(Integer treeLocation)
-    {
-        Contact temp = (Contact) storage.get(treeLocation);
-        return(temp.getLastName());
-    }
-    
-    public String getOrganization(Integer treeLocation)
-    {
-        Contact temp = (Contact) storage.get(treeLocation);
-        return(temp.getOrganization());
-    }
-    
-    public void deletePhoneNumber(Integer treeLocation, int index)
-    {
-        Contact tempContact = (Contact) storage.get(treeLocation);
-        tempContact.getContactPhoneNumber().deletePhoneNumber(index);
-    }
-    
-    public void deleteEmailAddress(Integer treeLocation, int index)
-    {
-        Contact tempContact = (Contact) storage.get(treeLocation);
-        tempContact.getContactEmailAddress().deleteEmailAddress(index);
-    }
-    
-    public void addPhoneNumber(Integer treeLocation, String phoneNumber)
-    {
-        Contact tempContact = (Contact) storage.get(treeLocation);
-        tempContact.getContactPhoneNumber().addPhoneNumber(phoneNumber);
-    }
-    
-    public void addEmailAddress(Integer treeLocation, String emailAddress)
-    {
-        Contact tempContact = (Contact) storage.get(treeLocation);
-        tempContact.getContactEmailAddress().addEmailAddress(emailAddress);
+        return(storage);
     }
     
     public String toString()

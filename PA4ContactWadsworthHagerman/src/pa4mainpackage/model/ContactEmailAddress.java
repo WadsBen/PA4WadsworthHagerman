@@ -29,6 +29,29 @@ public class ContactEmailAddress implements Serializable
         emailList.remove(index);
     }
     
+    public int size()
+    {
+        return(emailList.size());
+    }
+    
+    public String getAllEmailAddresses()
+    {
+        Iterator iter = emailList.iterator();
+        String returnString = "";
+        
+        while(iter.hasNext())
+        {
+            returnString = returnString + iter.next() + String.format("%n", "");
+        }
+        
+        return(returnString);
+    }
+    
+    public Iterator iterator()
+    {
+        return(emailList.iterator());
+    }
+    
     public String toString()
     {
         Collection c = emailList;

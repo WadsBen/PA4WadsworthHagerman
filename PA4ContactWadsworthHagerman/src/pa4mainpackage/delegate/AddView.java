@@ -21,14 +21,14 @@ import javax.swing.SwingConstants;
  */
 public class AddView
 {
-    private JFrame addFrame, errorFrame;
-    private JTextField lastNameField, nameField, orgField,email1,email2,email3,
-            email4,email5, email6, phone1, phone2, phone3, phone4, phone5, phone6;
-    private JPanel topPanel, bottomPanel, finalPane, bottomLeftPanel, 
-            bigPanel, bottomRightPanel, veryBottom;
-    private JLabel fNLabel, lNLabel, orgLabel, emailLabel, phoneLabel,error1, error2;
-    private JButton submitBTN, cancelBTN, closeErrorButton;
-    private ActionListener cancelAL, submitAL, closeAL;
+    private JFrame          addFrame, errorFrame;
+    private JTextField      lastNameField, nameField, orgField,email1,email2,email3,
+                            email4,email5, email6, phone1, phone2, phone3, phone4, phone5, phone6;
+    private JPanel          topPanel, bottomPanel, finalPane, bottomLeftPanel, 
+                            bigPanel, bottomRightPanel, veryBottom;
+    private JLabel          fNLabel, lNLabel, orgLabel, emailLabel, phoneLabel,error1, error2;
+    private JButton         submitBTN, cancelBTN, closeErrorButton;
+    private ActionListener  cancelAL, submitAL, closeAL;
     
     
     public AddView()

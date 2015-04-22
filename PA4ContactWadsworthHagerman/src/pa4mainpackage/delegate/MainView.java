@@ -18,8 +18,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import pa4mainpackage.model.ModelHandler;
 
 
 public class MainView 
@@ -31,12 +33,11 @@ public class MainView
                       menuEditDelete, menuEditAdd, menuSortFindMax, menuSortFindMin, menuFileOpen,
                       menuEditEditEntry;
     private JFrame mainWindow, aboutFrame, addFrame;
-    private JPanel panel1, north, south;
+    private JPanel panel1, north, south, tableAreaPanel;
     private JMenu menuFile, menuSort, menuAbout, menuEdit;
     private JButton closeAboutButton;
     private ActionListener viewAl;
     private JScrollPane scrolledText;
-    private JTextArea textAreaText;
     private JTextField nameField, lastNameField, organizationField;
     private static final int LINES = 21;
     private static final int CHAR_PER_LINE = 65;
@@ -53,7 +54,7 @@ public class MainView
         mainWindow.setTitle("Assignment IV: Directory");
         mainWindow.setSize( 800, 400);
         mainWindow.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
-        mainWindow.setResizable(false);
+        mainWindow.setResizable(true);
         mainWindow.setLayout( new BorderLayout());
         
 
@@ -140,13 +141,14 @@ public class MainView
         menuBar.add(menuAbout);
         
         //creating text area
-        JPanel textPanel = new JPanel();
-        textPanel.setBackground(Color.DARK_GRAY);
-        textAreaText = new JTextArea( LINES, CHAR_PER_LINE);
-        textAreaText.setBackground(Color.WHITE);
-        scrolledText = new JScrollPane(textAreaText);
-        textPanel.add(scrolledText);
-        mainWindow.add(textPanel,BorderLayout.CENTER);
+        tableAreaPanel = new JPanel();
+        tableAreaPanel.setLayout(new BorderLayout());
+        //textPanel.setBackground(Color.DARK_GRAY);
+        //textAreaText = new JTextArea( LINES, CHAR_PER_LINE);
+        //textAreaText.setBackground(Color.WHITE);
+        //scrolledText = new JScrollPane(textAreaText);
+        //textPanel.add(scrolledText);
+        mainWindow.add(tableAreaPanel, BorderLayout.CENTER);
         
 
         mainWindow.setVisible(true);  
@@ -203,9 +205,15 @@ public class MainView
         }
     }
     
-    public void updateTextArea(String x)
+    public void updateTableArea(JTable table)
     {
-        textAreaText.setText(x);
+        JScrollPane spTable = new JScrollPane(table);
+        spTable.setSize(tableAreaPanel.getWidth(), tableAreaPanel.getHeight());
+        tableAreaPanel.add(spTable, BorderLayout.CENTER);
+        
+        mainWindow.getContentPane().add(tableAreaPanel);
+
+        mainWindow.pack();
     }
     
     public void setActionListeners(ActionListener al)

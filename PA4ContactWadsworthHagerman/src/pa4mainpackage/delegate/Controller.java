@@ -112,7 +112,9 @@ public class Controller
                     System.out.println(addView.getFirstName());
                     System.out.println(modelHandler.toString());
                     addView.closeAdd();
-                    mainView.updateTextArea(modelHandler.toString());
+                    ContactTable table = new ContactTable(modelHandler);
+                    
+                    mainView.updateTableArea(table.formattedJTable());
                     
                     //UPDATE JTEXT AREA
                 } 
