@@ -22,8 +22,6 @@ public class PrimaryKeyHandler
         primaryKeys = new ArrayList<>(1000);
         nextValueToPull = 0;
         populateArrayKeys();
-        
-        System.out.println(primaryKeys.toString());
     }
     
     public Integer getNextAvailableKey()
@@ -33,7 +31,7 @@ public class PrimaryKeyHandler
         else
         {
             nextValueToPull++;
-            return(primaryKeys.remove(nextValueToPull--));
+            return(primaryKeys.remove(nextValueToPull - 1));
         }
     }
     

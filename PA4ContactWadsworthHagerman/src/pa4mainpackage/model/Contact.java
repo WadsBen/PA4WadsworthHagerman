@@ -8,7 +8,7 @@ package pa4mainpackage.model;
  */
 public class Contact implements Comparable<Contact>
 {
-    private String firstName, lastName;
+    private String firstName, lastName, organization;
     private ContactPhoneNumber phoneNumbers;
     private ContactEmailAddress emailAddresses;
     private Integer keyID;
@@ -21,11 +21,12 @@ public class Contact implements Comparable<Contact>
      * @param phoneNumbers      an object containing an ArrayList of phoneNumbers
      * @param emailAddresses    an object containing an ArrayList of emailAddresses
      */
-    public Contact(Integer keyID, String first, String last, String[] phoneNumbers,
+    public Contact(Integer keyID, String first, String last, String organization, String[] phoneNumbers,
             String[] emailAddresses)
     {
         firstName = first;
         lastName = last;
+        this.organization = organization;
         this.phoneNumbers = new ContactPhoneNumber(phoneNumbers);
         this.emailAddresses = new ContactEmailAddress(emailAddresses);
         this.keyID = keyID;
@@ -53,6 +54,11 @@ public class Contact implements Comparable<Contact>
         return(lastName);
     }
     
+    public String getOrganization()
+    {
+        return(organization);
+    }
+    
     public ContactEmailAddress getContactEmailAddress()
     {
         return(emailAddresses);
@@ -66,6 +72,21 @@ public class Contact implements Comparable<Contact>
     public Integer getKeyID()
     {
         return(keyID);
+    }
+    
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+    
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
+    }
+    
+    public void setOrganization(String organization)
+    {
+        this.organization = organization;
     }
 
     /**
