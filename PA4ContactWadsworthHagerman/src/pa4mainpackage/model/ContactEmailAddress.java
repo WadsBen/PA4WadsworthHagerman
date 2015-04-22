@@ -19,9 +19,14 @@ public class ContactEmailAddress implements Serializable
         }
     }
     
-    public void addEmail(String email)
+    public void addEmailAddress(String email)
     {
         emailList.add(email);
+    }
+    
+    public void deleteEmailAddress(int index)
+    {
+        emailList.remove(index);
     }
     
     public String toString()

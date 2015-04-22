@@ -24,6 +24,18 @@ public class ContactPhoneNumber extends PriorityQueue
         phoneList.add(phoneNumber);
     }
     
+    public void deletePhoneNumber(int index)
+    {
+        phoneList.remove(index);
+    }
+    
+    @Override
+    public Iterator iterator()
+    {
+        return(phoneList.iterator());
+    }
+    
+    @Override
     public String toString()
     {
         Collection c = phoneList;

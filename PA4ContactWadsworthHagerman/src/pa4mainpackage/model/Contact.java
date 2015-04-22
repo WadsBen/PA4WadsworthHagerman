@@ -11,6 +11,7 @@ public class Contact implements Comparable<Contact>
     private String firstName, lastName;
     private ContactPhoneNumber phoneNumbers;
     private ContactEmailAddress emailAddresses;
+    private Integer keyID;
 
     /**
      * Sets up this contact with the specified information.
@@ -20,13 +21,14 @@ public class Contact implements Comparable<Contact>
      * @param phoneNumbers      an object containing an ArrayList of phoneNumbers
      * @param emailAddresses    an object containing an ArrayList of emailAddresses
      */
-    public Contact(String first, String last, String[] phoneNumbers,
+    public Contact(Integer keyID, String first, String last, String[] phoneNumbers,
             String[] emailAddresses)
     {
         firstName = first;
         lastName = last;
         this.phoneNumbers = new ContactPhoneNumber(phoneNumbers);
         this.emailAddresses = new ContactEmailAddress(emailAddresses);
+        this.keyID = keyID;
     }
 
     /**
@@ -39,6 +41,31 @@ public class Contact implements Comparable<Contact>
         return(lastName + ", " + firstName + ". PHONE NUMBERS: " + phoneNumbers.toString() +
                 "." + " EMAIL: " + emailAddresses.toString());
         //return lastName + ", " + firstName + "\t" + phone;
+    }
+    
+    public String getFirstName()
+    {
+        return(firstName);
+    }
+    
+    public String getLastName()
+    {
+        return(lastName);
+    }
+    
+    public ContactEmailAddress getContactEmailAddress()
+    {
+        return(emailAddresses);
+    }
+    
+    public ContactPhoneNumber getContactPhoneNumber()
+    {
+        return(phoneNumbers);
+    }
+    
+    public Integer getKeyID()
+    {
+        return(keyID);
     }
 
     /**
