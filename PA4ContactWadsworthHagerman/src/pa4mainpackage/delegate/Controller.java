@@ -105,7 +105,10 @@ public class Controller
                 if (addView.correctInput() == true)
                 {
                     modelHandler.addContact(addView.getFirstName(), addView.getLastName()
-                        , addView.getOrgName(), new String[]{"419-765-5555", "320-235-5668"}, 
+                        , addView.getOrgName(), new String[]{ addView.getPhoneNumbers()
+                            //addView.getPhone1(),addView.getPhone2(),
+                           // addView.getPhone3(), addView.getPhone4(), addView.getPhone5(), addView.getPhone6()
+                        }, 
                         new String[]{"bwadswor@heidelberg.edu", "wadsworth.benjamin.m@gmail.com"});
 
                
@@ -113,6 +116,7 @@ public class Controller
                     System.out.println(modelHandler.toString());
                     addView.closeAdd();
                     ContactTable table = new ContactTable(modelHandler);
+                    
                     
                     mainView.updateTableArea(table.formattedJTable());
                     

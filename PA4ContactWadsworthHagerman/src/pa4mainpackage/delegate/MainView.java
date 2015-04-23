@@ -207,10 +207,12 @@ public class MainView
     
     public void updateTableArea(JTable table)
     {
+        tableAreaPanel.removeAll();
         JScrollPane spTable = new JScrollPane(table);
         spTable.setSize(tableAreaPanel.getWidth(), tableAreaPanel.getHeight());
         tableAreaPanel.add(spTable, BorderLayout.CENTER);
         
+       // mainWindow.getContentPane().removeAll();
         mainWindow.getContentPane().add(tableAreaPanel);
 
         mainWindow.pack();

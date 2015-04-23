@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -65,7 +66,7 @@ public class AddView
         lNLabel.setHorizontalAlignment(JLabel.CENTER);
         orgLabel = new JLabel("Organization");
         orgLabel.setHorizontalAlignment(JLabel.CENTER);
-        phoneLabel = new JLabel("Phone Number(s)");
+        phoneLabel = new JLabel("Phone Number(s) [xxx-xxx-xxxx]");
         phoneLabel.setHorizontalAlignment(JLabel.CENTER);
         emailLabel = new JLabel("Email Address(es)");
         emailLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -138,10 +139,92 @@ public class AddView
         addFrame.setVisible(true);
     }
     
+    
+    
+    public String getPhoneNumbers()
+    {
+        ArrayList<String> outPut = new ArrayList<>();
+        String x = "";
+
+        if(!phone1.getText().equals(""))
+        {
+            outPut.add(phone1.getText());
+        }
+        if(!phone2.getText().equals(""))
+        {
+            outPut.add(phone2.getText());
+        }
+        if(!phone3.getText().equals(""))
+        {
+            outPut.add(phone3.getText());
+        }
+        if(!phone4.getText().equals(""))
+        {
+            outPut.add(phone4.getText());
+        }
+        if(!phone5.getText().equals(""))
+        {
+            outPut.add(phone5.getText());
+        }
+        if(!phone6.getText().equals(""))
+        {
+            outPut.add(phone6.getText());
+        }
+        
+        for(int i = 0; i < outPut.size(); i++)
+        {
+            x += outPut.get(i);
+            if(i == outPut.size() - 1)
+            {
+                
+            }
+            else
+            {
+                x += ",";
+            }
+        }
+        return x;
+  
+    }
     public String getFirstName()
     {
         return nameField.getText();
     }
+    
+    /*
+    public String getPhone1()
+    {
+        return phone1.getText();
+       
+    }
+    public String getPhone2()
+    {
+ 
+       return phone2.getText();
+
+       
+    }
+    public String getPhone3()
+    {
+      return phone3.getText(); 
+       
+    }
+    public String getPhone4()
+    {
+      return phone4.getText(); 
+       
+    }
+    public String getPhone5()
+    {
+      return phone5.getText(); 
+       
+    }
+    public String getPhone6()
+    {
+      return phone6.getText(); 
+       
+    }
+    */
     
     public String getLastName()
     {
