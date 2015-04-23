@@ -147,41 +147,23 @@ public class AddView
         String x = "";
 
         if(!phone1.getText().equals(""))
-        {
             outPut.add(phone1.getText());
-        }
         if(!phone2.getText().equals(""))
-        {
             outPut.add(phone2.getText());
-        }
         if(!phone3.getText().equals(""))
-        {
             outPut.add(phone3.getText());
-        }
         if(!phone4.getText().equals(""))
-        {
             outPut.add(phone4.getText());
-        }
         if(!phone5.getText().equals(""))
-        {
             outPut.add(phone5.getText());
-        }
         if(!phone6.getText().equals(""))
-        {
             outPut.add(phone6.getText());
-        }
         
         for(int i = 0; i < outPut.size(); i++)
         {
             x += outPut.get(i);
-            if(i == outPut.size() - 1)
-            {
-                
-            }
-            else
-            {
+            if(!(i == outPut.size() - 1))
                 x += ",";
-            }
         }
         return x;
   
