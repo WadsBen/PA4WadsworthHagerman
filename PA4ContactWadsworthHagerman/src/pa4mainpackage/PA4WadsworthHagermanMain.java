@@ -1,4 +1,3 @@
-
 package pa4mainpackage;
 
 import pa4mainpackage.delegate.AddView;
@@ -24,16 +23,8 @@ public class PA4WadsworthHagermanMain
 
         ModelHandler mh = new ModelHandler();
         MainView fuck = new MainView();
-        AddView shit = new AddView();
         
-        Controller bitch = new Controller(fuck, mh, shit);
-        
-     //   AddView fatass = new AddView();
-        
-        //mh.addContact("BEN", "WADSWORTH", new String[]{"419-765-5555", "320-235-5668"}, new String[]{"bwadswor@heidelberg.edu", "wadsworth.benjamin.m@gmail.com"});
-        //mh.addContact("BEN", "WADSWORTH", new String[]{"419-765-5555", "320-235-5668"}, new String[]{"bwadswor@heidelberg.edu", "wadsworth.benjamin.m@gmail.com"});
-        System.out.println(mh.toString());
-        
+        Controller bitch = new Controller(fuck, mh);
         
     }
 }

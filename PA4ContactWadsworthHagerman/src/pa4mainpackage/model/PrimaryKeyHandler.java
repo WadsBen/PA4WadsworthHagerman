@@ -30,8 +30,8 @@ public class PrimaryKeyHandler
             return null;
         else
         {
-            nextValueToPull++;
-            return(primaryKeys.remove(nextValueToPull - 1));
+            Integer returnValue = primaryKeys.remove(nextValueToPull);
+            return(returnValue);
         }
     }
     

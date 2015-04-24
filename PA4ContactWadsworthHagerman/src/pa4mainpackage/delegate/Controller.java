@@ -15,18 +15,14 @@ public class Controller
     
     private final MainView mainView;
     private final ModelHandler modelHandler;
-    private final AddView addView;
     
     
-    public Controller(MainView mainView, ModelHandler modelHandler, AddView addView)
+    public Controller(MainView mainView, ModelHandler modelHandler)
     {
         this.mainView = mainView;
         this.modelHandler = modelHandler;
-        this.addView = addView;
         
         mainView.setActionListeners(new AllWidgetListener());
-        addView.setActionListeners(new AllWidgetListener());
-        
     }
     
     
@@ -61,7 +57,8 @@ public class Controller
             }
             else if (actionCommand.equals( "ADD"))
             {
-                addView.displayAddEntry();
+                AddView addView = new AddView();
+                AddController addController = new AddController(addView, modelHandler);
             }
             else if (actionCommand.equals( "DELETE"))
             {
@@ -77,7 +74,10 @@ public class Controller
             }
             else if (actionCommand.equals( "FINDMAX"))
             {
-                
+                ContactTable table = new ContactTable(modelHandler);
+                    
+                    
+                mainView.updateTableArea(table.formattedJTable());
             }
             else if (actionCommand.equals( "FINDMIN"))
             {
@@ -91,46 +91,6 @@ public class Controller
             {
                 mainView.closeAbout();
             }
-            else if (actionCommand.equals( "CLOSEADDWINDOW"))
-            {
-                addView.closeAdd();
-            }
-            else if (actionCommand.equals( "CLOSEERRORTWINDOW"))
-            {
-            
-                addView.closeErrorFrame();
-            }
-            else if(actionCommand.equals( "SUBMITADD"))
-            {
-                if (addView.correctInput() == true)
-                {
-                    modelHandler.addContact(addView.getFirstName(), addView.getLastName()
-                        , addView.getOrgName(), new String[]{ addView.getPhoneNumbers()
-                            //addView.getPhone1(),addView.getPhone2(),
-                           // addView.getPhone3(), addView.getPhone4(), addView.getPhone5(), addView.getPhone6()
-                        }, 
-                        new String[]{"bwadswor@heidelberg.edu", "wadsworth.benjamin.m@gmail.com"});
-
-               
-                    System.out.println(addView.getFirstName());
-                    System.out.println(modelHandler.toString());
-                    addView.closeAdd();
-                    ContactTable table = new ContactTable(modelHandler);
-                    
-                    
-                    mainView.updateTableArea(table.formattedJTable());
-                    
-                    //UPDATE JTEXT AREA
-                } 
-                else
-                {
-                    addView.displayErrorFrame();
-                }
-                
-            }
-            
-          
-        
         }
  
     }

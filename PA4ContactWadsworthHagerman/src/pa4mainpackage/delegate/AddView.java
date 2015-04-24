@@ -29,13 +29,13 @@ public class AddView
                             bigPanel, bottomRightPanel, veryBottom;
     private JLabel          fNLabel, lNLabel, orgLabel, emailLabel, phoneLabel,error1, error2;
     private JButton         submitBTN, cancelBTN, closeErrorButton;
-    private ActionListener  cancelAL, submitAL, closeAL;
     
     
     public AddView()
     {
-       
+       displayAddEntry();
     }
+    
     public void displayAddEntry()
     {
         addFrame = new JFrame();
@@ -121,11 +121,9 @@ public class AddView
         veryBottom = new JPanel( new FlowLayout());
         cancelBTN = new JButton("Cancel");
         cancelBTN.setActionCommand("CLOSEADDWINDOW");
-        cancelBTN.addActionListener(cancelAL);
        
         submitBTN = new JButton("Submit");
         submitBTN.setActionCommand("SUBMITADD");
-        submitBTN.addActionListener(submitAL);
         
         veryBottom.add(submitBTN);
         veryBottom.add(cancelBTN);
@@ -139,12 +137,9 @@ public class AddView
         addFrame.setVisible(true);
     }
     
-    
-    
-    public String getPhoneNumbers()
+    public ArrayList<String> getPhoneNumbers()
     {
         ArrayList<String> outPut = new ArrayList<>();
-        String x = "";
 
         if(!phone1.getText().equals(""))
             outPut.add(phone1.getText());
@@ -159,15 +154,30 @@ public class AddView
         if(!phone6.getText().equals(""))
             outPut.add(phone6.getText());
         
-        for(int i = 0; i < outPut.size(); i++)
-        {
-            x += outPut.get(i);
-            if(!(i == outPut.size() - 1))
-                x += ",";
-        }
-        return x;
+        return outPut;
   
     }
+    
+    public ArrayList<String> getEmailAddresses()
+    {
+        ArrayList<String> outPut = new ArrayList<>();
+
+        if(!email1.getText().equals(""))
+            outPut.add(email1.getText());
+        if(!email2.getText().equals(""))
+            outPut.add(email2.getText());
+        if(!email3.getText().equals(""))
+            outPut.add(email3.getText());
+        if(!email4.getText().equals(""))
+            outPut.add(email4.getText());
+        if(!email5.getText().equals(""))
+            outPut.add(email5.getText());
+        if(!email6.getText().equals(""))
+            outPut.add(email6.getText());
+        
+        return outPut;
+    }
+    
     public String getFirstName()
     {
         return nameField.getText();
@@ -243,7 +253,6 @@ public class AddView
 
         closeErrorButton = new JButton("Close");
         closeErrorButton.setActionCommand("CLOSEERRORTWINDOW");
-        closeErrorButton.addActionListener(closeAL);
         errorFrame.add(closeErrorButton);
         
         
@@ -273,9 +282,9 @@ public class AddView
   
     public void setActionListeners(ActionListener al)
     {
-         closeAL = al;
-         cancelAL = al;
-         submitAL = al;
+         //closeErrorButton.addActionListener(al);
+         cancelBTN.addActionListener(al);
+         submitBTN.addActionListener(al);
 
         
     }//End setJButtonListen
