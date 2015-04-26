@@ -96,20 +96,14 @@ public class ModelHandler
         if(phoneList.isEmpty() == false)
             phoneListString = phoneList.get(0);
 
-        
         for (int i = 0; i < phoneList.size(); i++)
-        {
-            outPutArray[i][0] = phoneList.get(i);		
-        }
+            outPutArray[i][0] = phoneList.get(i);
+        
         for (int i = 0; i < emailList.size(); i++)
-        {
             outPutArray[i][1] = emailList.get(i);
-        }
         
         if((outPutArray[1][0] != null) || (outPutArray[1][1] != null))
-        {
             extraString +="\n";
-        }
        
         for(int i = 1; i < 5; i++)
         {
@@ -131,7 +125,6 @@ public class ModelHandler
                 if(i != 5)
                     if((outPutArray[i + 1][0] != null) && (outPutArray[i + 1][1] != null));
                         extraString += "\n";
-
                 
             }
             else if( (outPutArray[i][0] != null) && (outPutArray[i][1] == null)) 
@@ -141,10 +134,8 @@ public class ModelHandler
                  if(i != 5)
                     if((outPutArray[i + 1][0] != null) && (outPutArray[i + 1][1] != null));
                         extraString += "\n";
-         
             }             
         }
-       
         returnString = "  " +
                 String.format("%-8s", treeLocation) + " " +
                 String.format("%-16s",tempContact.getLastName()) + " " +
@@ -166,6 +157,62 @@ public class ModelHandler
         
     }//End of getTreeMapStorage() method
     
+    public String getLast()
+    {
+        if(isEmpty() == false)
+        {
+            String returnString = "";
+            Contact tempContact = (Contact) storage.get(storage.lastKey());
+        
+            returnString = "  " + tempContact.getLastName() + " " + tempContact.getFirstName() + " " +
+                tempContact.getOrganization() + " " + tempContact.getContactPhoneNumber() + 
+                   " " + tempContact.getContactEmailAddress();
+               
+             return(returnString);
+       
+        }
+        else
+            return("Error: The Collection is Empty");
+
+    }
+    
+    public String getMin()
+    {
+        if(isEmpty() == false)
+        {
+            String returnString = "";
+            Contact tempContact = (Contact) storage.get(storage.firstKey());
+        
+            returnString = "  " + tempContact.getLastName() + " " + tempContact.getFirstName() + " " +
+                tempContact.getOrganization() + " " + tempContact.getContactPhoneNumber() + 
+                   " " + tempContact.getContactEmailAddress();
+               
+             return(returnString);
+       
+        }
+        else
+            return("Error: The Collection is Empty");
+
+    }
+    
+    public void deleteMax()
+    {
+        if (isEmpty() == false)
+            storage.remove(storage.lastKey());
+    }
+    
+    public void deleteMin()
+    {
+        if (isEmpty() == false)
+            storage.remove(storage.firstKey());
+    }
+  
+    
+    public boolean isEmpty()
+    {
+        return storage.isEmpty();
+    }
+    
     
     /**
      *  
@@ -177,6 +224,7 @@ public class ModelHandler
          Set set = storage.entrySet();
          String returnString = "";
          Iterator i = set.iterator();
+       
         
          while(i.hasNext()) 
          {
@@ -189,6 +237,26 @@ public class ModelHandler
         
          return(returnString);
          
+         
     }//End of toString() method
+    
+    public String reverseToString()
+    {
+         NavigableMap nmap = storage.descendingMap();
+         Set set = nmap.entrySet();
+         String returnString = "";
+         Iterator i = set.iterator();
+         
+          while(i.hasNext()) 
+         {
+             Map.Entry entry = (Map.Entry)i.next();
+             int x = (int) entry.getKey();
+            returnString += formattedGUIContact(x);
+            returnString += "\n";
+
+         }
+      
+        return(returnString);
+    }
     
 }//End of ModelHandler Class

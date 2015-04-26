@@ -5,30 +5,60 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+/*
+@author Ben Wadsworth, John Hagerman
+
+UPDATED THE GET ALL EMAIL ADDRESS METHOD CHANGED A WEE BIT WITH IT
+*/
+
 public class ContactEmailAddress implements Serializable
 {
     private ArrayList<String> emailList;
     
+    /**
+     *
+     * @param email
+     */
     public ContactEmailAddress(ArrayList<String> email)
     {
         emailList = email;
-    }
+        
+    }//End of ContactEmailAddess() constructor
     
+    /**
+     *
+     * @param email
+     */
     public void addEmailAddress(String email)
     {
         emailList.add(email);
-    }
+        
+    }//End of addEmailAddress() method
     
+    /**
+     *
+     * @param index
+     */
     public void deleteEmailAddress(int index)
     {
         emailList.remove(index);
-    }
+        
+    }//End of deleteEmailAddress() method
     
+    /**
+     *
+     * @return
+     */
     public int size()
     {
         return(emailList.size());
-    }
+        
+    }//End of size() method
     
+    /**
+     *
+     * @return
+     */
     public String getAllEmailAddresses()
     {
         Iterator iter = emailList.iterator();
@@ -43,13 +73,24 @@ public class ContactEmailAddress implements Serializable
         }
         
         return(returnString);
-    }
+        
+    }//End of getAllEmailAddresses() method
     
+    /**
+     *
+     * @return
+     */
     public Iterator iterator()
     {
         return(emailList.iterator());
-    }
+        
+    }//End of iterator() method
     
+    /**
+     *
+     * @return
+     */
+    @Override
     public String toString()
     {
         Collection c = emailList;
@@ -63,5 +104,7 @@ public class ContactEmailAddress implements Serializable
         }
         
         return(returnString);
-    }
-}
+        
+    }//End of toString() method
+    
+}//End of ContactEmailAddress Class
