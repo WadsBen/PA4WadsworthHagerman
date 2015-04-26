@@ -156,8 +156,8 @@ public class MainView
         tableAreaPanel.setLayout(new BorderLayout());
         tableAreaPanel.setLayout(new BoxLayout(tableAreaPanel,BoxLayout.PAGE_AXIS));
         
-        JLabel keyLabel = new JLabel("ID    -     Last Name     -     First Name     -     Organization     -     "  +
-                 "Phone Numbers   -   Email Addresses\n");
+        JLabel keyLabel = new JLabel("ID       Last Name        First Name      Organization    "  +
+                 "Phone Numbers  Email Addresses \n");
         
         Font font2 = new Font("Courier New", Font.PLAIN, 12);
         keyLabel.setFont(font2);
