@@ -63,7 +63,7 @@ public class Controller
             else if(actionCommand.equalsIgnoreCase("EDITENTRY"))
             {
                 EditView editView = new EditView("Ben", "Wadsworth", "Student", null, null);
-                EditController editController = new EditController(editView, modelHandler);
+            //    EditController editController = new EditController(editView, modelHandler);
             }
             else if (actionCommand.equals( "DELETE"))
             {
@@ -79,12 +79,12 @@ public class Controller
             }
             else if (actionCommand.equals( "FINDMAX"))
             {
-                ContactTable table = new ContactTable(modelHandler);
-                mainView.updateTableArea(table.formattedJTable());
+            //    ContactTable table = new ContactTable(modelHandler);
+            //    mainView.updateTableArea(table.formattedJTable());
             }
             else if (actionCommand.equals( "FINDMIN"))
             {
-                
+                mainView.updateTextBox(modelHandler.toString());
             }
             else if (actionCommand.equals( "ABOUT"))
             {
