@@ -353,6 +353,18 @@ public class MainView
     }//End of findMax() method
     
     
+   /**
+    * Error Message Box
+    */
+    public void incorrectInputMessageBox()
+    {
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame,
+        "Incorect Key", "Error!" , JOptionPane.ERROR_MESSAGE);
+        
+    }//End of incorrectInputMessageBox()
+    
+    
     /**
      * This method clears and updates the TextArea
      * 
