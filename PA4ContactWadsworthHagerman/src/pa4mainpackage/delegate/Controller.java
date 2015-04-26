@@ -60,6 +60,11 @@ public class Controller
                 AddView addView = new AddView();
                 AddController addController = new AddController(addView, modelHandler);
             }
+            else if(actionCommand.equalsIgnoreCase("EDITENTRY"))
+            {
+                EditView editView = new EditView("Ben", "Wadsworth", "Student", null, null);
+                EditController editController = new EditController(editView, modelHandler);
+            }
             else if (actionCommand.equals( "DELETE"))
             {
                 //

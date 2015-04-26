@@ -104,6 +104,8 @@ public class AddController
                 }
                 else
                     System.out.println("BAD INFO");
+                
+                addView.closeAdd();
             }
         }
     }
