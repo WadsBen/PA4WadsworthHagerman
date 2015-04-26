@@ -34,68 +34,120 @@ public class Contact implements Comparable<Contact>
         this.keyID = keyID;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getFirstName()
     {
         return(firstName);
     }
     
+    /**
+     *
+     * @param firstName
+     */
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getLastName()
     {
         return(lastName);
     }
     
+    /**
+     *
+     * @param lastName
+     */
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getOrganization()
     {
         return(organization);
     }
     
+    /**
+     *
+     * @param organization
+     */
     public void setOrganization(String organization)
     {
         this.organization = organization;
     }    
     
+    /**
+     *
+     * @return
+     */
     public ContactEmailAddress getContactEmailAddress()
     {
         return(emailAddresses);
     }
     
+    /**
+     *
+     * @param emailAddress
+     */
     public void addEmailAddress(String emailAddress)
     {
         if(emailAddresses.size() < 6)
             emailAddresses.addEmailAddress(emailAddress);
     }
     
+    /**
+     *
+     * @param index
+     */
     public void deleteEmailAddress(int index)
     {
         emailAddresses.deleteEmailAddress(index);
     }
     
+    /**
+     *
+     * @return
+     */
     public ContactPhoneNumber getContactPhoneNumber()
     {
         return(phoneNumbers);
     }
     
+    /**
+     *
+     * @param phoneNumber
+     */
     public void addPhoneNumber(String phoneNumber)
     {
         if(phoneNumbers.size() < 6)
             phoneNumbers.addPhoneNumber(phoneNumber);
     } 
     
+    /**
+     *
+     * @param index
+     */
     public void deletePhoneNumber(int index)
     {
         phoneNumbers.deletePhoneNumber(index);
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getKeyID()
     {
         return(keyID);
@@ -128,6 +180,5 @@ public class Contact implements Comparable<Contact>
     {
         return(lastName + ", " + firstName + ". PHONE NUMBERS: " + phoneNumbers.toString() +
                 "." + " EMAIL: " + emailAddresses.toString());
-        //return lastName + ", " + firstName + "\t" + phone;
     }
 }
