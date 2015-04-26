@@ -32,7 +32,11 @@ public class ContactPhoneNumber implements Serializable
         
         while(iter.hasNext())
         {
-            returnString = returnString + iter.next() + "\n";
+            returnString = returnString + iter.next();
+
+            if(iter.hasNext() == true)
+                returnString +="*";
+
         }
         
         return(returnString);
