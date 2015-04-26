@@ -71,7 +71,7 @@ public final class AddView
         lNLabel.setHorizontalAlignment(JLabel.CENTER);
         orgLabel = new JLabel("Organization");
         orgLabel.setHorizontalAlignment(JLabel.CENTER);
-        phoneLabel = new JLabel("Phone Number(s) [xxx-xxx-xxxx]");
+        phoneLabel = new JLabel("Phone Number(s)");
         phoneLabel.setHorizontalAlignment(JLabel.CENTER);
         emailLabel = new JLabel("Email Address(es)");
         emailLabel.setHorizontalAlignment(JLabel.CENTER);
