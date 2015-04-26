@@ -25,7 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
 /**
- * The MainView Class creates the main user interface window.
+ * The MainView Class: creates the main user interface window.
  *
  * @author John Hagerman , Ben Wadsworth
  * @version April 26, 2015
@@ -49,14 +49,18 @@ public class MainView
     private JLabel keyLabel;
     private JFileChooser fileChooser;
 
-
+   /**
+    * Invokes mainMenu() method creating UI
+    */
     public MainView()
     {
-        
         mainMenu();       
         
     }//End of Constructor
     
+   /**
+    *  Creates and shows main user interface
+    */
     private void mainMenu()
     {
         mainWindow = new JFrame();
@@ -181,6 +185,7 @@ public class MainView
         
     }//End of mainMenu() method
     
+    
     /**
      * This method creates and shows the about frame
      */
@@ -214,7 +219,8 @@ public class MainView
     
     }//End of showAbout() method
     
-     /**
+    
+    /**
      * This method closes the aboutFrame
      */
     public void closeAbout()
@@ -223,7 +229,9 @@ public class MainView
         
     }//End of closeAbout() method
     
-  
+    /**
+     *
+     */
     public void openFile()
     {
         fileChooser = new JFileChooser();
@@ -234,14 +242,15 @@ public class MainView
             File selectedFile = fileChooser.getSelectedFile();
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
         }
-    }
+    }//End of openFile() method
     
 
     
     /**
      * This function takes the min as a string
      * and places it within a mono-spaced OptionPane
-     * @param message
+     * 
+     * @param message //String representation of contact
      */
     public void findMin(String message)
     {
@@ -253,10 +262,12 @@ public class MainView
         
     }//End of findMin() method
     
+    
     /**
      * This function takes the max as a string
      * and places it within a mono-spaced OptionPane
-     * @param message
+     * 
+     * @param message  //String representation of contact
      */
     public void findMax(String message)
     {
@@ -268,9 +279,11 @@ public class MainView
         
     }//End of findMax() method
     
+    
     /**
      * This method clears and updates the TextArea
-     * @param x
+     * 
+     * @param x     //String representation of TreeMap
      */
     public void updateTextBox(String x)
     {
@@ -279,6 +292,12 @@ public class MainView
         
     }//End of updateTextBox() method
     
+    
+    /**
+     * Method sets up listeners
+     * 
+     * @param al
+     */
     public void setActionListeners(ActionListener al)
     {
         viewAl = al;
