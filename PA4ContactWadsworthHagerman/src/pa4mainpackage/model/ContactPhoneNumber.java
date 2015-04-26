@@ -35,7 +35,7 @@ public class ContactPhoneNumber implements Serializable
             returnString = returnString + iter.next();
 
             if(iter.hasNext() == true)
-                returnString +="*";
+                returnString +=" ";
 
         }
         

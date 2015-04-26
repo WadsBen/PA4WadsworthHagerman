@@ -36,7 +36,10 @@ public class ContactEmailAddress implements Serializable
         
         while(iter.hasNext())
         {
-            returnString = returnString + iter.next() + String.format("%n", "");
+            returnString = returnString + iter.next();
+            if(iter.hasNext() == true)
+                returnString +=" ";
+                    //+ String.format("%n", "");
         }
         
         return(returnString);
