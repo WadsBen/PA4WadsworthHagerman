@@ -23,6 +23,7 @@ public class ModelHandler
         storage = new TreeMap();
         keys = new PrimaryKeyHandler();
         
+        
     }//End of Constructor
     
     /**
@@ -113,7 +114,7 @@ public class ModelHandler
         {
             if( (outPutArray[i][0] != null) && (outPutArray[i][1] != null)) 
             {
-                extraString += String.format("%71s", outPutArray[i][0]) + " "
+                extraString += String.format("%71s", outPutArray[i][0]) + "   "
                         + outPutArray[i][1]; 
                   
                   if(i != 5)
@@ -123,7 +124,7 @@ public class ModelHandler
      
             else if( (outPutArray[i][0] == null) && (outPutArray[i][1] != null)) 
             {
-                extraString += String.format("%71s", "           ") + " "
+                extraString += String.format("%71s", "           ") + "   "
                         + outPutArray[i][1]; 
                 
                 if(i != 5)
@@ -145,7 +146,7 @@ public class ModelHandler
                 String.format("%-16s",tempContact.getLastName()) + " " +
                 String.format("%-16s",tempContact.getFirstName()) + " " +
                 String.format("%-16s",tempContact.getOrganization()) +
-                phoneListString + " " + emailListString + extraString ;
+                phoneListString + "   " + emailListString + extraString ;
                          
         return(returnString);
         
@@ -218,7 +219,7 @@ public class ModelHandler
 
     }//End of getMin() method
     
-    
+     
     /**
      * Method for deleting the last item in the TreeMap.
      */
@@ -271,7 +272,8 @@ public class ModelHandler
              Map.Entry entry = (Map.Entry)i.next();
              int x = (int) entry.getKey();
              returnString += formattedGUIContact(x);
-             returnString += "\n";
+             returnString += "\n--------------------------------------------------------"
+                     + "--------------------------------------------------------\n";
          }
          return(returnString);
          
@@ -296,7 +298,8 @@ public class ModelHandler
              Map.Entry entry = (Map.Entry)i.next();
              int x = (int) entry.getKey();
              returnString += formattedGUIContact(x);
-             returnString += "\n";
+             returnString += "\n--------------------------------------------------------"
+                     + "--------------------------------------------------------\n";
          }
         return(returnString);
         
