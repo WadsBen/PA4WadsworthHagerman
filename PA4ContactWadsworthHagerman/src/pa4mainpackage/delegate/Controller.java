@@ -69,7 +69,8 @@ public class Controller
             }
             else if (actionCommand.equals( "DELETE"))
             {
-                //
+                mainView.showDeleteBox();
+
             }
             else if (actionCommand.equals( "DELETEMIN"))
             {
@@ -104,6 +105,43 @@ public class Controller
             else if(actionCommand.equals( "CLOSEABOUTWINDOW"))
             {
                 mainView.closeAbout();
+            }
+            else if(actionCommand.equals("CLOSEDELETEBOX"))
+            {
+                mainView.closeDeleteBox();
+            }
+            else if(actionCommand.equals("DELETECONTACT"))
+            {
+                int x;
+                
+                try 
+                {
+                    x = Integer.parseInt(mainView.getDeleteString());
+                     
+                    if(modelHandler.getContact(x) != null)
+                    {
+                        modelHandler.deleteContact(x);
+                    
+                    
+                        if(inOrder == true)
+                        {
+                            mainView.updateTextBox(modelHandler.toString());
+                            mainView.closeDeleteBox();
+                        }
+                        else
+                        {
+                            mainView.updateTextBox(modelHandler.reverseToString());
+                            mainView.closeDeleteBox();
+                        }
+                    }
+                }
+                catch (NumberFormatException z)
+                {
+                    System.out.println("Incorrect Key");
+                }
+                
+                
+                      
             }
         }
  
