@@ -63,14 +63,15 @@ public class MainView
     {
         mainWindow = new JFrame();
         mainWindow.setTitle("Assignment IV: Directory");
-        mainWindow.setSize( 850, 400);
+        mainWindow.setSize( 800, 400);
         mainWindow.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
-        mainWindow.setResizable(true);
+        mainWindow.setResizable(false);
         mainWindow.setLayout( new BorderLayout());
         
 
         //File Tab
         menuFile = new JMenu("File");
+        menuFile.setBackground(Color.gray);
         menuFileOpen = new JMenuItem("Open");
         menuFileOpen.setActionCommand("OPEN");
         
@@ -88,6 +89,7 @@ public class MainView
         
         //Edit Tab
         menuEdit = new JMenu("Edit");
+        menuEdit.setBackground(Color.gray);
         menuEditEditEntry = new JMenuItem("Edit Entry");
         menuEditEditEntry.setActionCommand("EDITENTRY");
      
@@ -113,6 +115,7 @@ public class MainView
         
         //Sort Tab
         menuSort = new JMenu("Sort Directory");
+        menuSort.setBackground(Color.gray);
         ButtonGroup group = new ButtonGroup();
         sortAscending = new JRadioButtonMenuItem("Ascending");
         sortAscending.setActionCommand("ASCENDING");
@@ -138,6 +141,7 @@ public class MainView
         
         //About Tab
         menuAbout = new JMenu("About");
+        menuAbout.setBackground(Color.gray);
         menuAboutAbout = new JMenuItem("About");
         menuAboutAbout.setActionCommand("ABOUT");
         
@@ -145,6 +149,7 @@ public class MainView
         
         //adding menu bar
         menuBar = new JMenuBar();
+        menuBar.setBackground(Color.gray);
         mainWindow.setJMenuBar(menuBar);
         menuBar.add(menuFile);
         menuBar.add(menuEdit);
@@ -156,8 +161,8 @@ public class MainView
         tableAreaPanel.setLayout(new BorderLayout());
         tableAreaPanel.setLayout(new BoxLayout(tableAreaPanel,BoxLayout.PAGE_AXIS));
         
-        JLabel keyLabel = new JLabel("ID       Last Name        First Name      Organization    "  +
-                 "Phone Numbers  Email Addresses \n");
+        JLabel keyLabel = new JLabel("ID       Last Name        First Name      Organization   "  +
+                 "Phone Numbers   Email Addresses \n");
         
         Font font2 = new Font("Courier New", Font.PLAIN, 12);
         keyLabel.setFont(font2);
@@ -182,6 +187,7 @@ public class MainView
         textAreaText.setBackground(Color.WHITE);
         Font font = new Font("Courier New", Font.PLAIN, 12);
         textAreaText.setFont(font );
+        textAreaText.setEditable(false);
         scrolledText = new JScrollPane(textAreaText);
         tableAreaPanel.add(scrolledText);
         mainWindow.add(tableAreaPanel, BorderLayout.CENTER);
