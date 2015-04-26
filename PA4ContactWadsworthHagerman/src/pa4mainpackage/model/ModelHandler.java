@@ -5,8 +5,12 @@
  */
 package pa4mainpackage.model;
 
+
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.TreeMap;
+import java.util.*;
 
 /**
  * MAIN CLASS TO INTERACT WITH SUB-MODEL CLASSES!
@@ -51,14 +55,16 @@ public class ModelHandler
         String returnString = "";
         Contact tempContact = (Contact) storage.get(treeLocation);
         
-        returnString = "ID    -     Last Name     -     First Name     -     Organization     -     " +
-                "Phone Numbers   -   Email Addresses\n" + 
-                "====================================================================" +
-                "============================\n" +
-                treeLocation + "     " + tempContact.getLastName() + String.format("%" + (29 - (tempContact.getLastName().length() * 2)) + "s", " ") + 
-                tempContact.getFirstName() + String.format("%" + (30 - tempContact.getFirstName().length() * 2) + "s", " ") + 
-                tempContact.getOrganization() + String.format("%" + (19 - tempContact.getOrganization().length()) + "s", " ") +
-                tempContact.getContactPhoneNumber().getAllPhoneNumbers();
+        returnString = 
+           //     "ID    -     Last Name     -     First Name     -     Organization     -     " +
+           //     "Phone Numbers   -   Email Addresses\n" + 
+           //    "====================================================================" +
+            //    "============================\n" +
+             //   treeLocation + "     " + tempContact.getLastName() + String.format("%" + (29 - (tempContact.getLastName().length() * 2)) + "s", " ") + 
+             //   tempContact.getFirstName() + String.format("%" + (30 - tempContact.getFirstName().length() * 2) + "s", " ") + 
+             //   tempContact.getOrganization() + String.format("%" + (19 - tempContact.getOrganization().length()) + "s", " ") +
+             //   tempContact.getContactPhoneNumber().getAllPhoneNumbers();
+                
         
         return(returnString);
     }
@@ -70,6 +76,19 @@ public class ModelHandler
     
     public String toString()
     {
-        return(storage.toString());
+         Set set = storage.entrySet();
+         String returnString = "";
+         Iterator i = set.iterator();
+        
+         while(i.hasNext()) 
+         {
+             Map.Entry entry = (Map.Entry)i.next();
+             int x = (int) entry.getKey();
+            returnString += formattedGUIContact(x);
+            returnString += "\n";
+
+         }
+        
+         return(returnString);
     }
 }
