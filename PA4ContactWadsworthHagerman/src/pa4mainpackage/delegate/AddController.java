@@ -101,6 +101,7 @@ public class AddController
                     modelHandler.addContact(addView.getFirstName(),
                             addView.getLastName(), addView.getOrgName(),
                             addView.getPhoneNumbers(), addView.getEmailAddresses());
+                    
                 }
                 else
                     System.out.println("BAD INFO");
