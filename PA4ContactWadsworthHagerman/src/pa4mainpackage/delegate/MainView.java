@@ -3,15 +3,11 @@ package pa4mainpackage.delegate;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.Set;
-import java.util.TreeMap;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -21,15 +17,19 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import pa4mainpackage.model.ModelHandler;
+import javax.swing.UIManager;
 
-
+/**
+ * The MainView Class creates the main user interface window.
+ *
+ * @author John Hagerman , Ben Wadsworth
+ * @version April 26, 2015
+ */
 public class MainView 
 {
    
@@ -38,18 +38,16 @@ public class MainView
     private JMenuItem menuFileExit, menuFileSave, menuAboutAbout, menuEditDeleteMax, menuEditDeleteMin,
                       menuEditDelete, menuEditAdd, menuSortFindMax, menuSortFindMin, menuFileOpen,
                       menuEditEditEntry;
-    private JFrame mainWindow, aboutFrame, addFrame;
-    private JPanel panel1, north, south, tableAreaPanel, test;
+    private JFrame mainWindow, aboutFrame;
+    private JPanel north, south, tableAreaPanel;
     private JMenu menuFile, menuSort, menuAbout, menuEdit;
     private JButton closeAboutButton;
     private ActionListener viewAl;
     private JScrollPane scrolledText;
     private JTextArea textAreaText;
-    private JLabel piss, piss2;
-    private JTextField nameField, lastNameField, organizationField;
-    //private static final int LINES = 21;
-   // private static final int CHAR_PER_LINE = 15;
-    private JScrollPane scrollpane;
+    private Font font, font2, font3;
+    private JLabel keyLabel;
+    private JFileChooser fileChooser;
 
 
     public MainView()
@@ -57,7 +55,7 @@ public class MainView
         
         mainMenu();       
         
-    }
+    }//End of Constructor
     
     private void mainMenu()
     {
@@ -68,7 +66,7 @@ public class MainView
         mainWindow.setResizable(false);
         mainWindow.setLayout( new BorderLayout());
         
-
+        
         //File Tab
         menuFile = new JMenu("File");
         menuFile.setBackground(Color.gray);
@@ -86,7 +84,7 @@ public class MainView
      
         menuFile.add(menuFileExit);
         
-        
+
         //Edit Tab
         menuEdit = new JMenu("Edit");
         menuEdit.setBackground(Color.gray);
@@ -111,7 +109,6 @@ public class MainView
         menuEditDeleteMin.setActionCommand("DELETEMIN");
         menuEdit.add(menuEditDeleteMin);
         
-
         
         //Sort Tab
         menuSort = new JMenu("Sort Directory");
@@ -147,6 +144,7 @@ public class MainView
         
         menuAbout.add(menuAboutAbout);
         
+        
         //adding menu bar
         menuBar = new JMenuBar();
         menuBar.setBackground(Color.gray);
@@ -161,44 +159,34 @@ public class MainView
         tableAreaPanel.setLayout(new BorderLayout());
         tableAreaPanel.setLayout(new BoxLayout(tableAreaPanel,BoxLayout.PAGE_AXIS));
         
-        JLabel keyLabel = new JLabel("ID       Last Name        First Name      Organization   "  +
-                 "Phone Numbers   Email Addresses \n");
-        
-        Font font2 = new Font("Courier New", Font.PLAIN, 12);
+        //Label above text area
+        keyLabel = new JLabel("ID       Last Name        First Name      Organization   "  +
+                 "Phone Numbers   Email Addresses \n");  
+        font2 = new Font("Courier New", Font.PLAIN, 12);
         keyLabel.setFont(font2);
          
         tableAreaPanel.add(keyLabel);
         
-        
-        //JPanel textPanel = new JPanel();
-        
-       // JScrollPane scrollPane = new JScrollPane();
-       // scrollpane = new JScrollPane();
-    
-       // setPreferredSize(new Dimension(450, 110));
-     
-       // mainWindow.add(scrollpane, BorderLayout.CENTER);
-
-        
-
-//textPanel.setBackground(Color.DARK_GRAY);
-        //textAreaText = new JTextArea( LINES, CHAR_PER_LINE);
+        //Settingof TextArea for output
         textAreaText = new JTextArea( );
         textAreaText.setBackground(Color.WHITE);
-        Font font = new Font("Courier New", Font.PLAIN, 12);
+        font = new Font("Courier New", Font.PLAIN, 12);
         textAreaText.setFont(font );
         textAreaText.setEditable(false);
         scrolledText = new JScrollPane(textAreaText);
         tableAreaPanel.add(scrolledText);
         mainWindow.add(tableAreaPanel, BorderLayout.CENTER);
         
-
         mainWindow.setVisible(true);  
-    }
+        
+    }//End of mainMenu() method
     
-
+    /**
+     * This method creates and shows the about frame
+     */
     public void showAbout()
     {
+        //Setting up aboutFrame
         aboutFrame = new JFrame();
         aboutFrame.setTitle("About");
         aboutFrame.setLocationRelativeTo(null);
@@ -207,6 +195,7 @@ public class MainView
         aboutFrame.setResizable(false);
         aboutFrame.setLayout( new BorderLayout() ); 
        
+        //Setting layout and adding content
         north = new JPanel( new GridLayout(3,1));
         north.add(new JLabel(""));
         north.add(new JLabel("                   Ben Wadsworth"));
@@ -237,7 +226,7 @@ public class MainView
   
     public void openFile()
     {
-        JFileChooser fileChooser = new JFileChooser();
+        fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fileChooser.showOpenDialog(mainWindow);
         if (result == JFileChooser.APPROVE_OPTION)
@@ -247,48 +236,48 @@ public class MainView
         }
     }
     
-   // public void updateContactViewPanel(TreeMap contactTreeMap)
-    //public void updateContactViewPanel()
-   // {
 
+    
+    /**
+     * This function takes the min as a string
+     * and places it within a mono-spaced OptionPane
+     * @param message
+     */
+    public void findMin(String message)
+    {
+        font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
+        UIManager.put("OptionPane.messageFont", font3);
+        UIManager.put("OptionPane.buttonFont", font3);
+        JOptionPane.showMessageDialog(null, message , "Find Min" ,
+        JOptionPane.PLAIN_MESSAGE);
         
+    }//End of findMin() method
+    
+    /**
+     * This function takes the max as a string
+     * and places it within a mono-spaced OptionPane
+     * @param message
+     */
+    public void findMax(String message)
+    {
+        font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
+        UIManager.put("OptionPane.messageFont", font3);
+        UIManager.put("OptionPane.buttonFont", font3);
+        JOptionPane.showMessageDialog(null, message , "Find Max",
+        JOptionPane.PLAIN_MESSAGE);
         
-    //    Set<Integer> keys = contactTreeMap.keySet();
-    //    JScrollPane contactContainer = new JScrollPane();
-    //   
-    //    for(Integer key : keys)
-    //   {
-     //      JPanel tempPanel = new JPanel();
-    //       tempPanel.add(new JLabel("Tits"));
-      //     contactContainer.add(tempPanel);
-     //  }
-      
-      //tableAreaPanel.add(contactContainer, BorderLayout.CENTER);
-      
-     //  mainWindow.getContentPane().add(tableAreaPanel);
-     // mainWindow.pack(); 
-   // }
+    }//End of findMax() method
     
-    
-   // public void updateTableArea(JTable table)
-   // {
-   //     tableAreaPanel.removeAll();
-   //     JScrollPane spTable = new JScrollPane(table);
-   //     spTable.setSize(tableAreaPanel.getWidth(), tableAreaPanel.getHeight());
-    //    tableAreaPanel.add(spTable, BorderLayout.CENTER);
-        
-       // mainWindow.getContentPane().removeAll();
-    //    mainWindow.getContentPane().add(tableAreaPanel);
-
-    ///    mainWindow.pack();
-    //}
-    
-    
+    /**
+     * This method clears and updates the TextArea
+     * @param x
+     */
     public void updateTextBox(String x)
     {
         textAreaText.removeAll();
         textAreaText.setText(x);
-    }
+        
+    }//End of updateTextBox() method
     
     public void setActionListeners(ActionListener al)
     {
@@ -309,4 +298,4 @@ public class MainView
         
     }//End setJButtonListeners method
  
-}
+}//End of MainView Class
