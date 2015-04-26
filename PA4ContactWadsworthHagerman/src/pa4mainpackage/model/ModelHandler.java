@@ -1,14 +1,13 @@
 
 package pa4mainpackage.model;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.*;
 
 /**
- * MAIN CLASS TO INTERACT WITH SUB-MODEL CLASSES!
+ * MAIN CLASS TO INTERACT WITH SUB-MODEL CLASSES
  * @author Ben Wadsworth, John Hagerman
  */
 public class ModelHandler 
@@ -17,18 +16,19 @@ public class ModelHandler
     PrimaryKeyHandler keys;
     
     /**
-     *
+     * 
      */
     public ModelHandler()
     {
         storage = new TreeMap();
         keys = new PrimaryKeyHandler();
         
-    }//ENd of Constructor
+    }//End of Constructor
     
     /**
-     *
-     * @param firstName
+     * Method for adding a new contact to the TreeMap
+     * 
+     * @param firstName     
      * @param lastName
      * @param organization
      * @param phoneNumbers
@@ -44,6 +44,7 @@ public class ModelHandler
         
     }//End of addContact() Method
     
+    
     /**
      *
      * @param treeLocation
@@ -58,6 +59,7 @@ public class ModelHandler
         
     }//End of deleteContact() method
     
+    
     /**
      *
      * @param treeLocation
@@ -69,10 +71,12 @@ public class ModelHandler
         
     }//End of getContact(Integer treeLocation) method
     
+    
     /**
-     *
-     * @param treeLocation
-     * @return
+     * This method formats a contact so that is is in columns of fixed width
+     * 
+     * @param treeLocation      //Key
+     * @return String representation of formatted Contact
      */
     public String formattedGUIContact(Integer treeLocation)
     {
@@ -145,11 +149,12 @@ public class ModelHandler
                          
         return(returnString);
         
-    }//End of formattedGUIContact(Integer treeLocation) method
+    }//End of formattedGUIContact() method
+    
     
     /**
-     *
-     * @return String returnString
+     * 
+     * @return 
      */
     public TreeMap getTreeMapStorage()
     {
@@ -157,6 +162,13 @@ public class ModelHandler
         
     }//End of getTreeMapStorage() method
     
+    
+    /**
+     *  Takes the last element in the TreeMap and returns it as
+     *  a string it also checks to make sure isEmpty() is false
+     * 
+     * @return String representation of contact
+     */
     public String getLast()
     {
         if(isEmpty() == false)
@@ -164,18 +176,27 @@ public class ModelHandler
             String returnString = "";
             Contact tempContact = (Contact) storage.get(storage.lastKey());
         
-            returnString = "  " + tempContact.getLastName() + " " + tempContact.getFirstName() + " " +
-                tempContact.getOrganization() + " " + tempContact.getContactPhoneNumber() + 
-                   " " + tempContact.getContactEmailAddress();
-               
+            returnString =   "Last Name:  " + tempContact.getLastName()
+                    + "\n" + "First Name: " + tempContact.getFirstName() 
+                    + "\n" + "Org Name:   " + tempContact.getOrganization()
+                    + "\n" + "Phone Numbers:   " + tempContact.getContactPhoneNumber()
+                    + "\n" + "Email Addresses: " + tempContact.getContactEmailAddress();
+                    
              return(returnString);
        
         }
         else
             return("Error: The Collection is Empty");
 
-    }
+    }//End of getLast() method
     
+    
+    /**
+     * Takes the first element in the TreeMap and returns it as
+     * a string it also checks to make sure isEmpty() is false
+     * 
+     * @return String representation of contact
+     */
     public String getMin()
     {
         if(isEmpty() == false)
@@ -183,9 +204,11 @@ public class ModelHandler
             String returnString = "";
             Contact tempContact = (Contact) storage.get(storage.firstKey());
         
-            returnString = "  " + tempContact.getLastName() + " " + tempContact.getFirstName() + " " +
-                tempContact.getOrganization() + " " + tempContact.getContactPhoneNumber() + 
-                   " " + tempContact.getContactEmailAddress();
+            returnString =   "Last Name:  " + tempContact.getLastName()
+                    + "\n" + "First Name: " + tempContact.getFirstName() 
+                    + "\n" + "Org Name:   " + tempContact.getOrganization()
+                    + "\n" + "Phone Numbers:   " + tempContact.getContactPhoneNumber()
+                    + "\n" + "Email Addresses: " + tempContact.getContactEmailAddress();
                
              return(returnString);
        
@@ -193,30 +216,48 @@ public class ModelHandler
         else
             return("Error: The Collection is Empty");
 
-    }
+    }//End of getMin() method
     
+    
+    /**
+     * Method for deleting the last item in the TreeMap.
+     */
     public void deleteMax()
     {
         if (isEmpty() == false)
             storage.remove(storage.lastKey());
-    }
+        
+    }//End of deleteMax() method
     
+    
+    /**
+     * Method for deleting the first item in the TreeMap
+     */
     public void deleteMin()
     {
         if (isEmpty() == false)
             storage.remove(storage.firstKey());
-    }
+        
+    }//End of deleteMin() method
   
     
+    /**
+     * Method for checking if treeMap is empty
+     * 
+     * @return Boolean 
+     */
     public boolean isEmpty()
     {
         return storage.isEmpty();
-    }
+        
+    }//End of isEmpty() method
     
     
     /**
-     *  
-     * @return String returnSting
+     * Iterates through the TreeMap and prepares a formatted
+     * string of all the elements within the tree.
+     * 
+     * @return string representation of TreeMap
      */
     @Override
     public String toString()
@@ -225,21 +266,24 @@ public class ModelHandler
          String returnString = "";
          Iterator i = set.iterator();
        
-        
          while(i.hasNext()) 
          {
              Map.Entry entry = (Map.Entry)i.next();
              int x = (int) entry.getKey();
-            returnString += formattedGUIContact(x);
-            returnString += "\n";
-
+             returnString += formattedGUIContact(x);
+             returnString += "\n";
          }
-        
          return(returnString);
-         
          
     }//End of toString() method
     
+    
+    /**
+     * Iterates through the TreeMap in reverse and prepares a 
+     * formatted string of all the elements within the tree.
+     * 
+     * @return String representation of TreeMap
+     */
     public String reverseToString()
     {
          NavigableMap nmap = storage.descendingMap();
@@ -247,16 +291,15 @@ public class ModelHandler
          String returnString = "";
          Iterator i = set.iterator();
          
-          while(i.hasNext()) 
+         while(i.hasNext()) 
          {
              Map.Entry entry = (Map.Entry)i.next();
              int x = (int) entry.getKey();
-            returnString += formattedGUIContact(x);
-            returnString += "\n";
-
+             returnString += formattedGUIContact(x);
+             returnString += "\n";
          }
-      
         return(returnString);
-    }
+        
+    }//End of reverseToString() method
     
 }//End of ModelHandler Class
