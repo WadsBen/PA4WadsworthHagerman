@@ -28,7 +28,7 @@ public class AddController
         addView.setActionListeners(new AddViewListener());
     }
     
-    private boolean checkAllPhoneNumbers()
+    private boolean isValidPhoneNumbers()
     {
         ArrayList<String> phoneList = addView.getPhoneNumbers();
         
@@ -41,7 +41,7 @@ public class AddController
         return(true);
     }
     
-    private boolean checkAllEmailAddresses()
+    private boolean isValidEmailAddresses()
     {
         ArrayList<String> emailList = addView.getEmailAddresses();
         
@@ -52,6 +52,30 @@ public class AddController
         }
         
         return(true);
+    }
+    
+    private boolean isValidFirstName()
+    {
+        return(RegexChecker.regexCheck(RegexMethod.SIXTEEN_ALPHABET, addView.getFirstName()));
+    }
+    
+    private boolean isValidLastName()
+    {
+        return(RegexChecker.regexCheck(RegexMethod.SIXTEEN_ALPHABET, addView.getLastName()));
+    }
+    
+    private boolean isValidOrganizationName()
+    {
+        return(RegexChecker.regexCheck(RegexMethod.SIXTEEN_ALPHABET, addView.getOrgName()));
+    }
+    
+    private boolean isValidInfo()
+    {
+        return(isValidFirstName() &&
+                isValidLastName() &&
+                isValidOrganizationName() &&
+                isValidPhoneNumbers() &&
+                isValidEmailAddresses());
     }
     
     private class AddViewListener implements ActionListener
@@ -71,12 +95,12 @@ public class AddController
             }
             else if(actionCommand.equals( "SUBMITADD"))
             {
-                if(RegexChecker.regexCheck(RegexMethod.SIXTEEN_ALPHABET, addView.getFirstName()) &&
-                        RegexChecker.regexCheck(RegexMethod.SIXTEEN_ALPHABET, addView.getLastName()) &&
-                        RegexChecker.regexCheck(RegexMethod.SIXTEEN_ALPHABET, addView.getOrgName()) &&
-                        checkAllPhoneNumbers() && checkAllEmailAddresses())
+                if(isValidInfo())
                 {
                     System.out.println("GOOD INFO");
+                    modelHandler.addContact(addView.getFirstName(),
+                            addView.getLastName(), addView.getOrgName(),
+                            addView.getPhoneNumbers(), addView.getEmailAddresses());
                 }
                 else
                     System.out.println("BAD INFO");

@@ -9,14 +9,9 @@ public class ContactEmailAddress implements Serializable
 {
     private ArrayList<String> emailList;
     
-    public ContactEmailAddress(String... email)
+    public ContactEmailAddress(ArrayList<String> email)
     {
-        emailList = new ArrayList<>();
-        
-        for(String emails : email)
-        {
-            emailList.add(emails);
-        }
+        emailList = email;
     }
     
     public void addEmailAddress(String email)

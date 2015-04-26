@@ -5,6 +5,7 @@
  */
 package pa4mainpackage.model;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 /**
@@ -22,8 +23,9 @@ public class ModelHandler
         keys = new PrimaryKeyHandler();
     }
     
-    public void addContact(String firstName, String lastName,String organization, String[] phoneNumbers,
-            String[] emailAddresses)
+    public void addContact(String firstName, String lastName,String organization, 
+            ArrayList<String> phoneNumbers,
+            ArrayList<String>emailAddresses)
     {
         Contact tempContact;
         tempContact = new Contact(keys.getNextAvailableKey(), firstName, lastName, organization, phoneNumbers, emailAddresses);

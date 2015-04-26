@@ -1,5 +1,7 @@
 package pa4mainpackage.model;
 
+import java.util.ArrayList;
+
 /**
  * Contact represents a phone contact.
  *
@@ -21,8 +23,8 @@ public class Contact implements Comparable<Contact>
      * @param phoneNumbers      an object containing an ArrayList of phoneNumbers
      * @param emailAddresses    an object containing an ArrayList of emailAddresses
      */
-    public Contact(Integer keyID, String first, String last, String organization, String[] phoneNumbers,
-            String[] emailAddresses)
+    public Contact(Integer keyID, String first, String last, String organization, ArrayList<String> phoneNumbers,
+            ArrayList<String> emailAddresses)
     {
         firstName = first;
         lastName = last;

@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Set;
+import java.util.TreeMap;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -204,6 +206,25 @@ public class MainView
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
         }
     }
+    
+//    public void updateContactViewPanel(TreeMap contactTreeMap)
+//    {
+//        Set<Integer> keys = contactTreeMap.keySet();
+//        JScrollPane contactContainer = new JScrollPane();
+//        
+//        for(Integer key : keys)
+//        {
+//            JPanel tempPanel = new JPanel();
+//            tempPanel.add(new JLabel("Tits"));
+//            contactContainer.add(tempPanel);
+//        }
+//        
+//        tableAreaPanel.add(contactContainer, BorderLayout.CENTER);
+//        
+//        mainWindow.getContentPane().add(tableAreaPanel);
+//
+//        mainWindow.pack();
+//    }
     
     public void updateTableArea(JTable table)
     {

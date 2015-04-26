@@ -75,8 +75,6 @@ public class Controller
             else if (actionCommand.equals( "FINDMAX"))
             {
                 ContactTable table = new ContactTable(modelHandler);
-                    
-                    
                 mainView.updateTableArea(table.formattedJTable());
             }
             else if (actionCommand.equals( "FINDMIN"))

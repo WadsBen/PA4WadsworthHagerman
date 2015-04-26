@@ -10,14 +10,9 @@ public class ContactPhoneNumber implements Serializable
 {
     private ArrayList<String> phoneList;
     
-    public ContactPhoneNumber(String... phoneNumber)
+    public ContactPhoneNumber(ArrayList<String> phoneNumber)
     {
-        phoneList = new ArrayList<>();
-        
-        for(String phone : phoneNumber)
-        {
-            phoneList.add(phone);
-        }
+        phoneList = phoneNumber;
     }
     
     public void addPhoneNumber(String phoneNumber)

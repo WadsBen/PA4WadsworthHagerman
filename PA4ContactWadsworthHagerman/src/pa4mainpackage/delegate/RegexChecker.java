@@ -32,7 +32,7 @@ public class RegexChecker
             }
             case EMAIL_ADDRESS:
             {
-                String p = "[a-zA-Z0-9]+@[a-z]";
+                String p = "[a-zA-Z0-9-+._]{1,}[@]{1}[a-zA-Z0-9-+._]{1,}[//.]{1}[a-zA-Z]{2,3}";
                 Pattern pattern = Pattern.compile(p);
                 Matcher matcher = pattern.matcher(stringToCheck);
                 
