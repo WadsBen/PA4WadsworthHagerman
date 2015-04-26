@@ -1,7 +1,6 @@
 
 package pa4mainpackage.delegate;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -17,25 +16,33 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- *
- * @author JohnThomas
+ * GUI interface for adding new contacts
+ * 
+ * @author John Hagerman
  */
-public class AddView
+public final class AddView
 {
     private JFrame          addFrame, errorFrame;
     private JTextField      lastNameField, nameField, orgField,email1,email2,email3,
                             email4,email5, email6, phone1, phone2, phone3, phone4, phone5, phone6;
-    private JPanel          topPanel, bottomPanel, finalPane, bottomLeftPanel, 
+    private JPanel          topPanel, bottomPanel, bottomLeftPanel, 
                             bigPanel, bottomRightPanel, veryBottom;
-    private JLabel          fNLabel, lNLabel, orgLabel, emailLabel, phoneLabel,error1, error2;
+    private JLabel          fNLabel, lNLabel, orgLabel, emailLabel, phoneLabel,error1;
     private JButton         submitBTN, cancelBTN, closeErrorButton;
     
-    
-    public AddView()
+    /*
+    * Invokes the displayAddEntry() method creating GUI for adding new contacts
+    */
+    public  AddView()
     {
        displayAddEntry();
-    }
+       
+    }//End of Constructor
     
+    
+    /**
+     * Creates and displays GUI for adding new contacts
+     */
     public void displayAddEntry()
     {
         addFrame = new JFrame();
@@ -44,8 +51,7 @@ public class AddView
         addFrame.setSize(500,400);
         addFrame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
         addFrame.setResizable(false);
-        
-
+       
         bigPanel = new JPanel();
         bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
         topPanel = new JPanel(new GridLayout(2,3,5,5));
@@ -53,7 +59,6 @@ public class AddView
         
         bottomLeftPanel = new JPanel(new GridLayout(7,1,0,0));
         bottomRightPanel = new JPanel(new GridLayout(7,1,0,0));
-        
         
         topPanel.setMaximumSize(new Dimension(500,80));
         topPanel.setPreferredSize(new Dimension(500,80));
@@ -71,7 +76,6 @@ public class AddView
         emailLabel = new JLabel("Email Address(es)");
         emailLabel.setHorizontalAlignment(JLabel.CENTER);
         
- 
         nameField = new JTextField();
         lastNameField = new JTextField();
         orgField = new JTextField();
@@ -88,7 +92,6 @@ public class AddView
         email5 = new JTextField();
         email6 = new JTextField();
         
-        
         topPanel.add(fNLabel);
         topPanel.add(lNLabel);
         topPanel.add(orgLabel);
@@ -96,8 +99,6 @@ public class AddView
         topPanel.add(lastNameField);
         topPanel.add(orgField);
       
-        //topPanel.addSeparator();
-        
         bottomLeftPanel.add(phoneLabel);
         bottomLeftPanel.add(phone1);
         bottomLeftPanel.add(phone2);
@@ -105,7 +106,6 @@ public class AddView
         bottomLeftPanel.add(phone4);
         bottomLeftPanel.add(phone5);
         bottomLeftPanel.add(phone6);
-        
         bottomRightPanel.add(emailLabel);
         bottomRightPanel.add(email1);
         bottomRightPanel.add(email2);
@@ -115,13 +115,11 @@ public class AddView
         bottomRightPanel.add(email6);
         
         bottomPanel.add(bottomLeftPanel);
-       
         bottomPanel.add(bottomRightPanel);
         
         veryBottom = new JPanel( new FlowLayout());
         cancelBTN = new JButton("Cancel");
         cancelBTN.setActionCommand("CLOSEADDWINDOW");
-       
         submitBTN = new JButton("Submit");
         submitBTN.setActionCommand("SUBMITADD");
         
@@ -135,8 +133,16 @@ public class AddView
         
         addFrame.add(bigPanel);
         addFrame.setVisible(true);
-    }
+        
+    }//End of displayAddEntry() method
     
+    
+    /**
+     * Takes all the phone numbers entered from the
+     * text fields and adds them to an ArrayList.
+     * 
+     * @return ArrayList of all phone numbers entered
+     */
     public ArrayList<String> getPhoneNumbers()
     {
         ArrayList<String> outPut = new ArrayList<>();
@@ -156,8 +162,15 @@ public class AddView
         
         return outPut;
   
-    }
+    }//End of getPhoneNumbers() method
     
+    
+    /**
+     * Takes all the email addresses entered from the
+     * text fields and adds them to an ArrayList.
+     * 
+     * @return ArrayList of all email addresses entered
+     */
     public ArrayList<String> getEmailAddresses()
     {
         ArrayList<String> outPut = new ArrayList<>();
@@ -176,63 +189,59 @@ public class AddView
             outPut.add(email6.getText());
         
         return outPut;
-    }
+        
+    }//End of getEmailAddresses() method
     
+    
+    /**
+     * Gets First Name from TextField
+     * 
+     * @return String of first name entered
+     */
     public String getFirstName()
     {
         return nameField.getText();
-    }
+        
+    }//End of getFirstName() method
+     
     
-    /*
-    public String getPhone1()
-    {
-        return phone1.getText();
-       
-    }
-    public String getPhone2()
-    {
- 
-       return phone2.getText();
-
-       
-    }
-    public String getPhone3()
-    {
-      return phone3.getText(); 
-       
-    }
-    public String getPhone4()
-    {
-      return phone4.getText(); 
-       
-    }
-    public String getPhone5()
-    {
-      return phone5.getText(); 
-       
-    }
-    public String getPhone6()
-    {
-      return phone6.getText(); 
-       
-    }
-    */
-    
+    /**
+     * Gets Last Name from TextField
+     * 
+     * @return String of last name entered
+     */
     public String getLastName()
     {
         return lastNameField.getText();
-    }
+        
+    }//End of getLastName() method
     
+    
+    /**
+     * Gets Organization Name from TextField
+     * 
+     * @return String of organization name entered
+     */
     public String getOrgName()
     {
         return orgField.getText();
-    }
+        
+    }//End of getOrgName() method
     
+    
+    /**
+     * Closes the addFrame
+     */
     public void closeAdd()
     {
         addFrame.dispose();
-    }
+        
+    }//End of closeAdd() method
     
+    
+    /**
+     * Creates and displays error frame
+     */
     public void displayErrorFrame()
     {
         errorFrame = new JFrame();
@@ -245,26 +254,32 @@ public class AddView
         
         error1  = new JLabel("Error: Incorrect Input, please try again");
         error1.setHorizontalAlignment(JLabel.CENTER);
-        //error2  = new JLabel("Incorrect Input");
-      //  error2.setHorizontalAlignment(JLabel.CENTER);
-        
         errorFrame.add(error1);
-       // errorFrame.add(error2);
 
         closeErrorButton = new JButton("Close");
         closeErrorButton.setActionCommand("CLOSEERRORTWINDOW");
         errorFrame.add(closeErrorButton);
         
-        
         errorFrame.setVisible(true);     
     
-    }
+    }//End of displayErrorFrame() method
     
+    
+    /**
+     * Closes the error frame
+     */
     public void closeErrorFrame()
     {
         errorFrame.dispose();
-    }
+        
+    }//End of closeErrorFrame() method
     
+    
+    /**
+     * Checks to make sure input is not blank
+     * 
+     * @return Boolean
+     */
     public boolean correctInput()
     {
         if(getLastName().equals("") || getFirstName().equals("") || getOrgName().equals(""))
@@ -277,15 +292,21 @@ public class AddView
             return true;
         }
             
-    }
+    }//End of correctInput() method
     
-  
+    
+    /**
+     * Sets Listeners
+     * 
+     * @param al
+     */
     public void setActionListeners(ActionListener al)
     {
-         //closeErrorButton.addActionListener(al);
+
          cancelBTN.addActionListener(al);
          submitBTN.addActionListener(al);
 
         
-    }//End setJButtonListen
-}
+    }//End of setActionListeners() method
+    
+}//End of AddView() Class
