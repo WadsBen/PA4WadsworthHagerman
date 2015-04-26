@@ -134,7 +134,9 @@ public class Controller
                             mainView.closeDeleteBox();
                         }
                     }
-                    mainView.incorrectInputMessageBox("Invalid Integer");
+                    else
+                        mainView.incorrectInputMessageBox("Invalid Integer");
+                  
                 }
                 catch (NumberFormatException z)
                 {
