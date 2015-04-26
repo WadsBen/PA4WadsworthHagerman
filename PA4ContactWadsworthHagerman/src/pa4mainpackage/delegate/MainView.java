@@ -356,11 +356,11 @@ public class MainView
    /**
     * Error Message Box
     */
-    public void incorrectInputMessageBox()
+    public void incorrectInputMessageBox(String message)
     {
         JFrame frame = new JFrame();
         JOptionPane.showMessageDialog(frame,
-        "Incorect Key", "Error!" , JOptionPane.ERROR_MESSAGE);
+        message, "Error!" , JOptionPane.ERROR_MESSAGE);
         
     }//End of incorrectInputMessageBox()
     
