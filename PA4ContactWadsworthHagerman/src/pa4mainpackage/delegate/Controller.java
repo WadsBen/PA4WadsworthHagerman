@@ -134,10 +134,12 @@ public class Controller
                             mainView.closeDeleteBox();
                         }
                     }
+                    mainView.incorrectInputMessageBox();
                 }
                 catch (NumberFormatException z)
                 {
                     System.out.println("Incorrect Key");
+                    mainView.incorrectInputMessageBox();
                 }
                 
                 
