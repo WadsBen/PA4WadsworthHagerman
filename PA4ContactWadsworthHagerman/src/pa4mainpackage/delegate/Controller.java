@@ -26,8 +26,7 @@ public class Controller
         mainView.setActionListeners(new AllWidgetListener());
     }
     
-    
-
+   
     
     private class AllWidgetListener implements ActionListener
     {
@@ -92,11 +91,11 @@ public class Controller
             }
             else if (actionCommand.equals( "FINDMAX"))
             {
-                System.out.println(modelHandler.getLast());
+                mainView.findMax(modelHandler.getLast());
             }
             else if (actionCommand.equals( "FINDMIN"))
             {
-                System.out.println(modelHandler.getMin());
+                mainView.findMin(modelHandler.getMin());
             }
             else if (actionCommand.equals( "ABOUT"))
             {
