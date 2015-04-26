@@ -15,6 +15,7 @@ public class Controller
     
     private final MainView mainView;
     private final ModelHandler modelHandler;
+    private boolean inOrder = true;
     
     
     public Controller(MainView mainView, ModelHandler modelHandler)
@@ -49,11 +50,13 @@ public class Controller
             }
             else if (actionCommand.equals( "ASCENDING"))
             {
-                
+                mainView.updateTextBox(modelHandler.toString());
+                inOrder = true;
             }
             else if (actionCommand.equals( "DESCENDING"))
             {
-                
+                mainView.updateTextBox(modelHandler.reverseToString());
+                inOrder = false;
             }
             else if (actionCommand.equals( "ADD"))
             {
@@ -71,20 +74,29 @@ public class Controller
             }
             else if (actionCommand.equals( "DELETEMIN"))
             {
-                //
+                 modelHandler.deleteMin();
+                 if(inOrder == true)
+                     mainView.updateTextBox(modelHandler.toString());
+                 else
+                    mainView.updateTextBox(modelHandler.reverseToString());
             }
             else if (actionCommand.equals( "DELETEMAX"))
             {
-                
+                 modelHandler.deleteMax();
+                 if(inOrder == true)
+                     mainView.updateTextBox(modelHandler.toString());
+                 else
+                    mainView.updateTextBox(modelHandler.reverseToString());
+
+            
             }
             else if (actionCommand.equals( "FINDMAX"))
             {
-            //    ContactTable table = new ContactTable(modelHandler);
-            //    mainView.updateTableArea(table.formattedJTable());
+                System.out.println(modelHandler.getLast());
             }
             else if (actionCommand.equals( "FINDMIN"))
             {
-                mainView.updateTextBox(modelHandler.toString());
+                System.out.println(modelHandler.getMin());
             }
             else if (actionCommand.equals( "ABOUT"))
             {
