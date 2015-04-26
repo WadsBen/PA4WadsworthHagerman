@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 /**
@@ -38,23 +39,25 @@ public class MainView
     private JMenuItem menuFileExit, menuFileSave, menuAboutAbout, menuEditDeleteMax, menuEditDeleteMin,
                       menuEditDelete, menuEditAdd, menuSortFindMax, menuSortFindMin, menuFileOpen,
                       menuEditEditEntry;
-    private JFrame mainWindow, aboutFrame;
-    private JPanel north, south, tableAreaPanel;
+    private JFrame mainWindow, aboutFrame, deleteBox;
+    private JPanel north, south, tableAreaPanel, deleteBottom, topPanel, bigPanel;
     private JMenu menuFile, menuSort, menuAbout, menuEdit;
     private JButton closeAboutButton;
-    private ActionListener viewAl;
+    private ActionListener viewAl , delAL, closAL;
     private JScrollPane scrolledText;
     private JTextArea textAreaText;
     private Font font, font2, font3;
-    private JLabel keyLabel;
+    private JLabel keyLabel, delLabel;
     private JFileChooser fileChooser;
+    private JTextField keyInput;
+    private JButton cancelBTN, delBTN;
 
    /**
     * Invokes mainMenu() method creating UI
     */
     public MainView()
     {
-        mainMenu();       
+        mainMenu();  
         
     }//End of Constructor
     
@@ -229,6 +232,76 @@ public class MainView
         
     }//End of closeAbout() method
     
+    
+    /**
+     *  Creates window for deleting by key
+     */
+    public void showDeleteBox()
+    {
+        deleteBox = new JFrame();
+        deleteBox.setTitle("Delete By Key");
+        deleteBox.setLocationRelativeTo(null);
+        deleteBox.setSize(200,120);
+        deleteBox.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
+        deleteBox.setResizable(false);
+        
+        bigPanel = new JPanel();
+        bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
+        
+        topPanel = new JPanel(new GridLayout(2,1,5,5));
+        
+        delLabel  = new JLabel("Enter Key");
+        delLabel.setHorizontalAlignment(JLabel.CENTER);
+        keyInput = new JTextField();
+        
+        topPanel.add(delLabel);
+        topPanel.add(keyInput);
+        
+        
+        
+        deleteBottom = new JPanel( new FlowLayout());
+        cancelBTN = new JButton("Cancel");
+        cancelBTN.setActionCommand("CLOSEDELETEBOX");
+        cancelBTN.addActionListener(closAL);
+        delBTN = new JButton("Delete");
+        delBTN.setActionCommand("DELETECONTACT");
+        delBTN.addActionListener(delAL);
+        
+        deleteBottom.add(delBTN);
+        deleteBottom.add(cancelBTN);
+        
+        bigPanel.add(topPanel);
+        bigPanel.add(deleteBottom);
+        
+        deleteBox.add(bigPanel);
+        
+        deleteBox.setVisible(true);
+        
+    }//End of showDeleteBox() method
+    
+    
+    /**
+     * Gets the key entered by user
+     * 
+     * @return String input
+     */
+    public String getDeleteString()
+    {
+        return(keyInput.getText());
+
+    }//End of getDeleteString() method
+    
+    
+    /*
+    *Closes the delete Window
+    */
+    public void closeDeleteBox()
+    {
+        
+        deleteBox.dispose();
+    }//End of closeDeleteBox() method
+    
+    
     /**
      *
      */
@@ -314,6 +387,10 @@ public class MainView
         menuEditEditEntry.addActionListener(al);
         sortDescending.addActionListener(al);
         sortAscending.addActionListener(al);
+        delAL = al;
+        closAL = al;
+
+
         
     }//End setJButtonListeners method
  
