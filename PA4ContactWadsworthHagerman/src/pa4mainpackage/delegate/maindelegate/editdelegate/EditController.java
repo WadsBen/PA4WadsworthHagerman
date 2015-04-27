@@ -1,4 +1,4 @@
-package pa4mainpackage.delegate;
+package pa4mainpackage.delegate.maindelegate.editdelegate;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -14,7 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pa4mainpackage.delegate.Controller;
+import pa4mainpackage.delegate.maindelegate.MainController;
 import pa4mainpackage.model.ModelHandler;
 
 /**

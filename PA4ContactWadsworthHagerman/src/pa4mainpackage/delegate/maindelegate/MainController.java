@@ -1,6 +1,7 @@
 
-package pa4mainpackage.delegate;
+package pa4mainpackage.delegate.maindelegate;
 
+import pa4mainpackage.delegate.maindelegate.MainView;
 import pa4mainpackage.model.ModelHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,15 +14,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pa4mainpackage.delegate.adddelegate.AddController;
+import pa4mainpackage.delegate.adddelegate.AddView;
+import pa4mainpackage.delegate.maindelegate.editdelegate.EditController;
+import pa4mainpackage.delegate.maindelegate.editdelegate.EditView;
 import pa4mainpackage.delegate.fileio.FileIO;
-import pa4mainpackage.delegate.fileio.PA4ErrorMessages;
+import pa4mainpackage.exceptions.PA4ErrorMessages;
 
 /**
  *  
  * @author John Thomas Hagerman
  * @author Benjamin Awesomesauce Wadsworth
  */
-public class Controller 
+public class MainController 
 {
     
     private final MainView mainView;
@@ -29,7 +34,7 @@ public class Controller
     private boolean inOrder = true;
     
     
-    public Controller(MainView mainView, ModelHandler modelHandler)
+    public MainController(MainView mainView, ModelHandler modelHandler)
     {
         this.mainView = mainView;
         this.modelHandler = modelHandler;

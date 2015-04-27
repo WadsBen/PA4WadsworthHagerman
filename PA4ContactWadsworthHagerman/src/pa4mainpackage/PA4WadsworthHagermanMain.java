@@ -1,8 +1,8 @@
 package pa4mainpackage;
 
-import pa4mainpackage.delegate.AddView;
-import pa4mainpackage.delegate.Controller;
-import pa4mainpackage.delegate.MainView;
+import pa4mainpackage.delegate.adddelegate.AddView;
+import pa4mainpackage.delegate.maindelegate.MainController;
+import pa4mainpackage.delegate.maindelegate.MainView;
 import pa4mainpackage.model.ModelHandler;
 
 /**
@@ -19,12 +19,12 @@ public class PA4WadsworthHagermanMain
     public static void main(String[] args) 
     {
         
-       // Controller ass = new Controller();
+       // MainController ass = new MainController();
 
         ModelHandler mh = new ModelHandler();
         MainView fuck = new MainView();
         
-        Controller bitch = new Controller(fuck, mh);
+        MainController bitch = new MainController(fuck, mh);
         
     }
 }

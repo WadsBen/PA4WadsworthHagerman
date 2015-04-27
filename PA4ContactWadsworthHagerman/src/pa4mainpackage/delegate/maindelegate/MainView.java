@@ -1,5 +1,5 @@
 
-package pa4mainpackage.delegate;
+package pa4mainpackage.delegate.maindelegate;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

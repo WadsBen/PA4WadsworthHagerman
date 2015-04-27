@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pa4mainpackage.delegate;
+package pa4mainpackage.delegate.adddelegate;
 
+import pa4mainpackage.delegate.adddelegate.AddView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import pa4mainpackage.delegate.RegexChecker;
 import pa4mainpackage.delegate.RegexChecker.RegexMethod;
+import pa4mainpackage.exceptions.PA4ErrorMessages;
 import pa4mainpackage.model.ModelHandler;
 
 /**
@@ -101,12 +104,22 @@ public class AddController
                     modelHandler.addContact(addView.getFirstName(),
                             addView.getLastName(), addView.getOrgName(),
                             addView.getPhoneNumbers(), addView.getEmailAddresses());
-                    
+                    addView.closeAdd();   
                 }
                 else
-                    System.out.println("BAD INFO");
+                {
+                    if(!isValidFirstName())
+                        PA4ErrorMessages.invalidInput("First Name");
+                    else if(!isValidLastName())
+                        PA4ErrorMessages.invalidInput("Last Name");
+                    else if(!isValidOrganizationName())
+                        PA4ErrorMessages.invalidInput("Organization");
+                    else if(!isValidPhoneNumbers())
+                        PA4ErrorMessages.invalidInput("Phone Number");
+                    else if(!isValidEmailAddresses())
+                        PA4ErrorMessages.invalidInput("Email Address");
+                }
                 
-                addView.closeAdd();
             }
         }
     }

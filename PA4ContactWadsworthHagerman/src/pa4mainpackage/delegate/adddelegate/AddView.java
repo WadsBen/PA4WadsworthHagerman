@@ -1,5 +1,5 @@
 
-package pa4mainpackage.delegate;
+package pa4mainpackage.delegate.adddelegate;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
