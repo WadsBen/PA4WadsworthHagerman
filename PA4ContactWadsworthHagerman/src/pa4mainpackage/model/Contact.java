@@ -1,6 +1,7 @@
 package pa4mainpackage.model;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * Contact represents a phone contact.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Lewis and Chase
  * @version 4.0
  */
-public class Contact implements Comparable<Contact>
+public class Contact implements Comparable<Contact>, Serializable
 {
     private String firstName, lastName, organization;
     private ContactPhoneNumber phoneNumbers;
@@ -95,6 +96,16 @@ public class Contact implements Comparable<Contact>
     public ContactEmailAddress getContactEmailAddress()
     {
         return(emailAddresses);
+    }
+    
+    public void setContactEmailAddresses(ArrayList<String> list)
+    {
+        emailAddresses.setEmailList(list);
+    }
+    
+    public void setContactPhoneNumbers(ArrayList<String> list)
+    {
+        phoneNumbers.setPhoneNumbersList(list);
     }
     
     /**

@@ -45,6 +45,16 @@ public class ContactPhoneNumber implements Serializable
         
     }//End of deletePhoneNumber(int index) method
     
+    public void setPhoneNumbersList(ArrayList<String> list)
+    {
+        phoneList = list;
+    }
+    
+    public ArrayList<String> getPhoneList()
+    {
+        return(phoneList);
+    }
+    
     /**
      *
      * @return

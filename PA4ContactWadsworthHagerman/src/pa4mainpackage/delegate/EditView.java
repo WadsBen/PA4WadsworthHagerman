@@ -5,6 +5,7 @@
  */
 package pa4mainpackage.delegate;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -14,6 +15,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -32,18 +34,22 @@ public class EditView
                             bottomRightPanel, veryBottom;
     private JLabel          fNLabel, lNLabel, orgLabel, phoneLabel, emailLabel;
     private JTextField      nameField, lastNameField, orgField,
-                            phone1, phone2, phone3, phone4, phone5, phone6,
+                            phone1, phone2, phone3, phone4, phone5, phone6, editKeyField,
                             email1, email2, email3, email4, email5, email6;
     private JButton         cancelBTN, submitBTN;
+    
+    public EditView()
+    {
+        initWindow();
+    }
     
     public EditView(String firstName, String lastName, String orgName,
             ArrayList<String> phoneList, ArrayList<String> emailList)
     {
-        showEditView(firstName, lastName, orgName, phoneList, emailList);
+         populateEditWindow(firstName, lastName, orgName, phoneList, emailList);
     }
     
-    public void showEditView(String firstName, String lastName, String orgName,
-            ArrayList<String> phoneList, ArrayList<String> emailList)
+    public void initWindow()
     {
         editFrame = new JFrame();
         editFrame.setTitle("Edit Entry");
@@ -79,12 +85,9 @@ public class EditView
         emailLabel.setHorizontalAlignment(JLabel.CENTER);
         
  
-        nameField = new JTextField();
-        nameField.setText(firstName);
+        nameField = new JTextField();;
         lastNameField = new JTextField();
-        lastNameField.setText(lastName);
         orgField = new JTextField();
-        orgField.setText(orgName);
         
         phone1 = new JTextField();
         phone2 = new JTextField();
@@ -93,54 +96,12 @@ public class EditView
         phone5 = new JTextField();
         phone6 = new JTextField();
         
-        if(phoneList != null)
-        {
-            if(phoneList.get(0) != null)
-                phone1.setText(phoneList.get(0));
-            if(phoneList.get(1) != null)
-                phone2.setText(phoneList.get(1));
-            
-            if(phoneList.get(2) != null)
-                phone3.setText(phoneList.get(2));
-            
-            if(phoneList.get(3) != null)
-                phone4.setText(phoneList.get(3));
-            
-            if(phoneList.get(4) != null)
-                phone5.setText(phoneList.get(4));
-            
-            if(phoneList.get(5) != null)
-                phone6.setText(phoneList.get(5));
-        }
-        
         email1 = new JTextField();
         email2 = new JTextField();
         email3 = new JTextField();
         email4 = new JTextField();
         email5 = new JTextField();
         email6 = new JTextField();
-        
-        if(emailList != null)
-        {
-
-            if(emailList.get(0) != null)
-                email1.setText(emailList.get(0));
- 
-            if(emailList.get(1) != null)
-                email2.setText(emailList.get(1));
- 
-            if(emailList.get(2) != null)
-                email3.setText(emailList.get(2));
- 
-            if(emailList.get(3) != null)
-                email4.setText(emailList.get(3));
- 
-            if(emailList.get(4) != null)
-                email5.setText(emailList.get(4));
- 
-            if(emailList.get(5) != null)
-                email6.setText(emailList.get(5));
-        }
         
         
         topPanel.add(fNLabel);
@@ -174,7 +135,7 @@ public class EditView
         
         veryBottom = new JPanel( new FlowLayout());
         cancelBTN = new JButton("Cancel");
-        cancelBTN.setActionCommand("CLOSEADDWINDOW");
+        cancelBTN.setActionCommand("CLOSEEDITWINDOW");
        
         submitBTN = new JButton("Submit");
         submitBTN.setActionCommand("SUBMITEDIT");
@@ -191,6 +152,52 @@ public class EditView
         editFrame.setVisible(true);
     }
     
+    public void populateEditWindow(String firstName, String lastName, String orgName,
+            ArrayList<String> phoneList, ArrayList<String> emailList)
+    {
+        nameField.setText(firstName);
+        lastNameField.setText(lastName);
+        orgField.setText(orgName);
+        
+        if(phoneList != null)
+        {
+            if(phoneList.get(0) != null)
+                phone1.setText(phoneList.get(0));
+            if(phoneList.get(1) != null)
+                phone2.setText(phoneList.get(1));
+            if(phoneList.get(2) != null)
+                phone3.setText(phoneList.get(2));
+            if(phoneList.get(3) != null)
+                phone4.setText(phoneList.get(3));
+            if(phoneList.get(4) != null)
+                phone5.setText(phoneList.get(4));
+            if(phoneList.get(5) != null)
+                phone6.setText(phoneList.get(5));
+        }
+        
+        if(emailList != null)
+        {
+
+            if(emailList.get(0) != null)
+                email1.setText(emailList.get(0));
+ 
+            if(emailList.get(1) != null)
+                email2.setText(emailList.get(1));
+ 
+            if(emailList.get(2) != null)
+                email3.setText(emailList.get(2));
+ 
+            if(emailList.get(3) != null)
+                email4.setText(emailList.get(3));
+ 
+            if(emailList.get(4) != null)
+                email5.setText(emailList.get(4));
+ 
+            if(emailList.get(5) != null)
+                email6.setText(emailList.get(5));
+        }
+    }
+    
     public String getFirstName()
     {
         return(nameField.getText());
@@ -205,6 +212,61 @@ public class EditView
     {
         return(orgField.getText());
     }
+    
+    public ArrayList<String> getPhoneNumbers()
+    {
+        ArrayList<String> outPut = new ArrayList<>();
+
+        if(!phone1.getText().equals(""))
+            outPut.add(phone1.getText());
+        if(!phone2.getText().equals(""))
+            outPut.add(phone2.getText());
+        if(!phone3.getText().equals(""))
+            outPut.add(phone3.getText());
+        if(!phone4.getText().equals(""))
+            outPut.add(phone4.getText());
+        if(!phone5.getText().equals(""))
+            outPut.add(phone5.getText());
+        if(!phone6.getText().equals(""))
+            outPut.add(phone6.getText());
+        
+        return outPut;
+  
+    }
+    
+    public ArrayList<String> getEmailAddresses()
+    {
+        ArrayList<String> outPut = new ArrayList<>();
+
+        if(!email1.getText().equals(""))
+            outPut.add(email1.getText());
+        if(!email2.getText().equals(""))
+            outPut.add(email2.getText());
+        if(!email3.getText().equals(""))
+            outPut.add(email3.getText());
+        if(!email4.getText().equals(""))
+            outPut.add(email4.getText());
+        if(!email5.getText().equals(""))
+            outPut.add(email5.getText());
+        if(!email6.getText().equals(""))
+            outPut.add(email6.getText());
+        
+        return outPut;
+    }
+    
+    public void close()
+    {
+        editFrame.dispose();
+    }
+    
+    public String getEditKey()
+    {
+       String inputValue = JOptionPane.showInputDialog("Please input the key value of " +
+               "the contact you want to edit.");
+       
+       return(inputValue);
+    }
+    
     
     public void setActionListeners(ActionListener al)
     {

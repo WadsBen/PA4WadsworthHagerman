@@ -45,6 +45,16 @@ public class ContactEmailAddress implements Serializable
         
     }//End of deleteEmailAddress() method
     
+    public void setEmailList(ArrayList<String> list)
+    {
+        emailList = list;
+    }
+    
+    public ArrayList<String> getEmailList()
+    {
+        return(emailList);
+    }
+    
     /**
      *
      * @return

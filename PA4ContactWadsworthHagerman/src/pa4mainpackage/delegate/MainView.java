@@ -8,6 +8,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -305,17 +308,45 @@ public class MainView
     /**
      *
      */
-    public void openFile()
+    public File openFile()
     {
         fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        File selectedFile = fileChooser.getSelectedFile();
         int result = fileChooser.showOpenDialog(mainWindow);
         if (result == JFileChooser.APPROVE_OPTION)
         {
-            File selectedFile = fileChooser.getSelectedFile();
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+            selectedFile = fileChooser.getSelectedFile();
+            return(selectedFile);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Cannot write to that file!", "alert", JOptionPane.ERROR_MESSAGE);
+            return(null);
         }
     }//End of openFile() method
+    
+    public File saveFileName() throws IOException
+    {
+        fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        File selectedFile;
+        
+        int result = fileChooser.showSaveDialog(mainWindow);
+        if (result == JFileChooser.APPROVE_OPTION)
+        {
+            selectedFile = fileChooser.getSelectedFile();
+            if(selectedFile.createNewFile())
+                return(selectedFile);
+
+            return(selectedFile);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Cannot write to that file!", "alert", JOptionPane.ERROR_MESSAGE);
+            return(null);
+        }
+    }
     
 
     

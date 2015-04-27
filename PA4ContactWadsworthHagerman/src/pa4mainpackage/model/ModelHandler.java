@@ -1,6 +1,7 @@
 
 package pa4mainpackage.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
@@ -10,7 +11,7 @@ import java.util.*;
  * MAIN CLASS TO INTERACT WITH SUB-MODEL CLASSES
  * @author Ben Wadsworth, John Hagerman
  */
-public class ModelHandler 
+public class ModelHandler implements Serializable
 {
     TreeMap storage;
     PrimaryKeyHandler keys;

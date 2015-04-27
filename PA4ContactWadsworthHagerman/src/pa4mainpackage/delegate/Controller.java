@@ -4,6 +4,17 @@ package pa4mainpackage.delegate;
 import pa4mainpackage.model.ModelHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import pa4mainpackage.delegate.fileio.FileIO;
+import pa4mainpackage.delegate.fileio.PA4ErrorMessages;
 
 /**
  *  
@@ -14,7 +25,7 @@ public class Controller
 {
     
     private final MainView mainView;
-    private final ModelHandler modelHandler;
+    private  ModelHandler modelHandler;
     private boolean inOrder = true;
     
     
@@ -41,11 +52,30 @@ public class Controller
             }
             else if (actionCommand.equals("OPEN"))
             {
-                mainView.openFile();
+                File tempFile = mainView.openFile();
+                
+                try
+                {
+                    modelHandler = FileIO.openFile(tempFile);
+                }
+                catch(Exception ex)
+                {
+                    PA4ErrorMessages.cannotOpenFile();
+                }
             }
             else if (actionCommand.equals( "SAVE"))
             {
-                
+                // Write to disk with FileOutputStream
+                File tempFile;
+                try 
+                {
+                    tempFile = mainView.saveFileName();
+                    FileIO.saveFile(tempFile, modelHandler);
+                } 
+                catch (IOException ex) 
+                {
+                    PA4ErrorMessages.cannotSaveFile();
+                }
             }
             else if (actionCommand.equals( "ASCENDING"))
             {
@@ -64,8 +94,8 @@ public class Controller
             }
             else if(actionCommand.equalsIgnoreCase("EDITENTRY"))
             {
-                EditView editView = new EditView("Ben", "Wadsworth", "Student", null, null);
-            //    EditController editController = new EditController(editView, modelHandler);
+                EditView editView = new EditView();
+                EditController editController = new EditController(editView, modelHandler);
             }
             else if (actionCommand.equals( "DELETE"))
             {

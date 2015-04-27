@@ -5,6 +5,7 @@
  */
 package pa4mainpackage.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import pa4mainpackage.exceptions.EmptyCollectionException;
 
@@ -12,7 +13,7 @@ import pa4mainpackage.exceptions.EmptyCollectionException;
  *
  * @author Ben Wadsworth
  */
-public class PrimaryKeyHandler 
+public class PrimaryKeyHandler implements Serializable
 {
     private ArrayList<Integer> primaryKeys;
     private int nextValueToPull;
