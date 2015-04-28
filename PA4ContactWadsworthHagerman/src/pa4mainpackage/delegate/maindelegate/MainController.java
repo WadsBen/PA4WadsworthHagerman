@@ -110,13 +110,13 @@ public class MainController
             }
             else if (actionCommand.equals( "DELETE"))
             {
-                mainView.showDeleteBox();
+                mainView.showDeleteWindow();
 
             }
             else if (actionCommand.equals( "DELETEMIN"))
             {
                 if(modelHandler.isStorageEmpty() == false)
-                    mainView.reassuranceMin();
+                    mainView.reassuranceMinWindow();
             }
             else if (actionCommand.equals("DELETEMINBTN"))
             {
@@ -139,7 +139,7 @@ public class MainController
             else if (actionCommand.equals( "DELETEMAX"))
             {
                  if(modelHandler.isStorageEmpty() == false)
-                    mainView.reassuranceMax();
+                    mainView.reassuranceMaxWindow();
             }
              else if (actionCommand.equals("DELETEMAXBTN"))
             {
@@ -158,16 +158,16 @@ public class MainController
             
             else if (actionCommand.equals( "FINDMAX"))
             {
-                mainView.findMax(modelHandler.getLast());
+                mainView.findMaxWindow(modelHandler.getLast());
             }
          
             else if (actionCommand.equals( "FINDMIN"))
             {
-                mainView.findMin(modelHandler.getMin());
+                mainView.findMinWindow(modelHandler.getMin());
             }
             else if (actionCommand.equals( "ABOUT"))
             {
-                mainView.showAbout();
+                mainView.showAboutWindow();
             }
             else if(actionCommand.equals( "CLOSEABOUTWINDOW"))
             {
@@ -179,7 +179,11 @@ public class MainController
             }
             else if(actionCommand.equals("SEARCHBYKEY"))
             {
-                mainView.searchBox();
+                mainView.searchByKeyWindow();
+            }
+            else if(actionCommand.equals("CLOSEDSEARCHBOX"))
+            {
+                mainView.closeSearchBox();
             }
             else if(actionCommand.equals("DELETECONTACT"))
             {

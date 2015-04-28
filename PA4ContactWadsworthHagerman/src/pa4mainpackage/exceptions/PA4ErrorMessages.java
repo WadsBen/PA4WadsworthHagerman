@@ -32,7 +32,7 @@ public class PA4ErrorMessages
     */
     public static void incorrectInputMessageBox(String message)
     {
-      //  JFrame frame = new JFrame();
+
         JOptionPane.showMessageDialog(null,
         message, "Error!" , JOptionPane.ERROR_MESSAGE);
         
