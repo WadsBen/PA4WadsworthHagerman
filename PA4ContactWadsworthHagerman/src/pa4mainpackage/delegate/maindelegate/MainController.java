@@ -25,6 +25,7 @@ public class MainController
     private final MainView mainView;
     private  ModelHandler modelHandler;
     private boolean inOrder = true;
+    private FormattedOutput formatted;
     
     
     public MainController(MainView mainView, ModelHandler modelHandler)
@@ -55,10 +56,20 @@ public class MainController
                 try
                 {
                     modelHandler = FileIO.openFile(tempFile);
+                    
                 }
                 catch(Exception ex)
                 {
                     PA4ErrorMessages.cannotOpenFile();
+                }
+                finally
+                {
+                    FormattedOutput fo = new FormattedOutput();
+                    
+                    if(inOrder == true)
+                        mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
+                    else
+                        mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
                 }
             }
             else if (actionCommand.equals( "SAVE"))
@@ -170,13 +181,13 @@ public class MainController
                         }
                     }
                     else
-                        mainView.incorrectInputMessageBox("Invalid Integer");
+                        PA4ErrorMessages.incorrectInputMessageBox("Invalid Integer");
                   
                 }
                 catch (NumberFormatException z)
                 {
                     System.out.println("Incorrect Key");
-                    mainView.incorrectInputMessageBox("Key Must be an Integer");
+                    PA4ErrorMessages.incorrectInputMessageBox("Key Must be an Integer");
                 }
                 
                 
