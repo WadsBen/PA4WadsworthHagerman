@@ -79,7 +79,7 @@ public class EditView
         lNLabel.setHorizontalAlignment(JLabel.CENTER);
         orgLabel = new JLabel("Organization");
         orgLabel.setHorizontalAlignment(JLabel.CENTER);
-        phoneLabel = new JLabel("Phone Number(s) [xxx-xxx-xxxx]");
+        phoneLabel = new JLabel("Phone Number(s)");
         phoneLabel.setHorizontalAlignment(JLabel.CENTER);
         emailLabel = new JLabel("Email Address(es)");
         emailLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -159,43 +159,34 @@ public class EditView
         lastNameField.setText(lastName);
         orgField.setText(orgName);
         
-        if(phoneList != null)
-        {
-            if(phoneList.get(0) != null)
-                phone1.setText(phoneList.get(0));
-            if(phoneList.get(1) != null)
-                phone2.setText(phoneList.get(1));
-            if(phoneList.get(2) != null)
-                phone3.setText(phoneList.get(2));
-            if(phoneList.get(3) != null)
-                phone4.setText(phoneList.get(3));
-            if(phoneList.get(4) != null)
-                phone5.setText(phoneList.get(4));
-            if(phoneList.get(5) != null)
-                phone6.setText(phoneList.get(5));
-        }
+        int phoneListSize = phoneList.size();
+        if(phoneListSize > 0)
+            phone1.setText(phoneList.get(0));
+        if(phoneListSize > 1)
+            phone2.setText(phoneList.get(1));
+        if(phoneListSize > 2)
+            phone3.setText(phoneList.get(2));
+        if(phoneListSize > 3)
+            phone4.setText(phoneList.get(3));
+        if(phoneListSize > 4)
+            phone5.setText(phoneList.get(4));
+        if(phoneListSize > 5)
+            phone6.setText(phoneList.get(5));
         
-        if(emailList != null)
-        {
-
-            if(emailList.get(0) != null)
-                email1.setText(emailList.get(0));
- 
-            if(emailList.get(1) != null)
-                email2.setText(emailList.get(1));
- 
-            if(emailList.get(2) != null)
-                email3.setText(emailList.get(2));
- 
-            if(emailList.get(3) != null)
-                email4.setText(emailList.get(3));
- 
-            if(emailList.get(4) != null)
-                email5.setText(emailList.get(4));
- 
-            if(emailList.get(5) != null)
-                email6.setText(emailList.get(5));
-        }
+        int emailListSize = emailList.size();
+        if(emailListSize > 0)
+            email1.setText(emailList.get(0));
+        if(emailListSize > 1)
+            email2.setText(emailList.get(1));
+        if(emailListSize > 2)
+            email3.setText(emailList.get(2));
+        if(emailListSize > 3)
+            email4.setText(emailList.get(3));
+        if(emailListSize > 4)
+            email5.setText(emailList.get(4));
+        if(emailListSize > 5)
+            email6.setText(emailList.get(5));
+        
     }
     
     public String getFirstName()
@@ -208,7 +199,7 @@ public class EditView
         return(lastNameField.getText());
     }
     
-    public String getOrganizationName()
+    public String getOrgName()
     {
         return(orgField.getText());
     }

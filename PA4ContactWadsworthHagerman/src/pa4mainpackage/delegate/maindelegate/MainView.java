@@ -40,18 +40,19 @@ public class MainView
     private JMenuItem menuFileExit, menuFileSave, menuAboutAbout, menuEditDeleteMax, menuEditDeleteMin,
                       menuEditDelete, menuEditAdd, menuSortFindMax, menuSortFindMin, menuFileOpen,
                       menuEditEditEntry, menuSearchByKey;
-    private JFrame mainWindow, aboutFrame, deleteBox, minMaxBox, searchBox;
-    private JPanel north, south, tableAreaPanel, deleteBottom, minMaxBottom, topPanel, bigPanel;
+    private JFrame mainWindow, aboutFrame, deleteBox, minBox, maxBox, searchBox;
+    private JPanel north, south, tableAreaPanel, deleteBottom, minBottom, maxBottom, topPanel, bigPanel, minBigPanel,
+            maxBigPanel, searchBigPanel, minTopPanel, maxTopPanel, searchTopPanel, searchBottom;
     private JMenu menuFile, menuSort, menuAbout, menuEdit, menuSearch;
     private JButton closeAboutButton;
-    private ActionListener viewAl , delAL, closAL, closeMinMaxAL, minDelAL, maxDelAL;
+    private ActionListener viewAl , delAL, closAL, closeMinMaxAL, minDelAL, maxDelAL, closeSearchAL, searchAL;
     private JScrollPane scrolledText;
     private JTextArea textAreaText;
     private Font font, font2, font3;
-    private JLabel keyLabel, delLabel, minMaxLabel, searchLabel;
+    private JLabel keyLabel, delLabel, minLabel, maxLabel, searchLabel;
     private JFileChooser fileChooser;
-    private JTextField keyInput;
-    private JButton cancelBTN, delBTN, minMaxDelBTN, minMaxCancel;
+    private JTextField keyInput, searchKeyInput;
+    private JButton cancelBTN, delBTN, minDelBTN, maxDelBTN, minMaxCancel, searchCancelBTN, searchBTN;
 
    /**
     * Invokes mainMenu() method creating UI
@@ -61,6 +62,9 @@ public class MainView
         mainMenu();  
         
     }//End of Constructor
+    
+    
+    //=============================WINDOWS======================================
     
    /**
     *  Creates and shows main user interface
@@ -202,7 +206,7 @@ public class MainView
     /**
      * This method creates and shows the about frame
      */
-    public void showAbout()
+    public void showAboutWindow()
     {
         //Setting up aboutFrame
         aboutFrame = new JFrame();
@@ -234,21 +238,9 @@ public class MainView
     
     
     /**
-     * This method closes the aboutFrame
-     */
-    public void closeAbout()
-    {
-        aboutFrame.dispose();
-        
-    }//End of closeAbout() method
-    
-    
-    
-    
-    /**
      *  Creates window for deleting by key
      */
-    public void showDeleteBox()
+    public void showDeleteWindow()
     {
         deleteBox = new JFrame();
         deleteBox.setTitle("Delete By Key");
@@ -259,18 +251,10 @@ public class MainView
         
         bigPanel = new JPanel();
         bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
-        
         topPanel = new JPanel(new GridLayout(2,1,5,5));
-        
         delLabel  = new JLabel("Enter Key");
         delLabel.setHorizontalAlignment(JLabel.CENTER);
         keyInput = new JTextField();
-        
-        topPanel.add(delLabel);
-        topPanel.add(keyInput);
-        
-        
-        
         deleteBottom = new JPanel( new FlowLayout());
         cancelBTN = new JButton("Cancel");
         cancelBTN.setActionCommand("CLOSEDELETEBOX");
@@ -279,107 +263,96 @@ public class MainView
         delBTN.setActionCommand("DELETECONTACT");
         delBTN.addActionListener(delAL);
         
+        topPanel.add(delLabel);
+        topPanel.add(keyInput);
         deleteBottom.add(delBTN);
         deleteBottom.add(cancelBTN);
-        
         bigPanel.add(topPanel);
         bigPanel.add(deleteBottom);
-        
-        deleteBox.add(bigPanel);
-        
+        deleteBox.add(bigPanel); 
         deleteBox.setVisible(true);
         
     }//End of showDeleteBox() method
     
     
-    public void endMinMAx()
+   /**
+    * Window for checking if the user is sure they want to delete min
+    */
+    public void reassuranceMinWindow()
     {
-        minMaxBox.dispose();
-    }
-    
-    public void reassuranceMin()
-    {
-
-        minMaxBox = new JFrame();
-        minMaxBox.setTitle("Delete Min");
-        minMaxBox.setLocationRelativeTo(null);
-        minMaxBox.setSize(300,100);
-        minMaxBox.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
-        minMaxBox.setResizable(false);
+        minBox = new JFrame();
+        minBox.setTitle("Delete Min");
+        minBox.setLocationRelativeTo(null);
+        minBox.setSize(300,100);
+        minBox.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
+        minBox.setResizable(false);
         
-        bigPanel = new JPanel();
-        bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
-        
-        topPanel = new JPanel(new GridLayout(1,1,5,5));
-        
-        minMaxLabel = new JLabel("Are you sure you want to delete min?");
-        minMaxLabel.setHorizontalAlignment(JLabel.CENTER);
-        
-        topPanel.add(minMaxLabel);
-
-        
-        minMaxBottom = new JPanel( new FlowLayout());
+        minBigPanel = new JPanel();
+        minBigPanel.setLayout(new BoxLayout(minBigPanel,BoxLayout.PAGE_AXIS));
+        minTopPanel = new JPanel(new GridLayout(1,1,5,5));
+        minLabel = new JLabel("Are you sure you want to delete min?");
+        minLabel.setHorizontalAlignment(JLabel.CENTER);
+        minBottom = new JPanel( new FlowLayout());
         minMaxCancel = new JButton("Cancel");
         minMaxCancel.setActionCommand("CANCELDELETEMINMAX");
         minMaxCancel.addActionListener(closeMinMaxAL);
-        minMaxDelBTN = new JButton("Delete");
-        minMaxDelBTN.setActionCommand("DELETEMINBTN");
-        minMaxDelBTN.addActionListener(minDelAL);
+        minDelBTN = new JButton("Delete");
+        minDelBTN.setActionCommand("DELETEMINBTN");
+        minDelBTN.addActionListener(minDelAL);
         
-        minMaxBottom.add(minMaxDelBTN);
-        minMaxBottom.add(minMaxCancel);
+        minTopPanel.add(minLabel);
+        minBottom.add(minDelBTN);
+        minBottom.add(minMaxCancel);
+        minBigPanel.add(minTopPanel);
+        minBigPanel.add(minBottom);
+        minBox.add(minBigPanel);
         
-        bigPanel.add(topPanel);
-        bigPanel.add(minMaxBottom);
+        minBox.setVisible(true);
         
-        minMaxBox.add(bigPanel);
-        
-        minMaxBox.setVisible(true);
-        
-    }
+    }//End of reassuranceMinWindow
     
-    public void reassuranceMax()
+    
+    /**
+     * Window for checking if the user is sure they want to delete max
+     */
+    public void reassuranceMaxWindow()
     {
-
-        minMaxBox = new JFrame();
-        minMaxBox.setTitle("Delete Max");
-        minMaxBox.setLocationRelativeTo(null);
-        minMaxBox.setSize(300,100);
-        minMaxBox.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
-        minMaxBox.setResizable(false);
+        maxBox = new JFrame();
+        maxBox.setTitle("Delete Max");
+        maxBox.setLocationRelativeTo(null);
+        maxBox.setSize(300,100);
+        maxBox.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
+        maxBox.setResizable(false);
         
-        bigPanel = new JPanel();
-        bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
-        
-        topPanel = new JPanel(new GridLayout(1,1,5,5));
-        
-        minMaxLabel = new JLabel("Are you sure you want to delete max?");
-        minMaxLabel.setHorizontalAlignment(JLabel.CENTER);
-        
-        topPanel.add(minMaxLabel);
-
-        
-        minMaxBottom = new JPanel( new FlowLayout());
+        maxBigPanel = new JPanel();
+        maxBigPanel.setLayout(new BoxLayout(maxBigPanel,BoxLayout.PAGE_AXIS));
+        maxTopPanel = new JPanel(new GridLayout(1,1,5,5));
+        maxLabel = new JLabel("Are you sure you want to delete max?");
+        maxLabel.setHorizontalAlignment(JLabel.CENTER);
+        maxBottom = new JPanel( new FlowLayout());
         minMaxCancel = new JButton("Cancel");
         minMaxCancel.setActionCommand("CANCELDELETEMINMAX");
         minMaxCancel.addActionListener(closeMinMaxAL);
-        minMaxDelBTN = new JButton("Delete");
-        minMaxDelBTN.setActionCommand("DELETEMAXBTN");
-        minMaxDelBTN.addActionListener(maxDelAL);
+        maxDelBTN = new JButton("Delete");
+        maxDelBTN.setActionCommand("DELETEMAXBTN");
+        maxDelBTN.addActionListener(maxDelAL);
         
-        minMaxBottom.add(minMaxDelBTN);
-        minMaxBottom.add(minMaxCancel);
+        maxTopPanel.add(maxLabel);
+        maxBottom.add(maxDelBTN);
+        maxBottom.add(minMaxCancel);
+        maxBigPanel.add(maxTopPanel);
+        maxBigPanel.add(maxBottom);
+        maxBox.add(maxTopPanel);
         
-        bigPanel.add(topPanel);
-        bigPanel.add(minMaxBottom);
-        
-        minMaxBox.add(bigPanel);
-        
-        minMaxBox.setVisible(true);
+        maxBox.setVisible(true);
         
     }//End of incorrectInputMessageBox()
     
-    public void searchBox()
+    
+    /**
+     * Window for searching by key
+     */
+    public void searchByKeyWindow()
     {   
         searchBox = new JFrame();
         searchBox.setTitle("Search By Key");
@@ -388,38 +361,117 @@ public class MainView
         searchBox.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
         searchBox.setResizable(false);
         
-        bigPanel = new JPanel();
-        bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
-        
-        topPanel = new JPanel(new GridLayout(2,1,5,5));
-        
+        searchBigPanel = new JPanel();
+        searchBigPanel.setLayout(new BoxLayout(searchBigPanel,BoxLayout.PAGE_AXIS));
+        searchTopPanel = new JPanel(new GridLayout(2,1,5,5));
         searchLabel  = new JLabel("Enter Search Key");
         searchLabel.setHorizontalAlignment(JLabel.CENTER);
-        keyInput = new JTextField();
+        searchKeyInput = new JTextField();
+        searchBottom = new JPanel( new FlowLayout());
+        searchCancelBTN= new JButton("Cancel");
+        searchCancelBTN.setActionCommand("CLOSEDSEARCHBOX");
+        searchCancelBTN.addActionListener(closeSearchAL);
+        searchBTN = new JButton("Search");
+        searchBTN.setActionCommand("SEARCHBYKEYBTN");
+        searchBTN.addActionListener(searchAL);
         
-        topPanel.add(searchLabel);
-        topPanel.add(keyInput);
-        
-        
-        
-        deleteBottom = new JPanel( new FlowLayout());
-        cancelBTN = new JButton("Cancel");
-        cancelBTN.setActionCommand("CLOSEDELETEBOX");
-        cancelBTN.addActionListener(closAL);
-        delBTN = new JButton("Delete");
-        delBTN.setActionCommand("DELETECONTACT");
-        delBTN.addActionListener(delAL);
-        
-        deleteBottom.add(delBTN);
-        deleteBottom.add(cancelBTN);
-        
-        bigPanel.add(topPanel);
-        bigPanel.add(deleteBottom);
-        
-        searchBox.add(bigPanel);
+        searchTopPanel.add(searchLabel);
+        searchTopPanel.add(searchKeyInput);
+        searchBottom.add(searchBTN);
+        searchBottom.add(searchCancelBTN);
+        searchBigPanel.add(searchTopPanel);
+        searchBigPanel.add(searchBottom);
+        searchBox.add(searchBigPanel);
         
         searchBox.setVisible(true);
-    }
+        
+    }//End of searchByKeyWindow() method
+    
+    
+    /**
+     * This function takes the min as a string
+     * and places it within a mono-spaced OptionPane
+     * 
+     * @param message //String representation of contact
+     */
+    public void findMinWindow(String message)
+    {
+        font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
+        UIManager.put("OptionPane.messageFont", font3);
+        UIManager.put("OptionPane.buttonFont", font3);
+        JOptionPane.showMessageDialog(null, message , "Find Min" ,
+        JOptionPane.PLAIN_MESSAGE);
+        
+    }//End of findMin() method
+    
+    
+    /**
+     * This function takes the max as a string
+     * and places it within a mono-spaced OptionPane
+     * 
+     * @param message  //String representation of contact
+     */
+    public void findMaxWindow(String message)
+    {
+        font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
+        UIManager.put("OptionPane.messageFont", font3);
+        UIManager.put("OptionPane.buttonFont", font3);
+        JOptionPane.showMessageDialog(null, message , "Find Max",
+        JOptionPane.PLAIN_MESSAGE);
+        
+    }//End of findMaxWindow() method
+    
+    
+    //========================================================================
+    //====================Disposing Window Methods============================
+    //========================================================================
+    
+    
+   /*
+    *Closes the delete Window
+    */
+    public void closeDeleteBox()
+    {
+        deleteBox.dispose();
+    }//End of closeDeleteBox() method
+    
+    
+   /**
+    * This method closes the aboutFrame
+    */
+    public void closeAbout()
+    {
+        aboutFrame.dispose();
+        
+    }//End of closeAbout() method
+    
+    
+    /**
+     * Closes Find Min/Max Windows
+     */
+    public void endMinMAx()
+    {
+        maxBox.dispose();
+        minBox.dispose();
+        
+    }//End of end MinMax() method
+    
+    
+    /**
+     * Closes Search Box
+     */
+    public void closeSearchBox()
+    {
+        searchBox.dispose();
+        
+    }//End of closeSearchBox()
+    
+    
+    
+    //========================================================================
+    //================================= ETC ==================================
+    //========================================================================
+    
     
     /**
      * Gets the key entered by user
@@ -432,17 +484,12 @@ public class MainView
 
     }//End of getDeleteString() method
     
-    
-    /*
-    *Closes the delete Window
-    */
-    public void closeDeleteBox()
+    public String getSearchKey()
     {
-        
-        deleteBox.dispose();
-    }//End of closeDeleteBox() method
+        return(searchKeyInput.getText());
+    }
     
-    
+
     /**
      *
      */
@@ -463,6 +510,7 @@ public class MainView
             return(null);
         }
     }//End of openFile() method
+    
     
     public File saveFileName() throws IOException
     {
@@ -536,7 +584,7 @@ public class MainView
         
     }//End of updateTextBox() method
     
-    
+
     /**
      * Method sets up listeners
      * 
@@ -564,7 +612,8 @@ public class MainView
         maxDelAL = al;
         delAL = al;
         closAL = al;
-
+        closeSearchAL = al;
+        searchAL = al;
 
         
     }//End setJButtonListeners method
