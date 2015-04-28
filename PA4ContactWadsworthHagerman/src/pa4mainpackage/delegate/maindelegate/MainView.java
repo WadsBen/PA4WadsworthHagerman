@@ -44,15 +44,14 @@ public class MainView
     private JPanel north, south, tableAreaPanel, deleteBottom, minBottom, maxBottom, topPanel, bigPanel, minBigPanel,
             maxBigPanel, searchBigPanel, minTopPanel, maxTopPanel, searchTopPanel, searchBottom;
     private JMenu menuFile, menuSort, menuAbout, menuEdit, menuSearch;
-    private JButton closeAboutButton;
-    private ActionListener viewAl , delAL, closAL, closeMinMaxAL, minDelAL, maxDelAL, closeSearchAL, searchAL;
+    private ActionListener viewAl , delAL, closAL, minDelAL, maxDelAL, closeSearchAL, searchAL, closeMinAL, closeMaxAL;
     private JScrollPane scrolledText;
     private JTextArea textAreaText;
     private Font font, font2, font3;
     private JLabel keyLabel, delLabel, minLabel, maxLabel, searchLabel;
     private JFileChooser fileChooser;
     private JTextField keyInput, searchKeyInput;
-    private JButton cancelBTN, delBTN, minDelBTN, maxDelBTN, minMaxCancel, searchCancelBTN, searchBTN;
+    private JButton cancelBTN, delBTN, minDelBTN, maxDelBTN, minCancel, maxCancel, searchCancelBTN, searchBTN, closeAboutButton;
 
    /**
     * Invokes mainMenu() method creating UI
@@ -293,16 +292,16 @@ public class MainView
         minLabel = new JLabel("Are you sure you want to delete min?");
         minLabel.setHorizontalAlignment(JLabel.CENTER);
         minBottom = new JPanel( new FlowLayout());
-        minMaxCancel = new JButton("Cancel");
-        minMaxCancel.setActionCommand("CANCELDELETEMINMAX");
-        minMaxCancel.addActionListener(closeMinMaxAL);
+        minCancel = new JButton("Cancel");
+        minCancel.setActionCommand("CANCELDELETEMIN");
+        minCancel.addActionListener(closeMinAL);
         minDelBTN = new JButton("Delete");
         minDelBTN.setActionCommand("DELETEMINBTN");
         minDelBTN.addActionListener(minDelAL);
         
         minTopPanel.add(minLabel);
         minBottom.add(minDelBTN);
-        minBottom.add(minMaxCancel);
+        minBottom.add(minCancel);
         minBigPanel.add(minTopPanel);
         minBigPanel.add(minBottom);
         minBox.add(minBigPanel);
@@ -330,19 +329,19 @@ public class MainView
         maxLabel = new JLabel("Are you sure you want to delete max?");
         maxLabel.setHorizontalAlignment(JLabel.CENTER);
         maxBottom = new JPanel( new FlowLayout());
-        minMaxCancel = new JButton("Cancel");
-        minMaxCancel.setActionCommand("CANCELDELETEMINMAX");
-        minMaxCancel.addActionListener(closeMinMaxAL);
+        maxCancel = new JButton("Cancel");
+        maxCancel.setActionCommand("CANCELDELETEMAX");
+        maxCancel.addActionListener(closeMaxAL);
         maxDelBTN = new JButton("Delete");
         maxDelBTN.setActionCommand("DELETEMAXBTN");
         maxDelBTN.addActionListener(maxDelAL);
         
         maxTopPanel.add(maxLabel);
         maxBottom.add(maxDelBTN);
-        maxBottom.add(minMaxCancel);
+        maxBottom.add(maxCancel);
         maxBigPanel.add(maxTopPanel);
         maxBigPanel.add(maxBottom);
-        maxBox.add(maxTopPanel);
+        maxBox.add(maxBigPanel);
         
         maxBox.setVisible(true);
         
@@ -449,12 +448,17 @@ public class MainView
     /**
      * Closes Find Min/Max Windows
      */
-    public void endMinMAx()
+    public void endMin()
     {
-        maxBox.dispose();
         minBox.dispose();
         
     }//End of end MinMax() method
+    
+    
+    public void endMax()
+    {
+        maxBox.dispose();
+    }
     
     
     /**
@@ -535,43 +539,6 @@ public class MainView
     }
     
 
-    
-    /**
-     * This function takes the min as a string
-     * and places it within a mono-spaced OptionPane
-     * 
-     * @param message //String representation of contact
-     */
-    public void findMinDisplay(String message)
-    {
-        font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
-        UIManager.put("OptionPane.messageFont", font3);
-        UIManager.put("OptionPane.buttonFont", font3);
-        JOptionPane.showMessageDialog(null, message , "Find Min" ,
-        JOptionPane.PLAIN_MESSAGE);
-        
-    }//End of findMin() method
-    
-    
-    /**
-     * This function takes the max as a string
-     * and places it within a mono-spaced OptionPane
-     * 
-     * @param message  //String representation of contact
-     */
-    public void findMaxDisplay(String message)
-    {
-        font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
-        UIManager.put("OptionPane.messageFont", font3);
-        UIManager.put("OptionPane.buttonFont", font3);
-        JOptionPane.showMessageDialog(null, message , "Find Max",
-        JOptionPane.PLAIN_MESSAGE);
-        
-    }//End of findMax() method
-    
-    
-
-    
     /**
      * This method clears and updates the TextArea
      * 
@@ -607,7 +574,8 @@ public class MainView
         menuSearchByKey.addActionListener(al);
         sortDescending.addActionListener(al);
         sortAscending.addActionListener(al);
-        closeMinMaxAL = al;
+        closeMinAL = al;
+        closeMaxAL = al;
         minDelAL = al;
         maxDelAL = al;
         delAL = al;

@@ -104,8 +104,7 @@ public class MainController
             {
                 AddView addView = new AddView();
                 AddController addController = new AddController(addView, mainView, modelHandler);
-            }    
-
+            }
             else if(actionCommand.equalsIgnoreCase("EDITENTRY"))
             {
                 EditView editView = new EditView();
@@ -124,7 +123,7 @@ public class MainController
             else if (actionCommand.equals("DELETEMINBTN"))
             {
                 modelHandler.deleteMin();
-                mainView.endMinMAx();
+                mainView.endMin();
                 
                 FormattedOutput fo = new FormattedOutput();
                     
@@ -133,10 +132,14 @@ public class MainController
                     else
                         mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
                 
-            }    
-            else if (actionCommand.equals("CANCELDELETEMINMAX"))
+            }
+            else if (actionCommand.equals("CANCELDELETEMAX"))
             {
-                mainView.endMinMAx();
+                mainView.endMax();
+            }
+             else if (actionCommand.equals("CANCELDELETEMIN"))
+            {
+                mainView.endMin();
             }
 
             else if (actionCommand.equals( "DELETEMAX"))
@@ -148,7 +151,7 @@ public class MainController
              else if (actionCommand.equals("DELETEMAXBTN"))
             {
                 modelHandler.deleteMax();
-                mainView.endMinMAx();
+                mainView.endMax();
                 
                 FormattedOutput fo = new FormattedOutput();
                     
@@ -163,14 +166,13 @@ public class MainController
             else if (actionCommand.equals( "FINDMAX"))
             {
                 FormattedOutput fo = new FormattedOutput();
-                mainView.findMaxDisplay(fo.getMax(modelHandler.getTreeMapStorage()));
-
+                mainView.findMaxWindow(fo.getMax(modelHandler.getTreeMapStorage()));
             }
          
             else if (actionCommand.equals( "FINDMIN"))
             {
                 FormattedOutput fo = new FormattedOutput();
-                mainView.findMinDisplay(fo.getMin(modelHandler.getTreeMapStorage()));
+                mainView.findMinWindow(fo.getMin(modelHandler.getTreeMapStorage()));
             }
             
             else if (actionCommand.equals( "ABOUT"))
@@ -203,10 +205,8 @@ public class MainController
                      
                     if(modelHandler.getContact(x) != null)
                     {
-                  
-                    
 
-                            mainView.closeSearchBox();
+                       mainView.closeSearchBox();
 
                     }
                     else
