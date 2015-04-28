@@ -70,6 +70,54 @@ public class FormattedOutput
         
     }//End of reverseToString() method
     
+    public String getMax(TreeMap storage)
+    {
+        if(storage.isEmpty() == false)
+        {
+            String returnString = "";
+            Contact tempContact = (Contact) storage.get(storage.lastKey());
+        
+            returnString =   "Last Name:  " + tempContact.getLastName()
+                    + "\n" + "First Name: " + tempContact.getFirstName() 
+                    + "\n" + "Org Name:   " + tempContact.getOrganization()
+                    + "\n" + "Phone Numbers:   " + tempContact.getContactPhoneNumber()
+                    + "\n" + "Email Addresses: " + tempContact.getContactEmailAddress();
+                    
+             return(returnString);
+       
+        }
+        else
+            return("Error: The Collection is Empty");
+
+    }//End of getLast() method
+    
+        /**
+     * Takes the first element in the TreeMap and returns it as
+     * a string it also checks to make sure isEmpty() is false
+     * 
+     * @return String representation of contact
+     */
+    public String getMin(TreeMap storage)
+    {
+        if(storage.isEmpty()== false)
+        {
+            String returnString = "";
+            Contact tempContact = (Contact) storage.get(storage.firstKey());
+        
+            returnString =   "Last Name:  " + tempContact.getLastName()
+                    + "\n" + "First Name: " + tempContact.getFirstName() 
+                    + "\n" + "Org Name:   " + tempContact.getOrganization()
+                    + "\n" + "Phone Numbers:   " + tempContact.getContactPhoneNumber()
+                    + "\n" + "Email Addresses: " + tempContact.getContactEmailAddress();
+               
+             return(returnString);
+       
+        }
+        else
+            return("Error: The Collection is Empty");
+
+    }//End of getMin() method
+    
     /**
      * This method formats a contact so that is is in columns of fixed width
      * 

@@ -1,7 +1,5 @@
-
 package pa4mainpackage.exceptions;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +23,12 @@ public class PA4ErrorMessages
         JOptionPane.showMessageDialog(null, "The field: " + invalidString + 
                 " has invalid input.\n\n" + inputInstructions(invalidString),
                 "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public static void contactListIsFull()
+    {
+        JOptionPane.showMessageDialog(null, "The contact list is full. Please delete a contact" + 
+                " to add more.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
    /**

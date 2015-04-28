@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import pa4mainpackage.delegate.RegexChecker;
 import pa4mainpackage.delegate.RegexChecker.RegexMethod;
+import pa4mainpackage.delegate.maindelegate.FormattedOutput;
+import pa4mainpackage.delegate.maindelegate.MainView;
 import pa4mainpackage.exceptions.PA4ErrorMessages;
 import pa4mainpackage.model.ModelHandler;
 
@@ -22,11 +24,13 @@ public class AddController
 {
     private final AddView addView;
     private final ModelHandler modelHandler;
+    private final MainView mainView;
     
-    public AddController(AddView addView, ModelHandler modelHandler)
+    public AddController(AddView addView, MainView mainView, ModelHandler modelHandler)
     {
         this.addView = addView;
         this.modelHandler = modelHandler;
+        this.mainView = mainView;
         
         addView.setActionListeners(new AddViewListener());
     }
@@ -100,11 +104,20 @@ public class AddController
             {
                 if(isValidInfo())
                 {
-                    System.out.println("GOOD INFO");
-                    modelHandler.addContact(addView.getFirstName(),
+                    if(!modelHandler.isAvailableKey())
+                    {
+                        modelHandler.addContact(addView.getFirstName(),
                             addView.getLastName(), addView.getOrgName(),
                             addView.getPhoneNumbers(), addView.getEmailAddresses());
-                    addView.closeAdd();   
+                        
+                        mainView.updateTextBox(new FormattedOutput().ascendingContactView(modelHandler.getTreeMapStorage()));
+                        addView.closeAdd();
+                    }
+                    else if(modelHandler.isAvailableKey())
+                    {
+                        PA4ErrorMessages.contactListIsFull();
+                        addView.closeAdd();
+                    }
                 }
                 else
                 {

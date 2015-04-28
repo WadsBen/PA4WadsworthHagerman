@@ -494,7 +494,7 @@ public class MainView
      * 
      * @param message //String representation of contact
      */
-    public void findMin(String message)
+    public void findMinDisplay(String message)
     {
         font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
         UIManager.put("OptionPane.messageFont", font3);
@@ -511,7 +511,7 @@ public class MainView
      * 
      * @param message  //String representation of contact
      */
-    public void findMax(String message)
+    public void findMaxDisplay(String message)
     {
         font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
         UIManager.put("OptionPane.messageFont", font3);

@@ -81,64 +81,7 @@ public class ModelHandler implements Serializable
     {
         return(storage);
         
-    }//End of getTreeMapStorage() method
-    
-    
-    /**
-     *  Takes the last element in the TreeMap and returns it as
-     *  a string it also checks to make sure isEmpty() is false
-     * 
-     * @return String representation of contact
-     */
-    public String getLast()
-    {
-        if(isStorageEmpty() == false)
-        {
-            String returnString = "";
-            Contact tempContact = (Contact) storage.get(storage.lastKey());
-        
-            returnString =   "Last Name:  " + tempContact.getLastName()
-                    + "\n" + "First Name: " + tempContact.getFirstName() 
-                    + "\n" + "Org Name:   " + tempContact.getOrganization()
-                    + "\n" + "Phone Numbers:   " + tempContact.getContactPhoneNumber()
-                    + "\n" + "Email Addresses: " + tempContact.getContactEmailAddress();
-                    
-             return(returnString);
-       
-        }
-        else
-            return("Error: The Collection is Empty");
-
-    }//End of getLast() method
-    
-    
-    /**
-     * Takes the first element in the TreeMap and returns it as
-     * a string it also checks to make sure isEmpty() is false
-     * 
-     * @return String representation of contact
-     */
-    public String getMin()
-    {
-        if(isStorageEmpty() == false)
-        {
-            String returnString = "";
-            Contact tempContact = (Contact) storage.get(storage.firstKey());
-        
-            returnString =   "Last Name:  " + tempContact.getLastName()
-                    + "\n" + "First Name: " + tempContact.getFirstName() 
-                    + "\n" + "Org Name:   " + tempContact.getOrganization()
-                    + "\n" + "Phone Numbers:   " + tempContact.getContactPhoneNumber()
-                    + "\n" + "Email Addresses: " + tempContact.getContactEmailAddress();
-               
-             return(returnString);
-       
-        }
-        else
-            return("Error: The Collection is Empty");
-
-    }//End of getMin() method
-    
+    }//End of getTreeMapStorage() method    
      
     /**
      * Method for deleting the last item in the TreeMap.
@@ -160,6 +103,11 @@ public class ModelHandler implements Serializable
             storage.remove(storage.firstKey());
         
     }//End of deleteMin() method
+    
+    public boolean isAvailableKey()
+    {
+        return(keys.isEmpty());
+    }
   
     
     /**

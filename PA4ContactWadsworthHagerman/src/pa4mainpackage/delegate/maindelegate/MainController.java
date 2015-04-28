@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.TreeMap;
 import pa4mainpackage.delegate.adddelegate.AddController;
 import pa4mainpackage.delegate.adddelegate.AddView;
 import pa4mainpackage.delegate.maindelegate.editdelegate.EditController;
@@ -101,7 +103,7 @@ public class MainController
             else if (actionCommand.equals( "ADD"))
             {
                 AddView addView = new AddView();
-                AddController addController = new AddController(addView, modelHandler);
+                AddController addController = new AddController(addView, mainView, modelHandler);
             }
             else if(actionCommand.equalsIgnoreCase("EDITENTRY"))
             {
@@ -158,16 +160,18 @@ public class MainController
             
             else if (actionCommand.equals( "FINDMAX"))
             {
-                mainView.findMax(modelHandler.getLast());
+                FormattedOutput fo = new FormattedOutput();
+                mainView.findMaxDisplay(fo.getMax(modelHandler.getTreeMapStorage()));
             }
          
             else if (actionCommand.equals( "FINDMIN"))
             {
-                mainView.findMin(modelHandler.getMin());
+                FormattedOutput fo = new FormattedOutput();
+                mainView.findMinDisplay(fo.getMin(modelHandler.getTreeMapStorage()));
             }
             else if (actionCommand.equals( "ABOUT"))
             {
-                mainView.showAbout();
+                
             }
             else if(actionCommand.equals( "CLOSEABOUTWINDOW"))
             {
@@ -183,7 +187,7 @@ public class MainController
             }
             else if(actionCommand.equals("DELETECONTACT"))
             {
-                int x;
+                Integer x;
                 FormattedOutput fo = new FormattedOutput();
                 
                 try 

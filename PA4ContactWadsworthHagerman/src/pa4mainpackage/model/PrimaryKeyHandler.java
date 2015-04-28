@@ -17,11 +17,11 @@ public class PrimaryKeyHandler implements Serializable
 {
     private ArrayList<Integer> primaryKeys;
     private int nextValueToPull;
-    private int maxSize = 1000;
+    private final int MAX_AMOUNT_OF_KEYS = 1000;
     
     public PrimaryKeyHandler()
     {
-        primaryKeys = new ArrayList<>(maxSize);
+        primaryKeys = new ArrayList<>();
         nextValueToPull = 0;
         populateArrayKeys();
     }
@@ -42,9 +42,14 @@ public class PrimaryKeyHandler implements Serializable
         primaryKeys.add(keyValue);
     }
     
+    public boolean isEmpty()
+    {
+        return(primaryKeys.isEmpty());
+    }
+    
     private void populateArrayKeys()
     {
-        for(int i = 0; i < maxSize; i++)
+        for(int i = 0; i < MAX_AMOUNT_OF_KEYS; i++)
         {
             primaryKeys.add(new Integer(i + 1001));
         }
