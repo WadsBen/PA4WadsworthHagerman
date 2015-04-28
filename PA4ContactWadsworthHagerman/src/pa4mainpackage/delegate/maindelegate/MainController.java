@@ -197,19 +197,11 @@ public class MainController
                      
                     if(modelHandler.getContact(x) != null)
                     {
-                       // modelHandler.deleteContact(x);
+                  
                     
-                    
-                        if(inOrder == true)
-                        {
-                            mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
+
                             mainView.closeSearchBox();
-                        }
-                        else
-                        {
-                            mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
-                            mainView.closeSearchBox();
-                        }
+
                     }
                     else
                         PA4ErrorMessages.incorrectInputMessageBox("Invalid Integer");
