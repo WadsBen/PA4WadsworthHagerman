@@ -115,30 +115,52 @@ public class MainController
             }
             else if (actionCommand.equals( "DELETEMIN"))
             {
-                FormattedOutput fo = new FormattedOutput();
-                
-                 modelHandler.deleteMin();
-                 if(inOrder == true)
-                     mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
-                 else
-                    mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
+                if(modelHandler.isStorageEmpty() == false)
+                    mainView.reassuranceMin();
             }
+            else if (actionCommand.equals("DELETEMINBTN"))
+            {
+                modelHandler.deleteMin();
+                mainView.endMinMAx();
+                
+                FormattedOutput fo = new FormattedOutput();
+                    
+                    if(inOrder == true)
+                        mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
+                    else
+                        mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
+                
+            }
+            else if (actionCommand.equals("CANCELDELETEMINMAX"))
+            {
+                mainView.endMinMAx();
+            }
+
             else if (actionCommand.equals( "DELETEMAX"))
             {
-                FormattedOutput fo = new FormattedOutput();
-                
-                 modelHandler.deleteMax();
-                 if(inOrder == true)
-                     mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
-                 else
-                    mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
-
-            
+                 if(modelHandler.isStorageEmpty() == false)
+                    mainView.reassuranceMax();
             }
+             else if (actionCommand.equals("DELETEMAXBTN"))
+            {
+                modelHandler.deleteMax();
+                mainView.endMinMAx();
+                
+                FormattedOutput fo = new FormattedOutput();
+                    
+                    if(inOrder == true)
+                        mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
+                    else
+                        mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
+                
+            }
+            
+            
             else if (actionCommand.equals( "FINDMAX"))
             {
                 mainView.findMax(modelHandler.getLast());
             }
+         
             else if (actionCommand.equals( "FINDMIN"))
             {
                 mainView.findMin(modelHandler.getMin());
@@ -188,12 +210,8 @@ public class MainController
                 {
                     System.out.println("Incorrect Key");
                     PA4ErrorMessages.incorrectInputMessageBox("Key Must be an Integer");
-                }
-                
-                
-                      
+                }           
             }
         }
- 
     }
 }
