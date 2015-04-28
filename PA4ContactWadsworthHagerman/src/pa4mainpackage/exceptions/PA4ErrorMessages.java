@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pa4mainpackage.exceptions;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +26,18 @@ public class PA4ErrorMessages
                 " has invalid input.\n\n" + inputInstructions(invalidString),
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
+    
+   /**
+    * Error Message Box
+    */
+    public static void incorrectInputMessageBox(String message)
+    {
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame,
+        message, "Error!" , JOptionPane.ERROR_MESSAGE);
+        
+    }//End of incorrectInputMessageBox()
+    
     
     private static String inputInstructions(String invalidString)
     {
