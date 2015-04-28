@@ -135,25 +135,6 @@ public class Contact implements Comparable<Contact>, Serializable
     {
         return(phoneNumbers);
     }
-    
-    /**
-     *
-     * @param phoneNumber
-     */
-    public void addPhoneNumber(String phoneNumber)
-    {
-        if(phoneNumbers.size() < 6)
-            phoneNumbers.addPhoneNumber(phoneNumber);
-    } 
-    
-    /**
-     *
-     * @param index
-     */
-    public void deletePhoneNumber(int index)
-    {
-        phoneNumbers.deletePhoneNumber(index);
-    }
 
     /**
      *

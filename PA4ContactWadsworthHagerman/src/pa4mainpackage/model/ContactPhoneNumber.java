@@ -4,20 +4,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.PriorityQueue;
 
-/*
-@modified by John Hagerman April 26th, modified getallphonenumbers method, 
-
-@author Ben Wadsworth, John Hagerman
-*/
+/**
+ * This classes provides storage of PhoneNumbers to be used by the Contact class
+ * 
+ * @author Ben Wadsworth
+ * @version 4-28-2015
+ */
 public class ContactPhoneNumber implements Serializable
 {
+    
     private ArrayList<String> phoneList;
     
     /**
-     *
-     * @param phoneNumber
+     * Constructor to set the phoneList ArrayList to the passed ArrayList.
+     * 
+     * @param phoneNumber the ArrayList to set phoneList to
      */
     public ContactPhoneNumber(ArrayList<String> phoneNumber)
     {
@@ -26,41 +28,35 @@ public class ContactPhoneNumber implements Serializable
     }//End of ContactPhoneNumber constructor
     
     /**
-     *
-     * @param phoneNumber
+     * Overwrites the phoneList with a new list.
+     * 
+     * NOTE: This may not be the best way to modify the list? But it could be.
+     * 
+     * @param list the ArrayList to overwrite the current phoneList
      */
-    public void addPhoneNumber(String phoneNumber)
-    {
-        phoneList.add(phoneNumber);
-        
-    }//End of addPhoneNumber(String phoneNumber) method
-    
-    /**
-     *
-     * @param index
-     */
-    public void deletePhoneNumber(int index)
-    {
-        phoneList.remove(index);
-        
-    }//End of deletePhoneNumber(int index) method
-    
     public void setPhoneNumbersList(ArrayList<String> list)
     {
         phoneList = list;
-    }
+    }//End setPhoneNumbersList method
     
+    /**
+     * Returns the phoneList ArrayList.
+     * 
+     * @return ArrayList the phoneList ArrayList
+     */
     public ArrayList<String> getPhoneList()
     {
         return(phoneList);
-    }
+    }//End getPhoneList method
     
     /**
-     *
-     * @return
+     * Returns a String representation of the phoneList ArrayList.
+     * 
+     * @return String a String representation the the phoneList ArrayList
      */
     public String getAllPhoneNumbers()
     {
+        
         Iterator iter = phoneList.iterator();
         String returnString = "";
         
@@ -70,12 +66,11 @@ public class ContactPhoneNumber implements Serializable
 
             if(iter.hasNext() == true)
                 returnString +=" ";
-
         }
         
         return(returnString);
         
-    }//End of getAllPhoneNumbers() method
+    }//End of getAllPhoneNumbers method
     
     /**
      *
@@ -85,19 +80,25 @@ public class ContactPhoneNumber implements Serializable
     {
         return(phoneList.size());
         
-    }//End of size() method
+    }//End of size method
     
     /**
-     *
-     * @return
+     * Returns the iterator of the phoneList ArrayList
+     * 
+     * @return Iterator an iterator object from phoneList
      */
     public Iterator iterator()
     {
         return(phoneList.iterator());
         
-    }//End of iterator() method
-    
+    }//End of iterator method
+
     @Override
+    /**
+     * Returns a string representation of the phoneList
+     * 
+     * @retrun String a string representation of the phoneList
+     */
     public String toString()
     {
         Collection c = phoneList;
@@ -112,6 +113,6 @@ public class ContactPhoneNumber implements Serializable
         
         return(returnString);
         
-    }//End of toString() method
+    }//End of toString method
     
 }//End of ContactPhoneNumber Class
