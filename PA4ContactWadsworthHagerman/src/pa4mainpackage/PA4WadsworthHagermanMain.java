@@ -1,6 +1,5 @@
 package pa4mainpackage;
 
-import pa4mainpackage.delegate.adddelegate.AddView;
 import pa4mainpackage.delegate.maindelegate.MainController;
 import pa4mainpackage.delegate.maindelegate.MainView;
 import pa4mainpackage.model.ModelHandler;

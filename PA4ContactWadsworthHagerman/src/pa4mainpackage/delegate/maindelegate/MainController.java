@@ -6,14 +6,7 @@ import pa4mainpackage.model.ModelHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pa4mainpackage.delegate.adddelegate.AddController;
 import pa4mainpackage.delegate.adddelegate.AddView;
 import pa4mainpackage.delegate.maindelegate.editdelegate.EditController;
@@ -84,12 +77,14 @@ public class MainController
             }
             else if (actionCommand.equals( "ASCENDING"))
             {
-                mainView.updateTextBox(modelHandler.toString());
+                FormattedOutput fo = new FormattedOutput();
+                mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
                 inOrder = true;
             }
             else if (actionCommand.equals( "DESCENDING"))
             {
-                mainView.updateTextBox(modelHandler.reverseToString());
+                FormattedOutput fo = new FormattedOutput();
+                mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
                 inOrder = false;
             }
             else if (actionCommand.equals( "ADD"))
@@ -109,19 +104,23 @@ public class MainController
             }
             else if (actionCommand.equals( "DELETEMIN"))
             {
+                FormattedOutput fo = new FormattedOutput();
+                
                  modelHandler.deleteMin();
                  if(inOrder == true)
-                     mainView.updateTextBox(modelHandler.toString());
+                     mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
                  else
-                    mainView.updateTextBox(modelHandler.reverseToString());
+                    mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
             }
             else if (actionCommand.equals( "DELETEMAX"))
             {
+                FormattedOutput fo = new FormattedOutput();
+                
                  modelHandler.deleteMax();
                  if(inOrder == true)
-                     mainView.updateTextBox(modelHandler.toString());
+                     mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
                  else
-                    mainView.updateTextBox(modelHandler.reverseToString());
+                    mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
 
             
             }
@@ -148,6 +147,7 @@ public class MainController
             else if(actionCommand.equals("DELETECONTACT"))
             {
                 int x;
+                FormattedOutput fo = new FormattedOutput();
                 
                 try 
                 {
@@ -160,12 +160,12 @@ public class MainController
                     
                         if(inOrder == true)
                         {
-                            mainView.updateTextBox(modelHandler.toString());
+                            mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
                             mainView.closeDeleteBox();
                         }
                         else
                         {
-                            mainView.updateTextBox(modelHandler.reverseToString());
+                            mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
                             mainView.closeDeleteBox();
                         }
                     }
