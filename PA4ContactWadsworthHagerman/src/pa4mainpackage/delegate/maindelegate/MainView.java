@@ -484,6 +484,11 @@ public class MainView
 
     }//End of getDeleteString() method
     
+    public String getSearchKey()
+    {
+        return(searchKeyInput.getText());
+    }
+    
 
     /**
      *

@@ -85,39 +85,39 @@ public class MainController
                 {
                     PA4ErrorMessages.cannotSaveFile();
                 }
-            }
+            }  
             else if (actionCommand.equals( "ASCENDING"))
             {
                 FormattedOutput fo = new FormattedOutput();
                 mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
                 inOrder = true;
-            }
+            }  
             else if (actionCommand.equals( "DESCENDING"))
             {
                 FormattedOutput fo = new FormattedOutput();
                 mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
                 inOrder = false;
-            }
+            }    
             else if (actionCommand.equals( "ADD"))
             {
                 AddView addView = new AddView();
                 AddController addController = new AddController(addView, modelHandler);
-            }
+            }    
             else if(actionCommand.equalsIgnoreCase("EDITENTRY"))
             {
                 EditView editView = new EditView();
                 EditController editController = new EditController(editView, modelHandler);
-            }
+            }    
             else if (actionCommand.equals( "DELETE"))
             {
                 mainView.showDeleteWindow();
 
             }
-            else if (actionCommand.equals( "DELETEMIN"))
+                       else if (actionCommand.equals( "DELETEMIN"))
             {
                 if(modelHandler.isStorageEmpty() == false)
                     mainView.reassuranceMinWindow();
-            }
+            }    
             else if (actionCommand.equals("DELETEMINBTN"))
             {
                 modelHandler.deleteMin();
@@ -130,7 +130,7 @@ public class MainController
                     else
                         mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
                 
-            }
+            }    
             else if (actionCommand.equals("CANCELDELETEMINMAX"))
             {
                 mainView.endMinMAx();
@@ -141,6 +141,7 @@ public class MainController
                  if(modelHandler.isStorageEmpty() == false)
                     mainView.reassuranceMaxWindow();
             }
+            
              else if (actionCommand.equals("DELETEMAXBTN"))
             {
                 modelHandler.deleteMax();
@@ -165,26 +166,68 @@ public class MainController
             {
                 mainView.findMinWindow(modelHandler.getMin());
             }
+            
             else if (actionCommand.equals( "ABOUT"))
             {
                 mainView.showAboutWindow();
             }
+            
             else if(actionCommand.equals( "CLOSEABOUTWINDOW"))
             {
                 mainView.closeAbout();
             }
+            
             else if(actionCommand.equals("CLOSEDELETEBOX"))
             {
                 mainView.closeDeleteBox();
             }
+            
             else if(actionCommand.equals("SEARCHBYKEY"))
             {
                 mainView.searchByKeyWindow();
             }
+            else if(actionCommand.equals("SEARCHBYKEYBTN"))
+            {
+                Integer x; 
+                FormattedOutput fo = new FormattedOutput();
+                
+                try 
+                {
+                    x = Integer.parseInt(mainView.getSearchKey());
+                     
+                    if(modelHandler.getContact(x) != null)
+                    {
+                       // modelHandler.deleteContact(x);
+                    
+                    
+                        if(inOrder == true)
+                        {
+                            mainView.updateTextBox(fo.ascendingContactView(modelHandler.getTreeMapStorage()));
+                            mainView.closeSearchBox();
+                        }
+                        else
+                        {
+                            mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
+                            mainView.closeSearchBox();
+                        }
+                    }
+                    else
+                        PA4ErrorMessages.incorrectInputMessageBox("Invalid Integer");
+                  
+                }
+                catch (NumberFormatException z)
+                {
+                    System.out.println("Incorrect Key");
+                    PA4ErrorMessages.incorrectInputMessageBox("Key Must be an Integer");
+                }           
+            
+            }
+            
             else if(actionCommand.equals("CLOSEDSEARCHBOX"))
             {
                 mainView.closeSearchBox();
             }
+            
             else if(actionCommand.equals("DELETECONTACT"))
             {
                 int x;
