@@ -144,7 +144,7 @@ public class FormattedOutput
         
         String phoneString = tempContact.getContactPhoneNumber().getAllPhoneNumbers();
         List<String> phoneList = new ArrayList<>(Arrays.asList(phoneString.split(" ")));
-        String phoneListString = "           ";
+        String phoneListString = "          ";
         String emailString = tempContact.getContactEmailAddress().getAllEmailAddresses();
         List<String> emailList = new ArrayList<>(Arrays.asList(emailString.split(" ")));
         String emailListString = "           ";
@@ -153,12 +153,12 @@ public class FormattedOutput
         
         String[][] outPutArray = new String[6][2];
         
-        if(emailList.isEmpty() == false)
-            emailListString = emailList.get(0);
-        
-        if(phoneList.isEmpty() == false)
+        if(!phoneList.get(0).equals(""))
             phoneListString = phoneList.get(0);
-
+       
+        if(!emailList.get(0).equals(""))
+            emailListString = emailList.get(0);
+  
         for (int i = 0; i < phoneList.size(); i++)
             outPutArray[i][0] = phoneList.get(i);
         
@@ -168,7 +168,7 @@ public class FormattedOutput
         if((outPutArray[1][0] != null) || (outPutArray[1][1] != null))
             extraString +="\n";
        
-        for(int i = 1; i < 5; i++)
+        for(int i = 1; i < 6; i++)
         {
             if( (outPutArray[i][0] != null) && (outPutArray[i][1] != null)) 
             {
@@ -176,8 +176,12 @@ public class FormattedOutput
                         + outPutArray[i][1]; 
                   
                   if(i != 5)
+                  {
                       if((outPutArray[i + 1][0] != null) && (outPutArray[i + 1][1] != null));
-                          extraString += "\n";                    
+                      {
+                          extraString += "\n"; 
+                      }
+                  }
             }
      
             else if( (outPutArray[i][0] == null) && (outPutArray[i][1] != null)) 
@@ -186,8 +190,12 @@ public class FormattedOutput
                         + outPutArray[i][1]; 
                 
                 if(i != 5)
+                {
                     if((outPutArray[i + 1][0] != null) && (outPutArray[i + 1][1] != null));
+                    {
                         extraString += "\n";
+                    }
+                }
                 
             }
             else if( (outPutArray[i][0] != null) && (outPutArray[i][1] == null)) 
@@ -195,9 +203,13 @@ public class FormattedOutput
                  extraString += String.format("%71s", outPutArray[i][0]);
                  
                  if(i != 5)
+                 {
                     if((outPutArray[i + 1][0] != null) && (outPutArray[i + 1][1] != null));
+                    {
                         extraString += "\n";
-            }             
+                    }
+                }        
+            }    
         }
         returnString = "  " +
                 String.format("%-8s", treeLocation) + " " +
