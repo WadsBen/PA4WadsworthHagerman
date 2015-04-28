@@ -70,6 +70,19 @@ public class FormattedOutput
         
     }//End of reverseToString() method
     
+    public String getSearchValue(TreeMap storage, Integer keyI)
+    {
+        String returnString = "";
+        Contact tempContact = (Contact) storage.get(keyI);
+        
+        returnString =   "Last Name:  " + tempContact.getLastName()
+                    + "\n" + "First Name: " + tempContact.getFirstName() 
+                    + "\n" + "Org Name:   " + tempContact.getOrganization()
+                    + "\n" + "Phone Numbers:   " + tempContact.getContactPhoneNumber()
+                    + "\n" + "Email Addresses: " + tempContact.getContactEmailAddress();
+        
+        return(returnString);
+    }
     public String getMax(TreeMap storage)
     {
         if(storage.isEmpty() == false)

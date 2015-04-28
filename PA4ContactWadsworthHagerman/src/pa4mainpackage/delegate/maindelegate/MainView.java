@@ -403,6 +403,16 @@ public class MainView
         
     }//End of findMin() method
     
+    public void searchWindow(String message)
+    {
+        font3 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
+        UIManager.put("OptionPane.messageFont", font3);
+        UIManager.put("OptionPane.buttonFont", font3);
+        JOptionPane.showMessageDialog(null, message , "Search By Key" ,
+        JOptionPane.PLAIN_MESSAGE);
+        
+    }//End of findMin() method
+    
     
     /**
      * This function takes the max as a string

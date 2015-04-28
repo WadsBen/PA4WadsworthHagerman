@@ -205,8 +205,11 @@ public class MainController
                      
                     if(modelHandler.getContact(x) != null)
                     {
-
-                       mainView.closeSearchBox();
+                         mainView.searchWindow(fo.getSearchValue(modelHandler.getTreeMapStorage(), x));
+                        
+                     //  mainView.findMaxWindow(modelHandler.getContact(x));
+                       //        getMax(modelHandler.getTreeMapStorage())); 
+                      // mainView.closeSearchBox();
 
                     }
                     else
