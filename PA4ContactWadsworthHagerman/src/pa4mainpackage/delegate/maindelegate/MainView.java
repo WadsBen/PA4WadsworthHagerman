@@ -39,10 +39,10 @@ public class MainView
     private JRadioButtonMenuItem sortAscending, sortDescending;
     private JMenuItem menuFileExit, menuFileSave, menuAboutAbout, menuEditDeleteMax, menuEditDeleteMin,
                       menuEditDelete, menuEditAdd, menuSortFindMax, menuSortFindMin, menuFileOpen,
-                      menuEditEditEntry;
+                      menuEditEditEntry, menuSearchByKey;
     private JFrame mainWindow, aboutFrame, deleteBox;
     private JPanel north, south, tableAreaPanel, deleteBottom, topPanel, bigPanel;
-    private JMenu menuFile, menuSort, menuAbout, menuEdit;
+    private JMenu menuFile, menuSort, menuAbout, menuEdit, menuSearch;
     private JButton closeAboutButton;
     private ActionListener viewAl , delAL, closAL;
     private JScrollPane scrolledText;
@@ -144,6 +144,14 @@ public class MainView
         menuSort.add(menuSortFindMin);
         
         
+        //Search Tab
+        menuSearch = new JMenu("Search");
+        menuSearch.setBackground(Color.gray);
+        menuSearchByKey = new JMenuItem("By Key");
+        menuSearchByKey.setActionCommand("SEARCHBYKEY");
+        menuSearch.add(menuSearchByKey);
+        
+
         //About Tab
         menuAbout = new JMenu("About");
         menuAbout.setBackground(Color.gray);
@@ -160,6 +168,7 @@ public class MainView
         menuBar.add(menuFile);
         menuBar.add(menuEdit);
         menuBar.add(menuSort);
+        menuBar.add(menuSearch);
         menuBar.add(menuAbout);
         
         //creating text area
@@ -382,17 +391,7 @@ public class MainView
     }//End of findMax() method
     
     
-   /**
-    * Error Message Box
-    */
-    public void incorrectInputMessageBox(String message)
-    {
-        JFrame frame = new JFrame();
-        JOptionPane.showMessageDialog(frame,
-        message, "Error!" , JOptionPane.ERROR_MESSAGE);
-        
-    }//End of incorrectInputMessageBox()
-    
+
     
     /**
      * This method clears and updates the TextArea
