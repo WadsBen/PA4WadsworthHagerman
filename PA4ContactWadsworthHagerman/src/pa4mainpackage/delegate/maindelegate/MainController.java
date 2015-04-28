@@ -177,6 +177,10 @@ public class MainController
             {
                 mainView.closeDeleteBox();
             }
+            else if(actionCommand.equals("SEARCHBYKEY"))
+            {
+                mainView.searchBox();
+            }
             else if(actionCommand.equals("DELETECONTACT"))
             {
                 int x;

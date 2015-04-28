@@ -40,7 +40,7 @@ public class MainView
     private JMenuItem menuFileExit, menuFileSave, menuAboutAbout, menuEditDeleteMax, menuEditDeleteMin,
                       menuEditDelete, menuEditAdd, menuSortFindMax, menuSortFindMin, menuFileOpen,
                       menuEditEditEntry, menuSearchByKey;
-    private JFrame mainWindow, aboutFrame, deleteBox, minMaxBox;
+    private JFrame mainWindow, aboutFrame, deleteBox, minMaxBox, searchBox;
     private JPanel north, south, tableAreaPanel, deleteBottom, minMaxBottom, topPanel, bigPanel;
     private JMenu menuFile, menuSort, menuAbout, menuEdit, menuSearch;
     private JButton closeAboutButton;
@@ -48,7 +48,7 @@ public class MainView
     private JScrollPane scrolledText;
     private JTextArea textAreaText;
     private Font font, font2, font3;
-    private JLabel keyLabel, delLabel, minMaxLabel;
+    private JLabel keyLabel, delLabel, minMaxLabel, searchLabel;
     private JFileChooser fileChooser;
     private JTextField keyInput;
     private JButton cancelBTN, delBTN, minMaxDelBTN, minMaxCancel;
@@ -243,6 +243,8 @@ public class MainView
     }//End of closeAbout() method
     
     
+    
+    
     /**
      *  Creates window for deleting by key
      */
@@ -376,6 +378,48 @@ public class MainView
         minMaxBox.setVisible(true);
         
     }//End of incorrectInputMessageBox()
+    
+    public void searchBox()
+    {   
+        searchBox = new JFrame();
+        searchBox.setTitle("Search By Key");
+        searchBox.setLocationRelativeTo(null);
+        searchBox.setSize(200,120);
+        searchBox.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
+        searchBox.setResizable(false);
+        
+        bigPanel = new JPanel();
+        bigPanel.setLayout(new BoxLayout(bigPanel,BoxLayout.PAGE_AXIS));
+        
+        topPanel = new JPanel(new GridLayout(2,1,5,5));
+        
+        searchLabel  = new JLabel("Enter Search Key");
+        searchLabel.setHorizontalAlignment(JLabel.CENTER);
+        keyInput = new JTextField();
+        
+        topPanel.add(searchLabel);
+        topPanel.add(keyInput);
+        
+        
+        
+        deleteBottom = new JPanel( new FlowLayout());
+        cancelBTN = new JButton("Cancel");
+        cancelBTN.setActionCommand("CLOSEDELETEBOX");
+        cancelBTN.addActionListener(closAL);
+        delBTN = new JButton("Delete");
+        delBTN.setActionCommand("DELETECONTACT");
+        delBTN.addActionListener(delAL);
+        
+        deleteBottom.add(delBTN);
+        deleteBottom.add(cancelBTN);
+        
+        bigPanel.add(topPanel);
+        bigPanel.add(deleteBottom);
+        
+        searchBox.add(bigPanel);
+        
+        searchBox.setVisible(true);
+    }
     
     /**
      * Gets the key entered by user
@@ -512,6 +556,7 @@ public class MainView
         menuSortFindMax.addActionListener(al);
         menuSortFindMin.addActionListener(al);    
         menuEditEditEntry.addActionListener(al);
+        menuSearchByKey.addActionListener(al);
         sortDescending.addActionListener(al);
         sortAscending.addActionListener(al);
         closeMinMaxAL = al;

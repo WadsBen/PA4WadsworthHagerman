@@ -26,6 +26,7 @@ public class FormattedOutput
     
     }
     
+    
     public String ascendingContactView(TreeMap storage)
     {
          Set set = storage.entrySet();
@@ -44,7 +45,7 @@ public class FormattedOutput
          
     }//End of toString() method
     
-        /**
+    /**
      * Iterates through the TreeMap in reverse and prepares a 
      * formatted string of all the elements within the tree.
      * 
