@@ -121,7 +121,7 @@ public class MainController
             else if (actionCommand.equals("DELETEMINBTN"))
             {
                 modelHandler.deleteMin();
-                mainView.endMinMAx();
+                mainView.endMin();
                 
                 FormattedOutput fo = new FormattedOutput();
                     
@@ -131,9 +131,13 @@ public class MainController
                         mainView.updateTextBox(fo.descendingContactView(modelHandler.getTreeMapStorage()));
                 
             }    
-            else if (actionCommand.equals("CANCELDELETEMINMAX"))
+            else if (actionCommand.equals("CANCELDELETEMAX"))
             {
-                mainView.endMinMAx();
+                mainView.endMax();
+            }
+             else if (actionCommand.equals("CANCELDELETEMIN"))
+            {
+                mainView.endMin();
             }
 
             else if (actionCommand.equals( "DELETEMAX"))
@@ -145,7 +149,7 @@ public class MainController
              else if (actionCommand.equals("DELETEMAXBTN"))
             {
                 modelHandler.deleteMax();
-                mainView.endMinMAx();
+                mainView.endMax();
                 
                 FormattedOutput fo = new FormattedOutput();
                     

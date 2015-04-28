@@ -44,15 +44,14 @@ public class MainView
     private JPanel north, south, tableAreaPanel, deleteBottom, minBottom, maxBottom, topPanel, bigPanel, minBigPanel,
             maxBigPanel, searchBigPanel, minTopPanel, maxTopPanel, searchTopPanel, searchBottom;
     private JMenu menuFile, menuSort, menuAbout, menuEdit, menuSearch;
-    private JButton closeAboutButton;
-    private ActionListener viewAl , delAL, closAL, closeMinMaxAL, minDelAL, maxDelAL, closeSearchAL, searchAL;
+    private ActionListener viewAl , delAL, closAL, minDelAL, maxDelAL, closeSearchAL, searchAL, closeMinAL, closeMaxAL;
     private JScrollPane scrolledText;
     private JTextArea textAreaText;
     private Font font, font2, font3;
     private JLabel keyLabel, delLabel, minLabel, maxLabel, searchLabel;
     private JFileChooser fileChooser;
     private JTextField keyInput, searchKeyInput;
-    private JButton cancelBTN, delBTN, minDelBTN, maxDelBTN, minMaxCancel, searchCancelBTN, searchBTN;
+    private JButton cancelBTN, delBTN, minDelBTN, maxDelBTN, minCancel, maxCancel, searchCancelBTN, searchBTN, closeAboutButton;
 
    /**
     * Invokes mainMenu() method creating UI
@@ -293,16 +292,16 @@ public class MainView
         minLabel = new JLabel("Are you sure you want to delete min?");
         minLabel.setHorizontalAlignment(JLabel.CENTER);
         minBottom = new JPanel( new FlowLayout());
-        minMaxCancel = new JButton("Cancel");
-        minMaxCancel.setActionCommand("CANCELDELETEMIN");
-        minMaxCancel.addActionListener(closeMinAL);
+        minCancel = new JButton("Cancel");
+        minCancel.setActionCommand("CANCELDELETEMIN");
+        minCancel.addActionListener(closeMinAL);
         minDelBTN = new JButton("Delete");
         minDelBTN.setActionCommand("DELETEMINBTN");
         minDelBTN.addActionListener(minDelAL);
         
         minTopPanel.add(minLabel);
         minBottom.add(minDelBTN);
-        minBottom.add(minMaxCancel);
+        minBottom.add(minCancel);
         minBigPanel.add(minTopPanel);
         minBigPanel.add(minBottom);
         minBox.add(minBigPanel);
@@ -332,7 +331,7 @@ public class MainView
         maxBottom = new JPanel( new FlowLayout());
         maxCancel = new JButton("Cancel");
         maxCancel.setActionCommand("CANCELDELETEMAX");
-        minMaxCancel.addActionListener(closeMinAL);
+        maxCancel.addActionListener(closeMaxAL);
         maxDelBTN = new JButton("Delete");
         maxDelBTN.setActionCommand("DELETEMAXBTN");
         maxDelBTN.addActionListener(maxDelAL);
@@ -342,7 +341,7 @@ public class MainView
         maxBottom.add(maxCancel);
         maxBigPanel.add(maxTopPanel);
         maxBigPanel.add(maxBottom);
-        maxBox.add(maxTopPanel);
+        maxBox.add(maxBigPanel);
         
         maxBox.setVisible(true);
         
@@ -454,6 +453,12 @@ public class MainView
         minBox.dispose();
         
     }//End of end MinMax() method
+    
+    
+    public void endMax()
+    {
+        maxBox.dispose();
+    }
     
     
     /**
@@ -569,7 +574,8 @@ public class MainView
         menuSearchByKey.addActionListener(al);
         sortDescending.addActionListener(al);
         sortAscending.addActionListener(al);
-        closeMinMaxAL = al;
+        closeMinAL = al;
+        closeMaxAL = al;
         minDelAL = al;
         maxDelAL = al;
         delAL = al;
