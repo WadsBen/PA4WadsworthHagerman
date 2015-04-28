@@ -197,10 +197,8 @@ public class MainController
                      
                     if(modelHandler.getContact(x) != null)
                     {
-                  
-                    
 
-                            mainView.closeSearchBox();
+                       mainView.closeSearchBox();
 
                     }
                     else

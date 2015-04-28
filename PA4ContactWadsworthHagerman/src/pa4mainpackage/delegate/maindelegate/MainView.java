@@ -294,8 +294,8 @@ public class MainView
         minLabel.setHorizontalAlignment(JLabel.CENTER);
         minBottom = new JPanel( new FlowLayout());
         minMaxCancel = new JButton("Cancel");
-        minMaxCancel.setActionCommand("CANCELDELETEMINMAX");
-        minMaxCancel.addActionListener(closeMinMaxAL);
+        minMaxCancel.setActionCommand("CANCELDELETEMIN");
+        minMaxCancel.addActionListener(closeMinAL);
         minDelBTN = new JButton("Delete");
         minDelBTN.setActionCommand("DELETEMINBTN");
         minDelBTN.addActionListener(minDelAL);
@@ -330,16 +330,16 @@ public class MainView
         maxLabel = new JLabel("Are you sure you want to delete max?");
         maxLabel.setHorizontalAlignment(JLabel.CENTER);
         maxBottom = new JPanel( new FlowLayout());
-        minMaxCancel = new JButton("Cancel");
-        minMaxCancel.setActionCommand("CANCELDELETEMINMAX");
-        minMaxCancel.addActionListener(closeMinMaxAL);
+        maxCancel = new JButton("Cancel");
+        maxCancel.setActionCommand("CANCELDELETEMAX");
+        minMaxCancel.addActionListener(closeMinAL);
         maxDelBTN = new JButton("Delete");
         maxDelBTN.setActionCommand("DELETEMAXBTN");
         maxDelBTN.addActionListener(maxDelAL);
         
         maxTopPanel.add(maxLabel);
         maxBottom.add(maxDelBTN);
-        maxBottom.add(minMaxCancel);
+        maxBottom.add(maxCancel);
         maxBigPanel.add(maxTopPanel);
         maxBigPanel.add(maxBottom);
         maxBox.add(maxTopPanel);
@@ -449,9 +449,8 @@ public class MainView
     /**
      * Closes Find Min/Max Windows
      */
-    public void endMinMAx()
+    public void endMin()
     {
-        maxBox.dispose();
         minBox.dispose();
         
     }//End of end MinMax() method
