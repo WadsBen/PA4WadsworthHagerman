@@ -3,7 +3,6 @@ package pa4mainpackage.delegate.maindelegate.editdelegate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Set;
 import pa4mainpackage.delegate.RegexChecker;
 import pa4mainpackage.delegate.maindelegate.FormattedOutput;
 import pa4mainpackage.delegate.maindelegate.MainView;
@@ -12,7 +11,12 @@ import pa4mainpackage.model.Contact;
 import pa4mainpackage.model.ModelHandler;
 
 
-
+/**
+ * Controller class for the EditView class.
+ * 
+ * @author Ben Wadsworth
+ * @version 4-30-2015
+ */
 public class EditController
 {
     
@@ -21,6 +25,13 @@ public class EditController
     private final MainView mainView;
     private final Integer key;
     
+    /**
+     * EditController constructor
+     * 
+     * @param editView EditView to be used
+     * @param mainView MainView to be used
+     * @param modelHandler ModelHandler to be used
+     */
     public EditController(EditView editView, MainView mainView, ModelHandler modelHandler)
     {
         this.editView = editView;
@@ -36,8 +47,13 @@ public class EditController
         editView.populateEditWindow(tempContact.getFirstName(), tempContact.getLastName(),
                 tempContact.getOrganization(), tempContact.getContactPhoneNumber().getPhoneList(),
                 tempContact.getContactEmailAddress().getEmailList());
-    }
+    }//End EditController constructor
     
+    /**
+     * Checks for valid phone numbers in fields provided.
+     * 
+     * @return boolean of if valid input
+     */
     private boolean isValidPhoneNumbers()
     {
         ArrayList<String> phoneList = editView.getPhoneNumbers();
@@ -49,8 +65,13 @@ public class EditController
         }
         
         return(true);
-    }
+    }//End isValidPhoneNumbers method
     
+    /**
+     * Checks for valid email addresses in fields provided.
+     * 
+     * @return boolean of if valid input
+     */
     private boolean isValidEmailAddresses()
     {
         ArrayList<String> emailList = editView.getEmailAddresses();
@@ -62,23 +83,43 @@ public class EditController
         }
         
         return(true);
-    }
+    }//End isValidEmailAddresses method
     
+    /**
+     * Checks for valid first name in field provided.
+     * 
+     * @return boolean of if valid input
+     */
     private boolean isValidFirstName()
     {
         return(RegexChecker.regexCheck(RegexChecker.RegexMethod.SIXTEEN_ALPHABET, editView.getFirstName()));
-    }
+    }//End isValidFirstName method
     
+    /**
+     * Checks for valid last name in field provided.
+     * 
+     * @return boolean of if valid input
+     */
     private boolean isValidLastName()
     {
         return(RegexChecker.regexCheck(RegexChecker.RegexMethod.SIXTEEN_ALPHABET, editView.getLastName()));
-    }
+    }//End isValidLastName method
     
+    /**
+     * Checks for valid organization name in field provided.
+     * 
+     * @return boolean of if valid input
+     */
     private boolean isValidOrganizationName()
     {
         return(RegexChecker.regexCheck(RegexChecker.RegexMethod.SIXTEEN_ALPHABET, editView.getOrgName()));
-    }
+    }//End isValidOrganizationName
     
+    /**
+     * Checks for complete valid information in fields provided.
+     * 
+     * @return boolean of if valid input
+     */
     private boolean isValidInfo()
     {
         return(isValidFirstName() &&
@@ -86,8 +127,13 @@ public class EditController
                 isValidOrganizationName() &&
                 isValidPhoneNumbers() &&
                 isValidEmailAddresses());
-    }
+    }//End isValidInfo method
     
+    /**
+     * Opens dialog asking for a key value to edit a contact.
+     * 
+     * @return Integer key value
+     */
     private Integer getKeyValue()
     {
         Integer tempKey = new Integer(-1);
@@ -103,9 +149,18 @@ public class EditController
         }
         
         return(tempKey);
-    }
+    }//End getKeyValue
+    
+    /**
+     * Private inner class that sets up logic and listeners for the EditView class
+    */
     private class EditViewListener implements ActionListener
     {
+        /**
+         * Defines logic for actions performed in EditView
+         * @param e ActionEvent that took place
+         */
+        @Override
         public void actionPerformed(ActionEvent e)
         {
             String actionEvent = e.getActionCommand();
@@ -142,6 +197,9 @@ public class EditController
             {
                 editView.close();
             }
-        }
-    }
-}
+            
+        }//End actionPerformed Override
+        
+    }//End EditViewListener inner class
+    
+}//End EditController class

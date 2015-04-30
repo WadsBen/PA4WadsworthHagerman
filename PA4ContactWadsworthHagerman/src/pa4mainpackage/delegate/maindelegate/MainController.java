@@ -1,14 +1,10 @@
-
 package pa4mainpackage.delegate.maindelegate;
 
-import pa4mainpackage.delegate.maindelegate.MainView;
 import pa4mainpackage.model.ModelHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.TreeMap;
 import pa4mainpackage.delegate.adddelegate.AddController;
 import pa4mainpackage.delegate.adddelegate.AddView;
 import pa4mainpackage.delegate.maindelegate.editdelegate.EditController;
@@ -17,9 +13,11 @@ import pa4mainpackage.delegate.fileio.FileIO;
 import pa4mainpackage.exceptions.PA4ErrorMessages;
 
 /**
- *  
+ * Controller for the MainView class.
+ * 
  * @author John Thomas Hagerman
  * @author Benjamin Awesomesauce Wadsworth
+ * @version 4-30-2015
  */
 public class MainController 
 {
@@ -29,20 +27,31 @@ public class MainController
     private boolean inOrder = true;
     private FormattedOutput formatted;
     
-    
+    /**
+     * MainController constructor
+     * 
+     * @param mainView MainView object
+     * @param modelHandler ModelHandler object
+     */
     public MainController(MainView mainView, ModelHandler modelHandler)
     {
         this.mainView = mainView;
         this.modelHandler = modelHandler;
         
         mainView.setActionListeners(new AllWidgetListener());
-    }
-    
-   
-    
+    }//End MainController constructor
+
+    /**
+     * Private inner class that sets up logic and listeners for the MainView class
+     */
     private class AllWidgetListener implements ActionListener
     {
-         @Override
+        
+        /**
+         * Defines logic for actions performed in MainView
+         * @param e ActionEvent that took place
+         */
+        @Override
         public void actionPerformed( ActionEvent e)
         {
             String actionCommand = e.getActionCommand();

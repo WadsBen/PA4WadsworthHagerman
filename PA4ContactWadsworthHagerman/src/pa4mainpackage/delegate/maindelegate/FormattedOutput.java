@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pa4mainpackage.delegate.maindelegate;
 
 import java.util.ArrayList;
@@ -16,17 +11,27 @@ import java.util.TreeMap;
 import pa4mainpackage.model.Contact;
 
 /**
- *
+ * Provides methods for formatted String output.
+ * 
  * @author Ben Wadsworth
+ * @version 4-30-2015
  */
 public class FormattedOutput 
 {
+    /**
+     * FormattedOutput no-arg constructor
+     */
     public FormattedOutput()
     {
     
-    }
+    }//End FormattedOutoput constructor
     
-    
+    /**
+     * Displays contacts in ascending order.
+     * 
+     * @param storage TreeMap where contacts are stored
+     * @return String representation of the contacts in ascending order
+     */
     public String ascendingContactView(TreeMap storage)
     {
          Set set = storage.entrySet();
@@ -70,6 +75,13 @@ public class FormattedOutput
         
     }//End of reverseToString() method
     
+    /**
+     * Provides formatted String of specific contact.
+     * 
+     * @param storage TreeMap where contacts are stored
+     * @param keyI Key of what contact to display
+     * @return String representation of the specific contact
+     */
     public String getSearchValue(TreeMap storage, Integer keyI)
     {
         String returnString = "";
@@ -82,7 +94,15 @@ public class FormattedOutput
                     + "\n" + "Email Addresses: " + tempContact.getContactEmailAddress();
         
         return(returnString);
-    }
+    }//End getSearchValue method
+    
+    /**
+     * Formatted output of max value in tree.
+     * PROBABLY CAN BE REMOVED AND getSearchValue METHOD CAN BE USED INSTEAD.
+     * 
+     * @param storage TreeMap where contacts are stored
+     * @return String of max contact
+     */
     public String getMax(TreeMap storage)
     {
         if(storage.isEmpty() == false)
@@ -104,7 +124,7 @@ public class FormattedOutput
 
     }//End of getLast() method
     
-        /**
+    /**
      * Takes the first element in the TreeMap and returns it as
      * a string it also checks to make sure isEmpty() is false
      * 

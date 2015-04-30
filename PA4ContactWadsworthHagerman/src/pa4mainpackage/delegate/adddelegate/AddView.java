@@ -1,4 +1,3 @@
-
 package pa4mainpackage.delegate.adddelegate;
 
 import java.awt.Dimension;

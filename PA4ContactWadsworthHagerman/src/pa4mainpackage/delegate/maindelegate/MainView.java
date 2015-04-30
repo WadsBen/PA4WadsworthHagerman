@@ -1,4 +1,3 @@
-
 package pa4mainpackage.delegate.maindelegate;
 
 import java.awt.BorderLayout;
@@ -54,12 +53,11 @@ public class MainView
     private JButton cancelBTN, delBTN, minDelBTN, maxDelBTN, minCancel, maxCancel, searchCancelBTN, searchBTN, closeAboutButton;
 
    /**
-    * Invokes mainMenu() method creating UI
+    * Invokes mainMenu method creating UI
     */
     public MainView()
     {
-        mainMenu();  
-        
+        mainMenu(); 
     }//End of Constructor
     
     

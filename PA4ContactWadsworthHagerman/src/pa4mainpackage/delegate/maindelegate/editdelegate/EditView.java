@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pa4mainpackage.delegate.maindelegate.editdelegate;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -20,11 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import pa4mainpackage.model.ModelHandler;
 
 /**
- *
+ * Class which presents the Edit View.
+ * 
  * @author Ben Wadsworth
+ * @author John Hagerman
+ * @version 4-30-2015
  */
 public class EditView 
 {
@@ -38,17 +34,33 @@ public class EditView
                             email1, email2, email3, email4, email5, email6;
     private JButton         cancelBTN, submitBTN;
     
+    /**
+     * EditView no-arg constructor initializes the window
+    */
     public EditView()
     {
         initWindow();
-    }
+    }//End EditView no-arg constructor
     
+    /**
+     * EditView constructor which populates the Edit window with the values of the
+     * contact.
+     * 
+     * @param firstName String representation of the first name
+     * @param lastName String representation of the last name
+     * @param orgName String representation of the organization name
+     * @param phoneList ArrayList object of the phoneList
+     * @param emailList ArrayList object of the emailList
+     */
     public EditView(String firstName, String lastName, String orgName,
             ArrayList<String> phoneList, ArrayList<String> emailList)
     {
          populateEditWindow(firstName, lastName, orgName, phoneList, emailList);
-    }
+    }//End EditView constructor
     
+    /**
+     * Initializes the edit window.
+     */
     public void initWindow()
     {
         editFrame = new JFrame();
@@ -89,6 +101,7 @@ public class EditView
         lastNameField = new JTextField();
         orgField = new JTextField();
         
+        //PROBABLY CAN BE IN AN ARRAY OF SOME SORT!
         phone1 = new JTextField();
         phone2 = new JTextField();
         phone3 = new JTextField();
@@ -96,6 +109,7 @@ public class EditView
         phone5 = new JTextField();
         phone6 = new JTextField();
         
+        //PROBABLY CAN BE IN AN ARRAY OF SOME SORT!
         email1 = new JTextField();
         email2 = new JTextField();
         email3 = new JTextField();
@@ -150,8 +164,17 @@ public class EditView
         
         editFrame.add(bigPanel);
         editFrame.setVisible(true);
-    }
+    }//End initWindow method
     
+    /**
+     * Populates the edit window with values from the contact.
+     * 
+     * @param firstName String representation of the first name
+     * @param lastName String representation of the last name
+     * @param orgName String representation of the organization name
+     * @param phoneList ArrayList object of the phoneList
+     * @param emailList ArrayList object of the emailList
+     */
     public void populateEditWindow(String firstName, String lastName, String orgName,
             ArrayList<String> phoneList, ArrayList<String> emailList)
     {
@@ -159,6 +182,7 @@ public class EditView
         lastNameField.setText(lastName);
         orgField.setText(orgName);
         
+        //THIS IS NOT PRETTY! :(
         int phoneListSize = phoneList.size();
         if(phoneListSize > 0)
             phone1.setText(phoneList.get(0));
@@ -187,23 +211,44 @@ public class EditView
         if(emailListSize > 5)
             email6.setText(emailList.get(5));
         
-    }
+    }//End populateEditWindow method
     
+    /**
+     * Returns the first name in the text field.
+     * 
+     * @return String first name
+     */
     public String getFirstName()
     {
         return(nameField.getText());
-    }
+    }//End getFirstName method
     
+    /**
+     * Returns the last name in the text field.
+     * 
+     * @return String last name
+     */
     public String getLastName()
     {
         return(lastNameField.getText());
-    }
+    }//End getLastName method
     
+    /**
+     * Returns the organization name in the text field.
+     * 
+     * @return String organization name
+     */
     public String getOrgName()
     {
         return(orgField.getText());
-    }
+    }//End getOrgName method
     
+    /**
+     * Returns the phone numbers in the fields. This method can probably be modified
+     * to look nicer.
+     * 
+     * @return ArrayList phone numbers
+     */
     public ArrayList<String> getPhoneNumbers()
     {
         ArrayList<String> outPut = new ArrayList<>();
@@ -223,8 +268,14 @@ public class EditView
         
         return outPut;
   
-    }
+    }//End getPhoneNumbers method
     
+    /**
+     * Returns the email addresses in the fields. This method can probably be modified
+     * to look nicer.
+     * 
+     * @return ArrayList email addresses
+     */
     public ArrayList<String> getEmailAddresses()
     {
         ArrayList<String> outPut = new ArrayList<>();
@@ -243,28 +294,40 @@ public class EditView
             outPut.add(email6.getText());
         
         return outPut;
-    }
+    }//End getEmailAddresses method
     
+    /**
+     * Closes the edit view.
+     */
     public void close()
     {
         editFrame.dispose();
-    }
+    }//End close method
     
+    /**
+     * Shows dialog prompting user for a valid key and returns a String of that key.
+     * 
+     * @return String representation of the key
+     */
     public String getEditKey()
     {
        String inputValue = JOptionPane.showInputDialog("Please input the key value of " +
                "the contact you want to edit.");
        
        return(inputValue);
-    }
-    
-    
+    }//End getEditKey method
+
+    /**
+     * Sets up action listeners for the edit view objects.
+     * 
+     * @param al ActionListener
+     */
     public void setActionListeners(ActionListener al)
     {
          //closeErrorButton.addActionListener(al);
          cancelBTN.addActionListener(al);
          submitBTN.addActionListener(al);
-
-        
+         
     }//End setJButtonListen
-}
+    
+}//End EditView class

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pa4mainpackage.delegate.fileio;
 
 import java.io.File;
@@ -12,18 +7,24 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import pa4mainpackage.delegate.maindelegate.MainController;
 import pa4mainpackage.model.ModelHandler;
 
 /**
- *
+ * Provides methods to save and open files.
+ * 
  * @author Ben Wadsworth
  */
 public class FileIO 
 {
-    
+    /**
+     * Attempts to open a serialized file.
+     * 
+     * @param fileToOpen File to open
+     * @return ModelHandler the object which was serialized
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public static ModelHandler openFile(File fileToOpen) throws FileNotFoundException, IOException, ClassNotFoundException
     {
         
@@ -43,8 +44,14 @@ public class FileIO
         
         
         return(mhReturn);
-    }
+    }//End openFile method
     
+    /**
+     * Attempts to save a file.
+     * 
+     * @param fileToSave File location to save
+     * @param mhToSave ModelHandler to serialize and save
+     */
     public static void saveFile(File fileToSave, ModelHandler mhToSave)
     {
         String fileName = fileToSave.getName();
@@ -63,5 +70,6 @@ public class FileIO
         {
             e.printStackTrace();
         }
-    }
-}
+    }//End saveFile method
+    
+}//End FileIO class

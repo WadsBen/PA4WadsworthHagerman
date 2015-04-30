@@ -1,23 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pa4mainpackage.delegate;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Provides static methods to check for valid input.
+ * 
  * @author Ben Wadsworth
+ * @version 4-30-2015
  */
 public class RegexChecker 
 {
+    /**
+     * Possible variable names to use.
+     */
     public enum RegexMethod{
         SIXTEEN_ALPHABET, EMAIL_ADDRESS, PHONE_NUMBER
     }
     
+    /**
+     * Checks passed string against pattern.
+     * 
+     * @param methodToUse Which regular expression to use
+     * @param stringToCheck String to compare to pattern
+     * @return true if valid input
+     */
     public static boolean regexCheck(RegexMethod methodToUse, String stringToCheck)
     {
         switch(methodToUse)
@@ -49,5 +56,6 @@ public class RegexChecker
         }
         
         return(true);
-    }
-}
+    }//End regexCheck method
+    
+}//End RegexChecker class

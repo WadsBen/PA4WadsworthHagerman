@@ -1,4 +1,3 @@
-
 package pa4mainpackage.model;
 
 import java.io.Serializable;

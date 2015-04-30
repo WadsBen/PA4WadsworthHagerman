@@ -5,9 +5,11 @@ import pa4mainpackage.delegate.maindelegate.MainView;
 import pa4mainpackage.model.ModelHandler;
 
 /**
- *
- * @author Ben Wadsworth
+ * Main entry point for PA4Contact
  * 
+ * @author Ben Wadsworth
+ * @author John Hagerman
+ * @version 4-30-2015
  */
 public class PA4WadsworthHagermanMain 
 {
@@ -20,10 +22,11 @@ public class PA4WadsworthHagermanMain
         
        // MainController ass = new MainController();
 
-        ModelHandler mh = new ModelHandler();
-        MainView fuck = new MainView();
+        ModelHandler modelHandler = new ModelHandler();
+        MainView mainView = new MainView();
         
-        MainController bitch = new MainController(fuck, mh);
+        MainController start = new MainController(mainView, modelHandler);
         
-    }
-}
+    }//End main method
+    
+}//End PA4WadsworthHagermanMain
